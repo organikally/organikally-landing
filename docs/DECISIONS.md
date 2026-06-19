@@ -72,4 +72,29 @@ Append-only record of cross-agent decisions. Newest first. Format:
 - **Tracked follow-up**: the scrim over the *lightest* video frames needs strengthening for AA
   text contrast — owned by `accessibility-specialist` (Phase 5), tightened during Phase 4 build.
 
+## 2026-06-20 · Phase 4 — Build
+
+- **All 12 sections built** with final compliant copy: hero, trust strip, story, video
+  interstitial, product, range (scalable grid), sourcing (3-step process), social proof
+  (flagged placeholders), recipes/usage, journal teaser, FAQ (accordion), conversion, footer.
+  Component system under `src/components/{ui,sections,layout,blog,seo}`.
+- **Static blog** under `/journal` with 3 E-E-A-T seed posts (cold-pressed vs refined, spotting
+  organic staples, yellow vs black), typed block content, `BlogPosting` schema per post.
+- **SEO/schema** wired: `Organization`, `WebSite`, `Product`, `FAQPage` on home; `BlogPosting`
+  + `BreadcrumbList` on posts; `sitemap.xml` + `robots.txt` static-generated; per-page metadata,
+  OG/Twitter. Verified present in exported HTML.
+- **Critical fix — colour tokens**: the theme used hex CSS vars, so Tailwind `/opacity`
+  utilities silently rendered **transparent** (scrims, frosted panels, muted text all broken,
+  caught in live QA). Refactored to RGB-channel triplets + `rgb(var(--x) / <alpha-value>)`.
+  Now every scrim/overlay/tone resolves correctly — the over-video AA legibility works.
+- **Scrim + text-shadow** strengthened on hero/interstitials so cream copy is legible over the
+  lightest frames (the tracked Phase-3 follow-up — final AA measurement in Phase 5).
+- **Bottle on white** framed in a deliberate white product card (a transparent cutout stays a
+  nice-to-have founder asset).
+- **Motion**: lightweight `Reveal` (IntersectionObserver, reduced-motion safe) for section
+  reveals; hero canvas scrub unchanged.
+- **Lucide** added for iconography (tree-shaken). `lucide-react` is the only new dep.
+- Compliance: copy uses the approved claim set; "100% Organic" remains **conditional on the
+  founder's certification** (footer FSSAI slot + cert are MANUAL_STEPS items).
+
 <!-- New entries above this line -->
