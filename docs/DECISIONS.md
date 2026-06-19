@@ -13,9 +13,9 @@ Append-only record of cross-agent decisions. Newest first. Format:
   (240 frames → manageable AVIF/WebP set at ≤1600px render width).
 - **Design taste layer**: `ui-ux-pro-max` and `taste-skill` already available in the
   environment — both confirmed installed (see `docs/SKILLS.md`). All UI routes through them.
-- **Asset gap**: the official **logo PNG is missing on disk** (shown in brief only). Tracked
-  in `MANUAL_STEPS.md` as a 🔴 blocker. Bottle-on-white + lifestyle poster + 4 hero
-  composites are staged in `assets/source/`.
+- **Assets staged**: official logo (`organikally-logo.jpeg`, white bg — transparent/SVG
+  derivative is a pipeline task), bottle-on-white, lifestyle poster, 4 hero composites.
+  Logo blocker resolved.
 - **Stack** locked per brief: Next.js static export, Tailwind, GSAP/ScrollTrigger, Lenis,
   TypeScript strict, Cloudflare Pages.
 

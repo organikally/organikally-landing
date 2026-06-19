@@ -8,11 +8,11 @@ Legend: 🔴 blocks a real build deliverable · 🟡 needed before launch · �
 
 ## Brand assets
 
-- [ ] 🔴 **Provide the official logo PNG.** The Organikally wordmark logo (emerald-green +
-  gold leaf/oil-drop emblem, "Organikally", tagline PURE · NATURAL · TRUSTED) was shown
-  in the brief but is **not saved on disk**. Drop the source file at
-  `assets/source/organikally-logo.png` (ideally a transparent-background PNG or SVG).
-  - Found and staged so far: source hero video, clean bottle-on-white (`product-bottle.png`),
+- [x] ✅ **Official logo supplied** — `assets/source/organikally-logo.jpeg` (green + gold
+  emblem, wordmark, PURE · NATURAL · TRUSTED). It's on a white background; the pipeline will
+  derive a transparent PNG / SVG. If a higher-res or vector original exists, dropping it
+  improves header/favicon crispness.
+  - Also staged: source hero video, clean bottle-on-white (`product-bottle.png`),
     a lifestyle poster, and 4 alternate hero composites.
 - [ ] 🟢 If available, supply a transparent-background bottle cut-out for product sections.
 
