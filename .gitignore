@@ -10,9 +10,9 @@ out/
 build/
 next-env.d.ts
 
-# Production / generated hero frames (regenerated from assets/source via ffmpeg)
-# Keep poster + a manifest in git; the full frame set is rebuilt by the asset pipeline.
-public/hero/frames/
+# Raw ffmpeg intermediates (PNG extraction) — the optimised AVIF frames in
+# public/hero/frames/ ARE committed (they're the deploy artifact; Cloudflare has no ffmpeg).
+assets/hero-work/
 
 # Env
 .env
