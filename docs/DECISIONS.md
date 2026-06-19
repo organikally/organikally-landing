@@ -19,4 +19,23 @@ Append-only record of cross-agent decisions. Newest first. Format:
 - **Stack** locked per brief: Next.js static export, Tailwind, GSAP/ScrollTrigger, Lenis,
   TypeScript strict, Cloudflare Pages.
 
+## 2026-06-20 · Phase 1 — Strategy
+
+- **18-agent team** defined in `.claude/agents/*.md` (Role · Mandate · Responsibilities ·
+  Inputs · Outputs · Done-when each).
+- **Strategy locked**: `AUDIENCE.md`, `BRAND.md`, `CRO.md`, `SEO.md`, `COMPLIANCE.md` (starter),
+  `PRD.md` (section spec + Definition of Done).
+- **Positioning**: "Cold-pressed, organic, honestly made — the pantry you'd trust for your own
+  family." Trust architecture ranks **cold-press process first**, then sourcing/provenance, then
+  certification/FSSAI — purity is *shown*, not asserted (answers the adulteration anxiety).
+- **Personas**: (1) health-led home cook, (2) diaspora nostalgist/gifter, (3) conscious trade
+  buyer. Page leads with mustard oil, signals the range for credibility.
+- **CRO**: primary action = Buy/Order; **WhatsApp-first** as the low-friction default until the
+  founder supplies the store/marketplace destination. Privacy-friendly, cookieless analytics.
+- **Compliance stance**: "100% Organic" is **conditional** on valid certification; immunity
+  claims dropped; cold-pressed/cholesterol-free safe; MUFA/Omega-3 & antioxidants kept as
+  composition (no disease claims). FSSAI no. slotted in footer (founder-supplied).
+- **Palette/type intent** set: forest/green + gold + cream + mustard; warm serif headings +
+  clean sans body, to be finalised through `ui-ux-pro-max` + `taste-skill` in Phase 2.
+
 <!-- New entries above this line -->
