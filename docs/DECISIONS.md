@@ -56,4 +56,20 @@ Append-only record of cross-agent decisions. Newest first. Format:
   texture, Lucide 1.5px icons, generous section rhythm (128–160px desktop).
 - **Artifact**: `docs/design/style-tile.html` — brand-accurate, self-contained, browser-viewable.
 
+## 2026-06-20 · Phase 3 — Hero engineering
+
+- **App scaffolded** (hand-rolled, not create-next-app, to avoid template slop): Next.js 15
+  static export, React 19, TS strict, Tailwind 3.4 with the token pipeline, self-hosted fonts
+  via `next/font`. `npm run build` green — First Load JS ~107 kB. See `docs/ARCHITECTURE.md`.
+- **Encoder benchmarked**: AVIF via **libsvtav1** chosen over WebP/libaom (best size-at-quality
+  + speed). Desktop 240 frames @1280/crf48 = **3.9 MB** (in budget); mobile 80 frames
+  @900/crf50 = 756 KB. Poster (avif/webp/jpg) is the LCP element. See `docs/PERFORMANCE.md`.
+- **Decision — commit the optimised AVIF frames** (not regenerate in CI): Cloudflare's build
+  has no ffmpeg, so the deploy must be self-contained. Raw PNGs stay git-ignored.
+- **Hero proven** via live preview: canvas frame tracks scroll (poster→deep-gold oil pixel
+  confirmed), overlay content reads premium over the video, mobile loads only the 80-frame set,
+  zero console errors. GSAP/Lenis dynamically imported to keep first-load JS lean.
+- **Tracked follow-up**: the scrim over the *lightest* video frames needs strengthening for AA
+  text contrast — owned by `accessibility-specialist` (Phase 5), tightened during Phase 4 build.
+
 <!-- New entries above this line -->
