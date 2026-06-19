@@ -5,13 +5,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream: { DEFAULT: 'var(--cream)', deep: 'var(--cream-deep)' },
-        forest: 'var(--forest)',
-        green: { DEFAULT: 'var(--green)', 700: 'var(--green-700)' },
-        gold: { DEFAULT: 'var(--gold)', bright: 'var(--gold-bright)', ink: 'var(--gold-ink)' },
-        mustard: 'var(--mustard)',
-        charcoal: { DEFAULT: 'var(--charcoal)', 60: 'var(--charcoal-60)' },
-        line: 'var(--line)',
+        cream: {
+          DEFAULT: 'rgb(var(--cream) / <alpha-value>)',
+          deep: 'rgb(var(--cream-deep) / <alpha-value>)',
+        },
+        forest: 'rgb(var(--forest) / <alpha-value>)',
+        green: {
+          DEFAULT: 'rgb(var(--green) / <alpha-value>)',
+          700: 'rgb(var(--green-700) / <alpha-value>)',
+        },
+        gold: {
+          DEFAULT: 'rgb(var(--gold) / <alpha-value>)',
+          bright: 'rgb(var(--gold-bright) / <alpha-value>)',
+          ink: 'rgb(var(--gold-ink) / <alpha-value>)',
+        },
+        mustard: 'rgb(var(--mustard) / <alpha-value>)',
+        charcoal: {
+          DEFAULT: 'rgb(var(--charcoal) / <alpha-value>)',
+          60: 'rgb(var(--charcoal-60) / <alpha-value>)',
+        },
+        line: 'rgb(var(--line) / <alpha-value>)',
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'Georgia', 'serif'],

@@ -2,19 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Colours as space-separated RGB channels so Tailwind's /opacity modifiers work. */
 :root {
-  --cream: #faf7ef;
-  --cream-deep: #f2e9d6;
-  --forest: #0e3b14;
-  --green: #1b5e20;
-  --green-700: #27692b;
-  --gold: #c9a227;
-  --gold-bright: #e2b84b;
-  --gold-ink: #7a5e15;
-  --mustard: #e5b23c;
-  --charcoal: #1f1b12;
-  --charcoal-60: #5a5343;
-  --line: #e4d9c2;
+  --cream: 250 247 239;
+  --cream-deep: 242 233 214;
+  --forest: 14 59 20;
+  --green: 27 94 32;
+  --green-700: 39 105 43;
+  --gold: 201 162 39;
+  --gold-bright: 226 184 75;
+  --gold-ink: 122 94 21;
+  --mustard: 229 178 60;
+  --charcoal: 31 27 18;
+  --charcoal-60: 90 83 67;
+  --line: 228 217 194;
 }
 
 @layer base {
@@ -22,8 +23,8 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    background-color: var(--cream);
-    color: var(--charcoal);
+    background-color: rgb(var(--cream));
+    color: rgb(var(--charcoal));
     font-family: var(--font-sans), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -32,16 +33,16 @@
   h2,
   h3 {
     font-family: var(--font-serif), Georgia, serif;
-    color: var(--forest);
+    color: rgb(var(--forest));
     letter-spacing: -0.01em;
     text-wrap: balance;
   }
   ::selection {
-    background: var(--gold-bright);
-    color: var(--forest);
+    background: rgb(var(--gold-bright));
+    color: rgb(var(--forest));
   }
   :focus-visible {
-    outline: 2px solid var(--gold-ink);
+    outline: 2px solid rgb(var(--gold-ink));
     outline-offset: 2px;
   }
 }
@@ -52,7 +53,39 @@
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--gold-ink);
+    color: rgb(var(--gold-ink));
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+  }
+  /* Subtle paper grain for cream surfaces — never glossy plastic. */
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 
