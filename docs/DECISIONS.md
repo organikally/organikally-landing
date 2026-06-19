@@ -38,4 +38,22 @@ Append-only record of cross-agent decisions. Newest first. Format:
 - **Palette/type intent** set: forest/green + gold + cream + mustard; warm serif headings +
   clean sans body, to be finalised through `ui-ux-pro-max` + `taste-skill` in Phase 2.
 
+## 2026-06-20 · Phase 2 — Design system
+
+- **Direction**: Storytelling-driven, heritage-organic editorial — validated through
+  `ui-ux-pro-max` (style: Storytelling-Driven; landing: Trust & Authority + Scroll Storytelling)
+  and pressure-tested for anti-slop via `taste-skill`. Full spec in `docs/DESIGN_SYSTEM.md`.
+- **Type**: `Fraunces` (display serif) + `Hanken Grotesk` (body) + `Tiro Devanagari Hindi`
+  (Hindi accent) — deliberately one notch off the templated Playfair+Inter / Cormorant+Montserrat
+  defaults the skill surfaced, for warmth + craft without the slop. All OFL, self-hostable.
+- **Colour**: warm cream `#FAF7EF` base, forest/green, gold as *precious accent only*. Critical
+  AA decision: bright gold fails small-text contrast → introduced **`--gold-ink #7A5E15`** as the
+  text-safe accent; bright gold/mustard are decoration-only. AA pairs locked in the doc.
+- **Overlay system**: video is connective tissue (hero + transitions); dense content rides on
+  opaque cream/forest panels scrolling *over* it; sparse copy floats on a forest scrim
+  (`--scrim-strong`); frosted panel for the in-between. Worst-case scrub frame governs scrim strength.
+- **Shape/feel**: restrained radii (no pill-everything), soft warm-tinted shadows, paper-grain
+  texture, Lucide 1.5px icons, generous section rhythm (128–160px desktop).
+- **Artifact**: `docs/design/style-tile.html` — brand-accurate, self-contained, browser-viewable.
+
 <!-- New entries above this line -->

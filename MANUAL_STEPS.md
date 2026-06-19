@@ -18,9 +18,9 @@ Legend: 🔴 blocks a real build deliverable · 🟡 needed before launch · �
 
 ## Conversion / CTAs
 
-- [ ] 🔴 **Where should "Buy / Order" point?** One of: own store URL, Amazon/marketplace
-  listing, or a WhatsApp business number (e.g. `https://wa.me/<number>`). Until provided,
-  CTAs use a clearly-marked placeholder.
+- [ ] 🔴 **Business WhatsApp number** for the primary CTA. Decision: **WhatsApp-first** order/
+  enquiry flow (`https://wa.me/<number>` + prefilled message). Until supplied, CTAs use a
+  clearly-marked placeholder number. Provide a store/Amazon URL later if you want to switch.
 - [ ] 🟡 Newsletter / enquiry form destination (email inbox, form service, or WhatsApp).
 
 ## Compliance & legal

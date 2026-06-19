@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organikally — Style Tile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF7EF; --cream-deep:#F2E9D6; --forest:#0E3B14; --green:#1B5E20;
+    --green-700:#27692B; --gold:#C9A227; --gold-bright:#E2B84B; --gold-ink:#7A5E15;
+    --mustard:#E5B23C; --charcoal:#1F1B12; --charcoal-60:#5A5343; --line:#E4D9C2;
+    --shadow-sm:0 1px 2px rgba(31,27,18,.06);
+    --shadow-md:0 8px 24px -10px rgba(31,27,18,.14);
+    --shadow-lg:0 24px 60px -24px rgba(14,59,20,.22);
+    --serif:'Fraunces',Georgia,serif; --sans:'Hanken Grotesk',system-ui,sans-serif;
+    --deva:'Tiro Devanagari Hindi',serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--cream);color:var(--charcoal);font-family:var(--sans);
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:64px 32px 96px}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink)}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(40px,7vw,72px);line-height:1.05;letter-spacing:-.02em;color:var(--forest);margin:.2em 0 .1em}
+  h2{font-family:var(--serif);font-weight:600;font-size:30px;letter-spacing:-.01em;color:var(--forest);margin:0 0 4px}
+  .sub{color:var(--charcoal-60);max-width:60ch}
+  section{margin-top:64px}
+  .sec-head{border-top:1px solid var(--line);padding-top:20px;margin-bottom:28px}
+  /* swatches */
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+  .sw{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm);background:#fff}
+  .sw .chip{height:84px}
+  .sw .meta{padding:10px 12px}
+  .sw .name{font-weight:600;font-size:13px}
+  .sw .hex{font-size:12px;color:var(--charcoal-60);font-variant-numeric:tabular-nums}
+  .sw .role{font-size:11.5px;color:var(--charcoal-60);margin-top:2px}
+  /* type */
+  .type-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:18px;padding:10px 0;border-bottom:1px dashed var(--line)}
+  .type-row .lbl{font-size:12px;color:var(--charcoal-60);width:120px;flex-shrink:0}
+  .ser{font-family:var(--serif)} .san{font-family:var(--sans)} .dev{font-family:var(--deva)}
+  /* components */
+  .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow-md)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:15px;border-radius:12px;padding:13px 22px;border:1.5px solid transparent;cursor:pointer;transition:.18s}
+  .btn-primary{background:var(--green);color:var(--cream)}
+  .btn-primary:hover{background:var(--green-700);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+  .btn-secondary{background:transparent;border-color:var(--forest);color:var(--forest)}
+  .btn-secondary:hover{background:var(--cream-deep)}
+  .btn-link{background:none;border:none;color:var(--gold-ink);font-weight:600;padding:13px 4px;border-bottom:2px solid var(--gold-bright);border-radius:0}
+  .badges{display:flex;flex-wrap:wrap;gap:10px}
+  .badge{display:inline-flex;align-items:center;gap:7px;background:var(--cream);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:500;box-shadow:var(--shadow-sm)}
+  .badge svg{width:16px;height:16px;stroke:var(--gold-ink);fill:none;stroke-width:1.6}
+  /* product tile */
+  .tile{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm);max-width:300px}
+  .tile .well{background:var(--cream-deep);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
+  .tile .well svg{width:70px;height:70px;opacity:.85}
+  .tile .body{padding:16px 18px}
+  .tile .nm{font-family:var(--serif);font-weight:600;font-size:20px;color:var(--forest)}
+  .tile .ds{font-size:13.5px;color:var(--charcoal-60);margin:2px 0 12px}
+  /* scrim demo */
+  .scrim{position:relative;border-radius:20px;overflow:hidden;min-height:220px;display:flex;align-items:flex-end;
+    background:linear-gradient(135deg,#caa23a,#7a5e15 60%,#0e3b14)}
+  .scrim .over{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,59,20,.72),rgba(14,59,20,.30) 45%,rgba(14,59,20,.78))}
+  .scrim .txt{position:relative;padding:26px;color:var(--cream)}
+  .scrim .txt h3{font-family:var(--serif);font-weight:600;font-size:26px;line-height:1.1}
+  .frost{position:relative;border-radius:16px;padding:18px 20px;margin-top:14px;
+    background:rgba(250,247,239,.72);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:var(--shadow-md)}
+  /* footer */
+  .foot{background:var(--forest);color:var(--cream);border-radius:20px;padding:28px;margin-top:18px}
+  .foot .fbrand{font-family:var(--serif);font-size:26px;font-weight:600}
+  .foot .ftag{color:var(--gold-bright);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-top:4px}
+  .foot .fnote{color:#cdbf9a;font-size:12.5px;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Organikally · Design System</div>
+    <h1>Pure · Natural · Trusted</h1>
+    <p class="sub ser" style="font-size:21px;color:var(--charcoal)">Cold-pressed, organic, honestly made — the pantry you'd trust for your own family.</p>
+  </header>
+
+  <section>
+    <div class="sec-head"><div class="eyebrow">01 — Colour</div><h2>Warm cream, deep green, gold accent</h2></div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:var(--cream)"></div><div class="meta"><div class="name">Cream</div><div class="hex">#FAF7EF</div><div class="role">primary surface</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--cream-deep)"></div><div class="meta"><div class="name">Cream deep</div><div class="hex">#F2E9D6</div><div class="role">alt sections / wells</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--forest)"></div><div class="meta"><div class="name">Forest</div><div class="hex">#0E3B14</div><div class="role">dark sections, footer</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--green)"></div><div class="meta"><div class="name">Green</div><div class="hex">#1B5E20</div><div class="role">primary brand</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--gold)"></div><div class="meta"><div class="name">Gold</div><div class="hex">#C9A227</div><div class="role">decorative only</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--gold-ink)"></div><div class="meta"><div class="name">Gold ink</div><div class="hex">#7A5E15</div><div class="role">text-safe accent (AA)</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--mustard)"></div><div class="meta"><div class="name">Mustard</div><div class="hex">#E5B23C</div><div class="role">product / oil moments</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--charcoal)"></div><div class="meta"><div class="name">Charcoal</div><div class="hex">#1F1B12</div><div class="role">body text on cream</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="eyebrow">02 — Typography</div><h2>Fraunces · Hanken Grotesk · Tiro Devanagari</h2></div>
+    <div class="type-row"><span class="lbl">Display / Fraunces</span><span class="ser" style="font-size:52px;font-weight:600;color:var(--forest);letter-spacing:-.02em">Cold-pressed goodness</span></div>
+    <div class="type-row"><span class="lbl">Heading / Fraunces</span><span class="ser" style="font-size:30px;font-weight:600;color:var(--forest)">From the seed, slowly</span></div>
+    <div class="type-row"><span class="lbl">Devanagari / Tiro</span><span class="dev" style="font-size:30px;color:var(--green)">शुद्ध सरसों तेल</span></div>
+    <div class="type-row"><span class="lbl">Body / Hanken</span><span class="san" style="font-size:17px;max-width:60ch">Pressed from organic mustard seed the slow, cold way — nothing added, nothing refined out. Naturally high in MUFA and Omega-3, rich in antioxidants.</span></div>
+    <div class="type-row"><span class="lbl">Eyebrow / Hanken</span><span class="eyebrow">Sourcing &amp; process</span></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="eyebrow">03 — Components</div><h2>Buttons, trust badges, product tile</h2></div>
+    <div class="cols">
+      <div class="card">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px">
+          <button class="btn btn-primary">Buy Yellow Mustard Oil</button>
+          <button class="btn btn-secondary">Explore the range</button>
+          <button class="btn btn-link">Bulk &amp; trade enquiries</button>
+        </div>
+        <div class="badges">
+          <span class="badge"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg>FSSAI</span>
+          <span class="badge"><svg viewBox="0 0 24 24"><path d="M12 21c5-3 7-6 7-10a7 7 0 10-14 0c0 4 2 7 7 10z"/><path d="M12 8v6"/></svg>100% Organic</span>
+          <span class="badge"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 5 6 5 9a5 5 0 01-10 0c0-3 2-5 5-9z"/></svg>Cold-Pressed</span>
+          <span class="badge"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Cholesterol-Free</span>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="well"><svg viewBox="0 0 24 24" fill="none" stroke="#7a5e15" stroke-width="1.4"><path d="M10 2h4v3l2 3v13H8V8l2-3z"/><path d="M8 12h8"/></svg></div>
+        <div class="body">
+          <div class="nm">Yellow Mustard Oil</div>
+          <div class="ds">Cold-pressed · 1L · शुद्ध सरसों तेल</div>
+          <button class="btn btn-primary" style="font-size:14px;padding:10px 16px">Order on WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="eyebrow">04 — Over the video</div><h2>Scrim &amp; frosted-panel legibility</h2></div>
+    <div class="cols">
+      <div class="scrim">
+        <div class="over"></div>
+        <div class="txt"><h3>The smell of a real kitchen</h3><p style="margin-top:6px;max-width:42ch">Text floats on a forest scrim so every word stays AA-legible while the hero video scrubs behind it.</p></div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center">
+        <p class="san" style="color:var(--charcoal-60)">Dense copy rides on opaque cream panels that scroll <em>over</em> the video. Sparse copy floats on a scrim. A frosted panel handles the in-between:</p>
+        <div class="frost"><strong style="font-family:var(--serif);color:var(--forest)">Frosted panel</strong><div style="font-size:13.5px;color:var(--charcoal-60)">blur(14px) · cream 72% · hairline · soft shadow</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="eyebrow">05 — Footer</div><h2>Forest base, gold accents, FSSAI slot</h2></div>
+    <div class="foot">
+      <div class="fbrand">Organikally</div>
+      <div class="ftag">Pure · Natural · Trusted</div>
+      <div class="fnote">FSSAI Lic. No. [founder-supplied] &nbsp;·&nbsp; Cold-pressed organic mustard oil, pulses &amp; khand &nbsp;·&nbsp; © 2026 Organikally</div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
