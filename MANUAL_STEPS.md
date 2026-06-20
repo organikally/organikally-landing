@@ -35,6 +35,14 @@ Legend: 🔴 blocks a real build deliverable · 🟡 needed before launch · �
 - [ ] 🟡 Real testimonials / reviews (name, location, quote, optional photo). Placeholders
   are flagged in the UI until supplied.
 - [ ] 🟢 Real product / farm / process photography to replace AI renders where desired.
+- [ ] 🟢 **Replace licensed stock photography with Organikally's own farm/kitchen shots.**
+  The editorial section images are currently licensed via Pexels (free for commercial use, no
+  attribution required) and optimised by `scripts/build-media.sh` into `public/media/`. Swapping
+  in real Organikally field, seed, press and achaar photography is the highest-authenticity
+  upgrade. Current sources (Pexels photo IDs / photographers):
+  - `field` & `field-band` — Punjab mustard fields, Zaryab Haider (#36381366) & Dhally Romy (#12656534)
+  - `seeds` — mustard seed macro, Petr Ganaj (#18346906)
+  - `achaar` — mango achaar in a martaban, Ambika (#7812134)
 
 ## Channels
 

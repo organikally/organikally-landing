@@ -1,5 +1,6 @@
 import { Flame, Container, CookingPot, type LucideIcon } from 'lucide-react';
 import Reveal from '@/components/ui/Reveal';
+import Media from '@/components/ui/Media';
 import { uses } from '@/content/recipes';
 
 const icons: Record<string, LucideIcon> = {
@@ -12,7 +13,7 @@ export default function Recipes() {
   return (
     <section id="recipes" className="relative z-10 py-24 md:py-32">
       <div className="mx-auto max-w-container px-5 md:px-10">
-        <Reveal className="glass-strong grid gap-10 rounded-[2rem] p-9 md:grid-cols-[0.8fr_1fr] md:gap-14 md:p-14">
+        <Reveal className="glass-strong grid gap-10 rounded-[2rem] p-9 md:grid-cols-[0.9fr_1fr] md:gap-14 md:p-14">
           <div>
             <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] font-semibold leading-[1.04] tracking-[-0.02em]">
               Made for the way India cooks.
@@ -21,6 +22,15 @@ export default function Recipes() {
               From the first crackle of a tadka to a jar of achaar maturing in the sun, this is
               where the oil earns its place.
             </p>
+            <Reveal direction="up">
+              <Media
+                name="achaar"
+                alt="Mango achaar in a traditional ceramic martaban, set with fresh mango and leaves"
+                width={1300}
+                height={866}
+                className="mt-8 aspect-[3/2] rounded-[1.5rem] shadow-[0_36px_70px_-44px_rgba(28,25,18,0.6)]"
+              />
+            </Reveal>
           </div>
           <div className="divide-y divide-line/80">
             {uses.map((u, i) => {

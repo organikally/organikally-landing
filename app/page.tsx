@@ -12,6 +12,8 @@ import Recipes from '@/components/sections/Recipes';
 import JournalTeaser from '@/components/sections/JournalTeaser';
 import Faq from '@/components/sections/Faq';
 import Conversion from '@/components/sections/Conversion';
+import Media from '@/components/ui/Media';
+import Reveal from '@/components/ui/Reveal';
 import JsonLd from '@/components/seo/JsonLd';
 import { organizationSchema, websiteSchema, productSchema, faqSchema } from '@/lib/schema';
 
@@ -37,6 +39,21 @@ export default function Home() {
           <Story />
           <Product />
           <Range />
+          {/* A breath of the field — the literal source — leading into "field to bottle". */}
+          <section aria-hidden="true" className="px-5 py-6 md:px-10 md:py-10">
+            <div className="mx-auto max-w-container">
+              <Reveal>
+                <Media
+                  name="field-band"
+                  alt=""
+                  width={1920}
+                  height={640}
+                  className="h-[34vh] max-h-[420px] min-h-[220px] rounded-[2rem] shadow-[0_44px_90px_-52px_rgba(28,25,18,0.6)]"
+                  imgClassName="object-[50%_55%]"
+                />
+              </Reveal>
+            </div>
+          </section>
           <Sourcing />
           <SocialProof />
           <Recipes />
