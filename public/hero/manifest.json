@@ -1,5 +1,5 @@
 {
-  "desktop": { "count": 240, "width": 1920, "path": "/hero/frames/desktop", "ext": "avif" },
+  "desktop": { "count": 240, "width": 1600, "path": "/hero/frames/desktop", "ext": "avif" },
   "mobile":  { "count": 240, "width": 1280, "stride": 1, "path": "/hero/frames/mobile", "ext": "avif" },
   "poster":  { "avif": "/hero/poster.avif", "webp": "/hero/poster.webp", "jpg": "/hero/poster.jpg" },
   "fallbackVideo": "/hero/hero-scrub.mp4"
