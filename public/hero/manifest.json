@@ -1,6 +1,6 @@
 {
-  "desktop": { "count": 240, "width": 1280, "path": "/hero/frames/desktop", "ext": "avif" },
-  "mobile":  { "count": 80, "width": 900, "stride": 3, "path": "/hero/frames/mobile", "ext": "avif" },
+  "desktop": { "count": 240, "width": 1600, "path": "/hero/frames/desktop", "ext": "avif" },
+  "mobile":  { "count": 120, "width": 1080, "stride": 2, "path": "/hero/frames/mobile", "ext": "avif" },
   "poster":  { "avif": "/hero/poster.avif", "webp": "/hero/poster.webp", "jpg": "/hero/poster.jpg" },
   "fallbackVideo": "/hero/hero-scrub.mp4"
 }

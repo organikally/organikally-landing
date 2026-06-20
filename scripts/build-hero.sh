@@ -11,11 +11,11 @@ OUT="$ROOT/public/hero"
 FR_D="$OUT/frames/desktop"
 FR_M="$OUT/frames/mobile"
 
-DESKTOP_W=1280      # background render width (≤1600; we don't need full 1080p)
-MOBILE_W=900
-CRF_D=48            # svt-av1 quality for desktop frames
-CRF_M=50            # mobile frames (lighter)
-MOBILE_STRIDE=3     # keep every Nth frame on mobile
+DESKTOP_W=1600      # the video is the centrepiece now — render it crisp
+MOBILE_W=1080
+CRF_D=30            # high quality (lower = better); the hero must look great
+CRF_M=36            # mobile frames
+MOBILE_STRIDE=2     # keep every 2nd frame on mobile (120 frames, smoother)
 
 echo "→ clean"
 rm -rf "$WORK" "$FR_D" "$FR_M"
@@ -48,8 +48,8 @@ M_COUNT=$(enc "$WORK/m" "$FR_M" "$CRF_M")
 
 echo "→ poster (LCP) from frame 1"
 cp "$WORK/d/0001.png" "$WORK/poster.png"
-ffmpeg -y -hide_banner -loglevel error -i "$WORK/poster.png" -c:v libsvtav1 -crf 40 -frames:v 1 "$OUT/poster.avif" 2>/dev/null
-cwebp -quiet -q 82 "$WORK/poster.png" -o "$OUT/poster.webp"
+ffmpeg -y -hide_banner -loglevel error -i "$WORK/poster.png" -c:v libsvtav1 -crf 30 -frames:v 1 "$OUT/poster.avif" 2>/dev/null
+cwebp -quiet -q 88 "$WORK/poster.png" -o "$OUT/poster.webp"
 ffmpeg -y -hide_banner -loglevel error -i "$WORK/poster.png" -q:v 3 "$OUT/poster.jpg"
 
 echo "→ fallback scrub mp4 (no audio, dense keyframes, faststart)"
