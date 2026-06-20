@@ -93,7 +93,11 @@ export default function HeroScrub() {
 
       if (reduce) return; // static poster only — no scrub, no preload
 
-      const loadFrame = (i: number) =>
+      // Defer frame streaming + motion libs until after first load so they never
+      // compete with the LCP; the poster stays visible until the scrub is ready.
+      const startScrub = async () => {
+        if (destroyed) return;
+        const loadFrame = (i: number) =>
         new Promise<void>((resolve) => {
           const img = new Image();
           img.decoding = 'async';
@@ -163,6 +167,14 @@ export default function HeroScrub() {
         gsap.ticker.remove(ticker);
         lenis.destroy();
       });
+      };
+
+      if (document.readyState === 'complete') void startScrub();
+      else {
+        const onLoad = () => void startScrub();
+        window.addEventListener('load', onLoad, { once: true });
+        teardown.push(() => window.removeEventListener('load', onLoad));
+      }
     };
 
     // Refit on resize even before GSAP loads (poster path / reduced-motion).
