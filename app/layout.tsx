@@ -1,12 +1,15 @@
 import type { Metadata } from 'next';
-import { Playfair_Display, Hanken_Grotesk, Tiro_Devanagari_Hindi } from 'next/font/google';
+import { Newsreader, Hanken_Grotesk, Tiro_Devanagari_Hindi } from 'next/font/google';
 import './globals.css';
 
-const serif = Playfair_Display({
+// Display face: a warm editorial serif with genuine journal character and the
+// kind of italics our same-family accents lean on ("home.", "deserves.").
+// Chosen over a high-contrast Didone so the heritage brand reads earthy, not bridal.
+const serif = Newsreader({
   subsets: ['latin'],
   variable: '--font-serif',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600'],
   style: ['normal', 'italic'],
 });
 
