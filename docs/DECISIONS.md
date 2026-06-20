@@ -97,4 +97,18 @@ Append-only record of cross-agent decisions. Newest first. Format:
 - Compliance: copy uses the approved claim set; "100% Organic" remains **conditional on the
   founder's certification** (footer FSSAI slot + cert are MANUAL_STEPS items).
 
+## 2026-06-20 · Phase 5 — Hardening
+
+- **Lighthouse home (mobile, compressed): 100 / 100 / 100 / 100, LCP 1.4s, CLS 0, TBT 20ms.**
+  Decisive lesson logged in `docs/PERFORMANCE.md`: an **uncompressed** test server scored 80/LCP
+  5.4s; **brotli (Cloudflare-equivalent)** scored 100/LCP 1.4s. Don't benchmark uncompressed.
+- **Perf fixes**: 908KB bottle PNG → 27KB WebP (+ removed unused PNG); poster preload; Tiro
+  `preload:false`; **deferred frame streaming + GSAP/Lenis until after `load`**; favicon added
+  (killed the 404 → Best Practices 100).
+- **A11y**: footer contrast → AA (Accessibility 100); **skip-to-content** link; over-video AA
+  held by the forest scrim (large hero text); reduced-motion path code-verified. `docs/A11Y.md`.
+- **QA**: responsive verified at 375/768/desktop; mobile menu works; mobile loads only the
+  80-frame set; zero console errors. `docs/QA_CHECKLIST.md`. Cross-browser/device pass deferred
+  to the live URL (Phase 6).
+
 <!-- New entries above this line -->

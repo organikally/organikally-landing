@@ -43,9 +43,30 @@ committed because Cloudflare's build environment has no ffmpeg.
 Build green; no console errors; canvas frame demonstrably tracks scroll (light poster frame →
 deep-gold oil frame); mobile correctly requests only the 80-frame set.
 
-## Open / Phase 5
+## Phase 5 — Lighthouse results (mobile, brotli = Cloudflare-equivalent)
 
-- Run Lighthouse (mobile) and tune to all-green.
+Home page: **Performance 100 · Accessibility 100 · Best Practices 100 · SEO 100** ·
+**LCP 1.4s · FCP 0.8s · CLS 0 · TBT 20ms · SI 1.2s**. Journal posts: Perf ~94 (text-LCP bound),
+all other categories 100.
+
+### Critical finding — compression is decisive
+
+Served **uncompressed**, the home page scored Perf **80 / LCP 5.4s** — the #1 opportunity was
+"Enable text compression" (the 119KB HTML downloads slowly on throttled 4G). Served with brotli
+(home HTML → **12.9KB**), it scored **100 / LCP 1.4s**. **Cloudflare Pages auto-compresses text
+assets (brotli/gzip)**, so production matches the compressed result. Never benchmark against an
+uncompressed static server.
+
+### Fixes applied this phase
+
+- Optimised the product bottle **908KB PNG → 27KB WebP** (it was being auto-preloaded, hogging
+  the network); removed the unused PNG.
+- Added a high-priority **poster preload**; set Tiro Devanagari `preload: false` (frees the LCP path).
+- **Deferred frame streaming + GSAP/Lenis until after `load`** so they never compete with the LCP.
+- Added a **favicon** (emblem crop) — removed the 404 console error.
+- Fixed footer text contrast → Accessibility 100.
+
+## Open (Phase 6)
+
 - Cloudflare `_headers`: immutable long-cache for `/hero/*`, `/_next/static/*`; short for HTML.
-- **Scrim strengthening for AA** over the lightest video frames (with `accessibility-specialist`).
-- Consider re-tuning desktop crf if budget pressure appears after real-network testing.
+- Re-run Lighthouse on the live URL; cross-browser + real-device (iOS scrub, reduced-motion) pass.
