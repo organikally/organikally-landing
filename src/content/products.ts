@@ -24,7 +24,7 @@ export const products: Product[] = [
     categoryLabel: 'Cold-pressed oil',
     blurb: 'Cold-pressed from organically grown yellow mustard seed. High in MUFA & Omega-3.',
     icon: 'droplet',
-    image: '/brand/product-bottle.png',
+    image: '/brand/product-bottle.webp',
     hindi: 'शुद्ध सरसों तेल',
     available: true,
     hero: true,
