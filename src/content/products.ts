@@ -1,4 +1,4 @@
-// The range. Architected so adding a product needs no redesign — append here.
+// The range. Architected so adding a product needs no redesign, append here.
 // `icon` is a Lucide icon name; `image` is used when a real product shot exists.
 
 export type Category = 'oil' | 'pulses' | 'sweetener' | 'pantry';
@@ -34,7 +34,7 @@ export const products: Product[] = [
     name: 'Pulses & Dals',
     category: 'pulses',
     categoryLabel: 'Everyday staples',
-    blurb: 'A growing range of organically grown dals — unpolished, sorted, and honestly graded.',
+    blurb: 'A growing range of organically grown dals, unpolished, sorted, and honestly graded.',
     icon: 'wheat',
     available: true,
   },
@@ -43,7 +43,7 @@ export const products: Product[] = [
     name: 'Khand',
     category: 'sweetener',
     categoryLabel: 'Unrefined sugar',
-    blurb: 'Organic unrefined jaggery sugar — the warm, mineral-rich sweetness of slow-cooked cane.',
+    blurb: 'Organic unrefined jaggery sugar, the warm, mineral-rich sweetness of slow-cooked cane.',
     icon: 'candy',
     available: true,
   },
@@ -52,7 +52,7 @@ export const products: Product[] = [
     name: 'Pantry Staples',
     category: 'pantry',
     categoryLabel: 'The wider kitchen',
-    blurb: 'Organic kitchen essentials, added with the same care as the oil — more arriving soon.',
+    blurb: 'Organic kitchen essentials, added with the same care as the oil, more arriving soon.',
     icon: 'basket',
     available: true,
   },

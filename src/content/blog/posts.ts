@@ -18,12 +18,12 @@ export const posts: Post[] = [
     body: [
       {
         type: 'p',
-        text: 'If you grew up in an Indian kitchen, you know mustard oil by its smell before you ever see the bottle. That pungency is not a flavouring — it is the seed itself. Whether it survives to your kitchen depends almost entirely on how the oil was pressed.',
+        text: 'If you grew up in an Indian kitchen, you know mustard oil by its smell before you ever see the bottle. That pungency is not a flavouring, it is the seed itself. Whether it survives to your kitchen depends almost entirely on how the oil was pressed.',
       },
       { type: 'h2', text: 'What “cold-pressed” means' },
       {
         type: 'p',
-        text: 'Cold-pressing — kachi ghani in the traditional sense — crushes the seed slowly at low temperature. No external heat is forced in, and no solvents or bleaching are used to clean the oil up afterwards. What you get is closer to the seed: deeper colour, the full aroma, and the natural compounds the seed carries.',
+        text: 'Cold-pressing, kachi ghani in the traditional sense, crushes the seed slowly at low temperature. No external heat is forced in, and no solvents or bleaching are used to clean the oil up afterwards. What you get is closer to the seed: deeper colour, the full aroma, and the natural compounds the seed carries.',
       },
       { type: 'h2', text: 'What refining strips away' },
       {
@@ -35,7 +35,7 @@ export const posts: Post[] = [
         items: [
           'Colour: cold-pressed stays a deep, natural gold; refined is paler and uniform.',
           'Aroma: cold-pressed keeps its characteristic pungency; refined is largely neutral.',
-          'Composition: mustard oil is naturally high in monounsaturated fat (MUFA) and contains omega-3 (ALA) — cold-pressing aims to retain what heat and refining tend to diminish.',
+          'Composition: mustard oil is naturally high in monounsaturated fat (MUFA) and contains omega-3 (ALA), cold-pressing aims to retain what heat and refining tend to diminish.',
         ],
       },
       {
@@ -45,7 +45,7 @@ export const posts: Post[] = [
       { type: 'h2', text: 'How to taste the difference' },
       {
         type: 'p',
-        text: 'Warm a teaspoon in a pan. Cold-pressed mustard oil announces itself — that sharp, clean pungency that mellows as it heats. Refined oil stays quiet. Once you have cooked one tadka with the real thing, the difference is hard to un-know.',
+        text: 'Warm a teaspoon in a pan. Cold-pressed mustard oil announces itself, that sharp, clean pungency that mellows as it heats. Refined oil stays quiet. Once you have cooked one tadka with the real thing, the difference is hard to un-know.',
       },
     ],
   },
@@ -61,7 +61,7 @@ export const posts: Post[] = [
     body: [
       {
         type: 'p',
-        text: 'Walk down any aisle and half the packs claim to be natural, pure or organic. The word is cheap to print and expensive to actually earn. Here is how to tell which is which — for oil, dals, sugar and the rest of the pantry.',
+        text: 'Walk down any aisle and half the packs claim to be natural, pure or organic. The word is cheap to print and expensive to actually earn. Here is how to tell which is which, for oil, dals, sugar and the rest of the pantry.',
       },
       { type: 'h2', text: 'Look for certification, not adjectives' },
       {
@@ -77,9 +77,9 @@ export const posts: Post[] = [
         type: 'ul',
         items: [
           'Provenance: can they tell you where the crop comes from?',
-          'Process: cold-pressed oil, unpolished dals, slow-cooked khand — named, not vague.',
+          'Process: cold-pressed oil, unpolished dals, slow-cooked khand, named, not vague.',
           'Proof: certification body, certificate number, FSSAI licence visible on pack.',
-          'Honesty: real organic food varies a little batch to batch — perfect uniformity is a refinery’s trait, not a farm’s.',
+          'Honesty: real organic food varies a little batch to batch, perfect uniformity is a refinery’s trait, not a farm’s.',
         ],
       },
       {
@@ -110,12 +110,12 @@ export const posts: Post[] = [
       { type: 'h2', text: 'Yellow mustard oil' },
       {
         type: 'p',
-        text: 'Pressed from yellow mustard seed, this is the milder, rounder of the two. The oil is a clean golden colour with a pungency that is present but not overpowering — which makes it a comfortable everyday oil for tempering, sautéing and pickling.',
+        text: 'Pressed from yellow mustard seed, this is the milder, rounder of the two. The oil is a clean golden colour with a pungency that is present but not overpowering, which makes it a comfortable everyday oil for tempering, sautéing and pickling.',
       },
       { type: 'h2', text: 'Black mustard oil' },
       {
         type: 'p',
-        text: 'Black mustard seed gives a sharper, more assertive oil. It is prized where a bolder mustard bite is wanted — some regional pickles and fish preparations lean into exactly that intensity.',
+        text: 'Black mustard seed gives a sharper, more assertive oil. It is prized where a bolder mustard bite is wanted, some regional pickles and fish preparations lean into exactly that intensity.',
       },
       {
         type: 'ul',

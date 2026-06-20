@@ -1,4 +1,4 @@
-// Central site config. Placeholder values are founder-supplied — see MANUAL_STEPS.md.
+// Central site config. Placeholder values are founder-supplied, see MANUAL_STEPS.md.
 
 export const SITE_URL = 'https://organikally.com';
 
@@ -14,10 +14,10 @@ export const site = {
   name: 'Organikally',
   tagline: 'Pure · Natural · Trusted',
   description:
-    'Cold-pressed organic yellow mustard oil, pulses and khand — made from organically grown seed, nothing refined out.',
+    'Cold-pressed organic yellow mustard oil, pulses and khand, made from organically grown seed, nothing refined out.',
   url: SITE_URL,
-  // Placeholders — see MANUAL_STEPS.md
-  fssaiLicence: '[FSSAI Lic. No. — to be supplied]',
+  // Placeholders, see MANUAL_STEPS.md
+  fssaiLicence: '[FSSAI Lic. No., to be supplied]',
   email: 'hello@organikally.com',
   whatsappConfigured: WHATSAPP_NUMBER.length > 0,
   social: {

@@ -1,5 +1,5 @@
-// FAQ — real buyer questions, concise extractable answers (AEO/FAQPage schema).
-// Answers are claim-checked against docs/COMPLIANCE.md — composition, not medical claims.
+// FAQ, real buyer questions, concise extractable answers (AEO/FAQPage schema).
+// Answers are claim-checked against docs/COMPLIANCE.md, composition, not medical claims.
 
 export type Faq = { q: string; a: string };
 
@@ -10,7 +10,7 @@ export const faqs: Faq[] = [
   },
   {
     q: 'Is Organikally mustard oil really organic?',
-    a: 'It is pressed from organically grown mustard seed and nothing is added or refined out. Our organic certification details and FSSAI licence are shown on the pack and in the footer — purity you can verify, not just a label.',
+    a: 'It is pressed from organically grown mustard seed and nothing is added or refined out. Our organic certification details and FSSAI licence are shown on the pack and in the footer, purity you can verify, not just a label.',
   },
   {
     q: 'What is the difference between yellow and black mustard oil?',
@@ -26,6 +26,6 @@ export const faqs: Faq[] = [
   },
   {
     q: 'How do I order, and do you sell wholesale?',
-    a: 'Tap any “Order” button to message us on WhatsApp and we’ll help you buy directly. For kirana stores, cloud kitchens and corporate gifting, use the bulk & trade enquiry — we’re glad to share certifications and pricing.',
+    a: 'Tap any “Order” button to message us on WhatsApp and we’ll help you buy directly. For kirana stores, cloud kitchens and corporate gifting, use the bulk & trade enquiry, we’re glad to share certifications and pricing.',
   },
 ];

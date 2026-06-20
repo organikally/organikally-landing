@@ -1,4 +1,4 @@
-// PLACEHOLDER testimonials — flagged until the founder supplies real reviews
+// PLACEHOLDER testimonials, flagged until the founder supplies real reviews
 // (MANUAL_STEPS.md). The UI labels these as samples so they never read as real.
 
 export type Testimonial = {

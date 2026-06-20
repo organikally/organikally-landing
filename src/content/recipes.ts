@@ -1,4 +1,4 @@
-// Everyday ways to use the oil — warm, practical, ties to the Journal.
+// Everyday ways to use the oil, warm, practical, ties to the Journal.
 
 export type Use = { title: string; body: string; icon: string };
 
@@ -15,7 +15,7 @@ export const uses: Use[] = [
   },
   {
     title: 'Sautéing & shallow-frying',
-    body: 'A high smoke point makes it the everyday oil for greens, fish, pakoras and parathas — with a flavour refined oils simply can’t give.',
+    body: 'A high smoke point makes it the everyday oil for greens, fish, pakoras and parathas, with a flavour refined oils simply can’t give.',
     icon: 'cooking-pot',
   },
 ];

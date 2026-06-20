@@ -37,7 +37,7 @@ export function productSchema() {
     name: heroProduct.name,
     image: abs(heroProduct.image ?? '/hero/poster.jpg'),
     description:
-      'Cold-pressed organic yellow mustard oil, pressed from organically grown seed — nothing added, nothing refined out.',
+      'Cold-pressed organic yellow mustard oil, pressed from organically grown seed, nothing added, nothing refined out.',
     brand: { '@type': 'Brand', name: site.name },
     category: 'Mustard oil',
   };
