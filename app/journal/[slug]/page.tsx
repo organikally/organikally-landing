@@ -55,7 +55,7 @@ export default async function JournalPost({ params }: { params: Promise<{ slug: 
         ]}
       />
       <SiteHeader forceSolid />
-      <main className="grain min-h-dvh bg-cream pt-28 md:pt-36">
+      <main id="main" className="grain min-h-dvh bg-cream pt-28 md:pt-36">
         <article className="mx-auto max-w-2xl px-6 pb-24 md:px-10">
           <Link
             href="/journal/"

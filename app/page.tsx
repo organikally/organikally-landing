@@ -28,7 +28,7 @@ export default function Home() {
       <HeroScrub />
       <SiteHeader />
 
-      <main className="relative z-10">
+      <main id="main" className="relative z-10">
         <Hero />
         <TrustStrip />
         <Story />

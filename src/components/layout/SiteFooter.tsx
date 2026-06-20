@@ -11,7 +11,7 @@ export default function SiteFooter() {
           <div>
             <div className="font-serif text-3xl font-semibold">Organikally</div>
             <div className="eyebrow mt-2 text-gold-bright">{site.tagline}</div>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/60">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/75">
               Cold-pressed organic mustard oil, pulses and khand — made from organically grown
               seed, nothing refined out.
             </p>
@@ -56,12 +56,12 @@ export default function SiteFooter() {
                   {site.email}
                 </a>
               </li>
-              <li className="text-cream/50">Business address — to be added</li>
+              <li className="text-cream/70">Business address — to be added</li>
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 py-7 text-xs text-cream/50 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-2 py-7 text-xs text-cream/70 md:flex-row md:items-center md:justify-between">
           <p>
             {site.fssaiLicence} · © {year} Organikally. All rights reserved.
           </p>

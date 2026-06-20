@@ -26,7 +26,7 @@ export default function JournalIndex() {
         ])}
       />
       <SiteHeader forceSolid />
-      <main className="grain min-h-dvh bg-cream pt-28 md:pt-36">
+      <main id="main" className="grain min-h-dvh bg-cream pt-28 md:pt-36">
         <div className="mx-auto max-w-container px-6 pb-24 md:px-10">
           <p className="eyebrow">The journal</p>
           <h1 className="mt-3 max-w-2xl font-serif text-5xl font-semibold text-forest">

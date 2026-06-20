@@ -21,6 +21,8 @@ const deva = Tiro_Devanagari_Hindi({
   variable: '--font-deva',
   display: 'swap',
   weight: '400',
+  // Only a few words use this — don't let it compete with the LCP critical path.
+  preload: false,
 });
 
 // NOTE: replace with the live domain once acquired (see MANUAL_STEPS.md).
@@ -65,7 +67,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-IN" className={`${serif.variable} ${sans.variable} ${deva.variable}`}>
-      <body className="bg-cream font-sans text-charcoal antialiased">{children}</body>
+      <head>
+        {/* The hero poster is the canvas baseline — load it early so the scrub paints fast. */}
+        <link rel="preload" as="image" href="/hero/poster.avif" type="image/avif" fetchPriority="high" />
+      </head>
+      <body className="bg-cream font-sans text-charcoal antialiased">
+        <a
+          href="#main"
+          className="sr-only z-[100] rounded-lg bg-forest px-4 py-2 font-semibold text-cream focus:not-sr-only focus:absolute focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }
