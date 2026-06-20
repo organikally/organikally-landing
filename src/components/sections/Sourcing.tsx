@@ -24,12 +24,12 @@ export default function Sourcing() {
     <section id="sourcing" className="relative z-10 py-24 md:py-32">
       <div className="mx-auto max-w-container px-5 md:px-10">
         <Reveal className="glass-strong overflow-hidden rounded-[2rem] p-9 md:p-14">
-          <h2 className="max-w-xl font-serif text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.05]">
+          <h2 className="max-w-xl font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] font-semibold leading-[1.04] tracking-[-0.02em]">
             From field to bottle, honestly.
           </h2>
           <div className="mt-10 divide-y divide-line/80">
             {steps.map((s, i) => (
-              <Reveal key={s.title} delay={i * 80}>
+              <Reveal key={s.title} delay={i * 80} direction="right">
                 <div className="flex items-start gap-5 py-6 first:pt-0 last:pb-0">
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-yellow/15 text-yellow-deep">
                     <s.Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />

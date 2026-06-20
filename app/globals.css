@@ -9,7 +9,7 @@
   --yellow-deep: 206 150 10; /* hover / depth */
   --gold-ink: 146 100 9; /* text-safe gold accent on white (AA) */
   --ink: 28 25 18; /* warm near-black, headings & body */
-  --ink-muted: 96 88 72; /* secondary text */
+  --ink-muted: 64 57 44; /* secondary text — kept dark so body stays AA-legible over very transparent glass on any video frame */
   --line: 232 226 213; /* hairline on white */
 }
 
@@ -21,16 +21,35 @@
     background-color: rgb(var(--paper));
     color: rgb(var(--ink));
     font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 1.0625rem; /* 17px comfortable reading body */
+    line-height: 1.6;
+    letter-spacing: -0.002em;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1, 'liga' 1;
   }
   h1,
   h2,
   h3 {
     font-family: var(--font-serif), Georgia, serif;
     color: rgb(var(--ink));
-    letter-spacing: -0.01em;
+    letter-spacing: -0.018em;
+    line-height: 1.05;
     text-wrap: balance;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+  /* Same-family italic accents inside display headings: keep optical leading so
+     descenders (y g j p q) never clip, and reserve a hair of space. */
+  h1 .italic,
+  h2 .italic,
+  h3 .italic {
+    line-height: 1.1;
+    padding-bottom: 0.04em;
+  }
+  /* Figures that line up in columns (reading time, dates) align on tabular nums. */
+  .tnum {
+    font-feature-settings: 'tnum' 1, 'lnum' 1;
+    font-variant-numeric: tabular-nums lining-nums;
   }
   ::selection {
     background: rgb(var(--yellow));
@@ -44,65 +63,125 @@
 
 @layer components {
   .eyebrow {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: rgb(var(--gold-ink));
   }
 
-  /* Frosted glass over the video. The translucent white base keeps text legible even
-     where backdrop-filter is unavailable (older iOS); the blur is an enhancement. */
-  /* Solid-ish fallback only where blur is unavailable, so text stays legible. */
+  /*
+   * BLEND GLASS, not a card.
+   *
+   * The goal is a soft luminous haze that the foreground text floats inside,
+   * dissolving into the moving video with no crisp edge. We feather the whole
+   * element (fill, blur and shadow) with a radial mask so the rectangle melts
+   * outward. Center stays a touch more opaque to protect AA legibility; the
+   * edges fade fully transparent.
+   *
+   * The non-supports declaration below is the legible base: a translucent
+   * white wash so text is never stranded where backdrop-filter is missing.
+   */
+  .glass,
+  .glass-strong {
+    /* Feather the whole panel so its rectangle dissolves into the video. The
+       core stays fully opaque well past the text (out to ~62%), then the outer
+       rim fades to nothing, so content never sits in a half-faded zone. */
+    --feather: radial-gradient(125% 125% at 50% 50%, #000 62%, rgba(0, 0, 0, 0.6) 82%, transparent 100%);
+    -webkit-mask-image: var(--feather);
+    mask-image: var(--feather);
+    box-shadow: 0 40px 90px -48px rgba(28, 25, 18, 0.4);
+  }
   .glass {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4));
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.5),
-      0 36px 80px -36px rgba(28, 25, 18, 0.45);
+    background: radial-gradient(120% 120% at 50% 40%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.34));
   }
   .glass-strong {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.55));
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.55),
-      0 40px 90px -38px rgba(28, 25, 18, 0.48);
+    background: radial-gradient(120% 120% at 50% 40%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.42));
   }
-  /* The real treatment: genuinely see-through glass that merges with the video. */
+
+  /* The nav pill is short and wide, so a radial feather would fade its base.
+     It gets a uniform translucent wash instead (no feather mask), with a soft
+     hairline so it reads as a floating control rather than a hard bar. */
+  .glass-pill {
+    background: rgba(255, 255, 255, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(12px) saturate(1.4);
+      -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    }
+  }
+
+  /* Genuinely see-through glass that merges with the video: low blur, high
+     transparency, feathered to nothing at the edges. */
   @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .glass {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.12));
-      backdrop-filter: blur(28px) saturate(1.6);
-      -webkit-backdrop-filter: blur(28px) saturate(1.6);
+      background: radial-gradient(120% 120% at 50% 40%, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+      backdrop-filter: blur(9px) saturate(1.35);
+      -webkit-backdrop-filter: blur(9px) saturate(1.35);
     }
     .glass-strong {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.26));
-      backdrop-filter: blur(30px) saturate(1.5);
-      -webkit-backdrop-filter: blur(30px) saturate(1.5);
+      background: radial-gradient(120% 120% at 50% 40%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.16));
+      backdrop-filter: blur(11px) saturate(1.3);
+      -webkit-backdrop-filter: blur(11px) saturate(1.3);
     }
   }
 
   .reveal {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(20px);
     transition:
-      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
+  }
+  .reveal-up {
+    transform: translateY(20px);
+  }
+  .reveal-left {
+    transform: translateX(-22px);
+  }
+  .reveal-right {
+    transform: translateX(22px);
   }
   .reveal-in {
     opacity: 1;
     transform: none;
   }
+
+  /* Hero entrance: a short, eased sequence that establishes reading order on
+     first paint (eyebrow, headline, subhead, then the actions). Each child sets
+     its own --i; only runs where motion is welcomed. */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-enter > * {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: hero-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: calc(120ms + var(--i, 0) * 110ms);
+    }
+  }
+  @keyframes hero-rise {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }
 
-/* Solid fallback when transparency/blur is reduced or unsupported. */
+/* Solid fallback when transparency/blur is reduced or unsupported. The mask is
+   removed so text never sits on a half-faded panel that drops below AA. */
 @media (prefers-reduced-transparency: reduce) {
   .glass,
-  .glass-strong {
-    background: rgba(255, 255, 255, 0.97);
+  .glass-strong,
+  .glass-pill {
+    background: rgba(255, 255, 255, 0.96);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 }
 

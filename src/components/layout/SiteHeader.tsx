@@ -31,7 +31,7 @@ export default function SiteHeader({ forceSolid = false }: { forceSolid?: boolea
   return (
     <header className="fixed inset-x-0 top-0 z-40 px-3 pt-3 md:px-5 md:pt-4">
       <div
-        className={`glass mx-auto flex max-w-container items-center justify-between rounded-full px-5 py-2.5 transition-shadow duration-300 md:px-6 ${
+        className={`glass-pill mx-auto flex max-w-container items-center justify-between rounded-full px-5 py-2.5 transition-shadow duration-300 md:px-6 ${
           elevated ? 'shadow-[0_18px_40px_-24px_rgba(28,25,18,0.5)]' : 'shadow-none'
         }`}
       >

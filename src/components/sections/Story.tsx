@@ -6,10 +6,10 @@ export default function Story() {
       <div className="mx-auto max-w-container px-5 md:px-10">
         <Reveal className="glass-strong rounded-[2rem] p-9 md:p-16">
           <div className="max-w-4xl">
-            <h2 className="font-serif text-[clamp(2.1rem,5vw,4rem)] font-semibold leading-[1.04]">
+            <h2 className="font-serif text-[clamp(2.2rem,5vw,4.1rem)] font-semibold leading-[1.0] tracking-[-0.022em]">
               Real mustard oil announces itself.
             </h2>
-            <div className="mt-8 grid gap-8 text-lg leading-relaxed text-ink-muted md:grid-cols-2 md:gap-12">
+            <div className="mt-9 grid max-w-3xl gap-8 text-[1.0625rem] leading-relaxed text-ink-muted md:grid-cols-2 md:gap-12">
               <p>
                 Cold-pressing crushes organically grown seed slowly, at low temperature. No heat is
                 forced in, and nothing is bleached or refined out afterwards.

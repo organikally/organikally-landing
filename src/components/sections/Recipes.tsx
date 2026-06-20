@@ -14,10 +14,10 @@ export default function Recipes() {
       <div className="mx-auto max-w-container px-5 md:px-10">
         <Reveal className="glass-strong grid gap-10 rounded-[2rem] p-9 md:grid-cols-[0.8fr_1fr] md:gap-14 md:p-14">
           <div>
-            <h2 className="font-serif text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.05]">
+            <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] font-semibold leading-[1.04] tracking-[-0.02em]">
               Made for the way India cooks.
             </h2>
-            <p className="mt-5 max-w-sm text-lg leading-relaxed text-ink-muted">
+            <p className="mt-5 max-w-sm text-[1.0625rem] leading-relaxed text-ink-muted">
               From the first crackle of a tadka to a jar of achaar maturing in the sun, this is
               where the oil earns its place.
             </p>
@@ -26,7 +26,7 @@ export default function Recipes() {
             {uses.map((u, i) => {
               const Icon = icons[u.icon] ?? Flame;
               return (
-                <Reveal key={u.title} delay={i * 70}>
+                <Reveal key={u.title} delay={i * 80} direction="right">
                   <div className="flex items-start gap-4 py-5 first:pt-0 last:pb-0">
                     <Icon className="mt-1 h-6 w-6 shrink-0 text-yellow-ink" strokeWidth={1.8} aria-hidden="true" />
                     <div>

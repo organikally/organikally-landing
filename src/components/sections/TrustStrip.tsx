@@ -13,7 +13,7 @@ export default function TrustStrip() {
     <section className="relative z-10 -mt-6 md:-mt-8">
       <div className="mx-auto max-w-container px-5 md:px-10">
         <Reveal>
-          <ul className="glass flex flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-2xl px-7 py-4">
+          <ul className="glass-pill flex flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-full px-7 py-4">
             {items.map(({ label, Icon }) => (
               <li key={label} className="flex items-center gap-2 text-sm font-medium text-ink">
                 <Icon className="h-[18px] w-[18px] text-yellow-ink" strokeWidth={1.8} aria-hidden="true" />

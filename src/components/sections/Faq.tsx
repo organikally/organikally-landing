@@ -18,7 +18,7 @@ export default function Faq() {
     <section id="faq" className="relative z-10 py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-5 md:px-10">
         <div className="glass-strong rounded-[2rem] p-8 md:p-12">
-          <h2 className="font-serif text-[clamp(2rem,4.5vw,3.2rem)] font-semibold leading-[1.05]">
+          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.3rem)] font-semibold leading-[1.04] tracking-[-0.02em]">
             The honest details.
           </h2>
           <dl className="mt-8 divide-y divide-line/80 border-t border-line/80">
@@ -32,13 +32,16 @@ export default function Faq() {
                       onClick={() => toggle(i)}
                       aria-expanded={isOpen}
                       aria-controls={`faq-panel-${i}`}
-                      className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                      className="group/faq flex w-full items-center justify-between gap-4 py-5 text-left"
                     >
-                      <span className="font-serif text-xl font-medium text-ink">{item.q}</span>
-                      <Plus
-                        className={`h-5 w-5 shrink-0 text-yellow-ink transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}
-                        aria-hidden="true"
-                      />
+                      <span className="font-serif text-xl font-medium text-ink transition-colors duration-300 group-hover/faq:text-yellow-ink">
+                        {item.q}
+                      </span>
+                      <span
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-yellow/15 text-yellow-ink transition-all duration-500 ease-brand ${isOpen ? 'rotate-45 bg-yellow/30' : 'group-hover/faq:bg-yellow/25'}`}
+                      >
+                        <Plus className="h-4 w-4" aria-hidden="true" />
+                      </span>
                     </button>
                   </dt>
                   <dd

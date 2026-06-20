@@ -5,7 +5,9 @@ const year = 2026;
 
 export default function SiteFooter() {
   return (
-    <footer className="relative z-10 border-t border-white/55 bg-white/75 pt-16 text-ink backdrop-blur-xl">
+    <footer
+      className="relative z-10 bg-white/80 pt-24 text-ink backdrop-blur-md [mask-image:linear-gradient(to_bottom,transparent,#000_80px)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,#000_80px)]"
+    >
       <div className="mx-auto max-w-container px-5 md:px-10">
         <div className="grid gap-10 border-b border-ink/10 pb-12 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>

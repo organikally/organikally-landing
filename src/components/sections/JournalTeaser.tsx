@@ -13,7 +13,7 @@ export default function JournalTeaser() {
     <section id="journal" className="relative z-10 py-24 md:py-32">
       <div className="mx-auto max-w-container px-5 md:px-10">
         <div className="flex items-end justify-between gap-6">
-          <h2 className="font-serif text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.05]">
+          <h2 className="font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] font-semibold leading-[1.04] tracking-[-0.02em]">
             Worth a <span className="italic">read.</span>
           </h2>
           <Link
@@ -31,7 +31,7 @@ export default function JournalTeaser() {
               href={`/journal/${featured.slug}/`}
               className="group glass-strong flex h-full flex-col justify-between gap-10 rounded-[1.9rem] p-8 transition duration-300 ease-brand hover:-translate-y-1 md:p-10"
             >
-              <p className="text-sm font-medium text-yellow-ink">
+              <p className="tnum text-sm font-medium text-yellow-ink">
                 {formatDate(featured.date)} · {featured.readingMinutes} min read
               </p>
               <div className="flex items-end justify-between gap-6">
@@ -52,7 +52,7 @@ export default function JournalTeaser() {
                   href={`/journal/${p.slug}/`}
                   className="group glass flex h-full flex-col justify-between gap-4 rounded-[1.9rem] p-7 transition duration-300 ease-brand hover:-translate-y-1"
                 >
-                  <p className="text-sm text-ink-muted">
+                  <p className="tnum text-sm text-ink-muted">
                     {formatDate(p.date)} · {p.readingMinutes} min read
                   </p>
                   <h3 className="flex items-center justify-between gap-3 font-serif text-2xl font-semibold leading-snug text-ink">

@@ -18,7 +18,6 @@ export default function Range() {
       <div className="mx-auto max-w-container px-5 md:px-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeader
-            kicker="The range"
             title="More than oil."
             intro="A growing line of organic kitchen essentials, built to expand without losing the trust the oil earns."
           />
@@ -37,9 +36,9 @@ export default function Range() {
           {products.map((p, i) => {
             const Icon = icons[p.icon] ?? ShoppingBasket;
             return (
-              <Reveal key={p.slug} delay={i * 70}>
-                <article className="glass flex h-full flex-col rounded-3xl p-6 transition duration-300 ease-brand hover:-translate-y-1">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow/20 text-yellow-deep">
+              <Reveal key={p.slug} delay={i * 80}>
+                <article className="glass group/tile flex h-full flex-col rounded-3xl p-6 transition-transform duration-500 ease-brand hover:-translate-y-1.5">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow/20 text-yellow-deep transition-transform duration-500 ease-brand group-hover/tile:-translate-y-0.5">
                     <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
                   </span>
                   <p className="mt-5 text-sm font-medium text-yellow-ink">{p.categoryLabel}</p>

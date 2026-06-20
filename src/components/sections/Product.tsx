@@ -17,17 +17,17 @@ export default function Product() {
       <div className="mx-auto max-w-container px-5 md:px-10">
         <Reveal className="glass-strong grid items-center gap-8 rounded-[2.25rem] p-8 md:grid-cols-[1.05fr_0.95fr] md:gap-14 md:p-14">
           <div>
-            <h2 className="font-serif text-[clamp(2.2rem,4.5vw,3.6rem)] font-semibold leading-[1.04]">
+            <h2 className="font-serif text-[clamp(2.3rem,4.6vw,3.7rem)] font-semibold leading-[1.02] tracking-[-0.02em]">
               Yellow Mustard <span className="italic">Oil</span>
             </h2>
             <p className="mt-2 font-deva text-xl text-yellow-ink">{heroProduct.hindi}</p>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-muted">
+            <p className="mt-6 max-w-md text-[1.0625rem] leading-relaxed text-ink-muted">
               A clean golden oil with the pungency a real kitchen knows. Pressed cold, so the seed
               reaches you intact.
             </p>
             <ul className="mt-8 space-y-3.5">
               {benefits.map((b) => (
-                <li key={b} className="flex items-center gap-3 text-lg text-ink">
+                <li key={b} className="flex items-center gap-3 text-[1.0625rem] text-ink">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-yellow/25">
                     <Check className="h-3.5 w-3.5 text-yellow-deep" strokeWidth={3} aria-hidden="true" />
                   </span>
