@@ -5,18 +5,20 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SRC="$ROOT/assets/source/Product_animation_Organikally.mp4"
+SRC="$ROOT/assets/source/Organikally_hero_ribbons.mp4"
 WORK="$ROOT/assets/hero-work"
 OUT="$ROOT/public/hero"
 FR_D="$OUT/frames/desktop"
 FR_M="$OUT/frames/mobile"
 
-CROP="crop=1646:1080:0:0"  # drop the right 1/6 (1920→1646) so the centred bottle sits right-of-centre
-DESKTOP_W=1646      # post-crop native width — the video is the centrepiece, render at top quality
+# No horizontal crop: this hero already frames the bottle right-of-centre as it
+# bursts into oil ribbons, and the explosion fills the full width — cropping the
+# right would clip the ribbons. Keep the native 1920×1080 16:9 frame.
+DESKTOP_W=1920      # full native width — the video is the centrepiece, top quality
 MOBILE_W=1280
 CRF_D=18            # near-transparent quality (lower = better); size is not a concern here
 CRF_M=24            # mobile frames, still high quality
-MOBILE_STRIDE=1     # keep every frame on mobile too (240 frames, fully smooth)
+MOBILE_STRIDE=1     # keep every frame on mobile too (192 frames, fully smooth)
 
 echo "→ clean"
 rm -rf "$WORK" "$FR_D" "$FR_M"
@@ -24,11 +26,11 @@ mkdir -p "$WORK/d" "$WORK/m" "$FR_D" "$FR_M" "$OUT"
 
 echo "→ extract desktop PNGs @${DESKTOP_W}px"
 ffmpeg -y -hide_banner -loglevel error -i "$SRC" \
-  -vf "crop=1646:1080:0:0,scale=${DESKTOP_W}:-2:flags=lanczos" -start_number 1 "$WORK/d/%04d.png"
+  -vf "scale=${DESKTOP_W}:-2:flags=lanczos" -start_number 1 "$WORK/d/%04d.png"
 
 echo "→ extract mobile PNGs @${MOBILE_W}px (every ${MOBILE_STRIDE})"
 ffmpeg -y -hide_banner -loglevel error -i "$SRC" \
-  -vf "crop=1646:1080:0:0,scale=${MOBILE_W}:-2:flags=lanczos,select=not(mod(n\,${MOBILE_STRIDE}))" \
+  -vf "scale=${MOBILE_W}:-2:flags=lanczos,select=not(mod(n\,${MOBILE_STRIDE}))" \
   -vsync 0 -start_number 1 "$WORK/m/%04d.png"
 
 enc() { # $1 png dir, $2 out dir, $3 crf
@@ -56,7 +58,7 @@ ffmpeg -y -hide_banner -loglevel error -i "$WORK/poster.png" -q:v 3 "$OUT/poster
 echo "→ fallback scrub mp4 (no audio, dense keyframes, faststart)"
 ffmpeg -y -hide_banner -loglevel error -i "$SRC" \
   -an -movflags +faststart -g 12 -keyint_min 12 -sc_threshold 0 \
-  -c:v libx264 -crf 24 -pix_fmt yuv420p -vf "crop=1646:1080:0:0,scale=1280:-2:flags=lanczos" \
+  -c:v libx264 -crf 24 -pix_fmt yuv420p -vf "scale=1280:-2:flags=lanczos" \
   "$OUT/hero-scrub.mp4"
 
 # dimensions
