@@ -1,16 +1,15 @@
 import type { ReactNode } from 'react';
 import WhatsappIcon from './WhatsappIcon';
 
-type Variant = 'primary' | 'secondary' | 'ghost' | 'onDark';
+type Variant = 'primary' | 'secondary' | 'ghost';
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold transition duration-200 ease-brand focus-visible:outline-2';
+  'inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-semibold transition duration-200 ease-brand focus-visible:outline-2 active:translate-y-px';
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-green text-cream shadow-md hover:-translate-y-0.5 hover:bg-green-700',
-  secondary: 'border-[1.5px] border-forest text-forest hover:bg-cream-deep',
-  ghost: 'text-gold-ink underline decoration-gold-bright decoration-2 underline-offset-4 hover:text-forest',
-  onDark: 'border-[1.5px] border-cream/70 text-cream hover:bg-cream/10',
+  primary: 'bg-yellow text-ink shadow-[0_10px_30px_-12px_rgba(206,150,10,0.8)] hover:bg-yellow-deep',
+  secondary: 'border border-ink/25 text-ink hover:border-ink/50 hover:bg-ink/[0.04]',
+  ghost: 'text-yellow-ink underline decoration-yellow decoration-2 underline-offset-4 hover:text-ink',
 };
 
 export default function Cta({

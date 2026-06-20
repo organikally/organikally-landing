@@ -1,32 +1,26 @@
 import Reveal from './Reveal';
 
 export default function SectionHeader({
-  eyebrow,
+  kicker,
   title,
   intro,
-  dark = false,
   align = 'left',
+  className = '',
 }: {
-  eyebrow: string;
+  kicker?: string;
   title: string;
   intro?: string;
-  dark?: boolean;
   align?: 'left' | 'center';
+  className?: string;
 }) {
-  const alignment = align === 'center' ? 'mx-auto text-center' : '';
+  const alignment = align === 'center' ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl';
   return (
-    <Reveal className={`max-w-2xl ${alignment}`}>
-      <p className={`eyebrow ${dark ? 'text-gold-bright' : ''}`}>{eyebrow}</p>
-      <h2
-        className={`mt-3 font-serif text-4xl font-semibold md:text-5xl ${dark ? 'text-cream' : ''}`}
-      >
+    <Reveal className={`${alignment} ${className}`}>
+      {kicker && <p className="eyebrow">{kicker}</p>}
+      <h2 className={`font-serif text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.06] ${kicker ? 'mt-3' : ''}`}>
         {title}
       </h2>
-      {intro && (
-        <p className={`mt-5 text-lg leading-relaxed ${dark ? 'text-cream/80' : 'text-charcoal-60'}`}>
-          {intro}
-        </p>
-      )}
+      {intro && <p className="mt-5 text-lg leading-relaxed text-ink-muted">{intro}</p>}
     </Reveal>
   );
 }

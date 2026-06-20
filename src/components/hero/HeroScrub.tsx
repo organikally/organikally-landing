@@ -91,7 +91,7 @@ export default function HeroScrub() {
       };
       poster.src = manifest.poster.avif;
 
-      if (reduce) return; // static poster only — no scrub, no preload
+      if (reduce) return; // static poster only, no scrub, no preload
 
       // Defer frame streaming + motion libs until after first load so they never
       // compete with the LCP; the poster stays visible until the scrub is ready.
@@ -197,7 +197,11 @@ export default function HeroScrub() {
   }, []);
 
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0">
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 z-0"
+      style={{ transform: 'translateZ(0)', willChange: 'transform' }}
+    >
       <picture>
         <source srcSet="/hero/poster.avif" type="image/avif" />
         <source srcSet="/hero/poster.webp" type="image/webp" />

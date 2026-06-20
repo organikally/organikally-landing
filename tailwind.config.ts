@@ -5,24 +5,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream: {
-          DEFAULT: 'rgb(var(--cream) / <alpha-value>)',
-          deep: 'rgb(var(--cream-deep) / <alpha-value>)',
-        },
-        forest: 'rgb(var(--forest) / <alpha-value>)',
-        green: {
-          DEFAULT: 'rgb(var(--green) / <alpha-value>)',
-          700: 'rgb(var(--green-700) / <alpha-value>)',
-        },
-        gold: {
-          DEFAULT: 'rgb(var(--gold) / <alpha-value>)',
-          bright: 'rgb(var(--gold-bright) / <alpha-value>)',
+        paper: 'rgb(var(--paper) / <alpha-value>)',
+        yellow: {
+          DEFAULT: 'rgb(var(--yellow) / <alpha-value>)',
+          deep: 'rgb(var(--yellow-deep) / <alpha-value>)',
           ink: 'rgb(var(--gold-ink) / <alpha-value>)',
         },
-        mustard: 'rgb(var(--mustard) / <alpha-value>)',
-        charcoal: {
-          DEFAULT: 'rgb(var(--charcoal) / <alpha-value>)',
-          60: 'rgb(var(--charcoal-60) / <alpha-value>)',
+        ink: {
+          DEFAULT: 'rgb(var(--ink) / <alpha-value>)',
+          muted: 'rgb(var(--ink-muted) / <alpha-value>)',
         },
         line: 'rgb(var(--line) / <alpha-value>)',
       },
