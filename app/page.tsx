@@ -23,18 +23,28 @@ export default function Home() {
       <SiteHeader />
 
       <main id="main" className="relative z-10">
-        <Hero />
-        <TrustStrip />
-        <Story />
-        <Product />
-        <Range />
-        <Sourcing />
-        <SocialProof />
-        <Recipes />
-        <JournalTeaser />
-        <Faq />
-        <Conversion />
-        <SiteFooter />
+        {/* Act 1 — the film plays out. A tall stage gives the scrub its scroll distance;
+            the sparse hero stays pinned over the uncovered video, then fades. */}
+        <section id="hero-stage" className="relative h-[280vh]">
+          <div className="sticky top-0 h-[100dvh] overflow-hidden">
+            <Hero />
+          </div>
+        </section>
+
+        {/* Act 2 — content rises over the final frame and takes the stage. */}
+        <div className="relative rounded-t-[2.5rem] bg-paper shadow-[0_-44px_80px_-30px_rgba(28,25,18,0.5)]">
+          <TrustStrip />
+          <Story />
+          <Product />
+          <Range />
+          <Sourcing />
+          <SocialProof />
+          <Recipes />
+          <JournalTeaser />
+          <Faq />
+          <Conversion />
+          <SiteFooter />
+        </div>
       </main>
     </>
   );

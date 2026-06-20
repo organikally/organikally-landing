@@ -146,11 +146,26 @@ export default function HeroScrub() {
       gsap.ticker.add(ticker);
       gsap.ticker.lagSmoothing(0);
 
+      // The video scrubs across the hero "stage" only (a tall pinned region), so the
+      // film plays out during the opening scroll and then content arrives after it.
+      const heroStage = document.querySelector('#hero-stage');
+      const heroContent = document.querySelector<HTMLElement>('#hero-content');
+      const canvasEl = canvas;
       const st = ScrollTrigger.create({
-        trigger: document.documentElement,
+        trigger: heroStage ?? document.documentElement,
         start: 'top top',
         end: 'bottom bottom',
-        onUpdate: (self) => render(Math.round(self.progress * (count - 1))),
+        onUpdate: (self) => {
+          render(Math.round(self.progress * (count - 1)));
+          // Fade the sparse hero copy out as the film finishes, then dim the canvas
+          // slightly so the rising content reads cleanly over the final frame.
+          if (heroContent) {
+            heroContent.style.opacity = String(
+              self.progress < 0.62 ? 1 : Math.max(0, 1 - (self.progress - 0.62) / 0.3),
+            );
+          }
+          canvasEl.style.opacity = String(self.progress < 0.86 ? 1 : 1 - (self.progress - 0.86) / 0.14 * 0.35);
+        },
       });
 
       const onResize = () => {
