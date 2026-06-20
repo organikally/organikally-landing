@@ -5,17 +5,17 @@ const year = 2026;
 
 export default function SiteFooter() {
   return (
-    <footer className="relative z-10 bg-ink pt-16 text-paper">
+    <footer className="relative z-10 border-t border-white/55 bg-white/75 pt-16 text-ink backdrop-blur-xl">
       <div className="mx-auto max-w-container px-5 md:px-10">
-        <div className="grid gap-10 border-b border-paper/15 pb-12 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid gap-10 border-b border-ink/10 pb-12 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <div className="font-serif text-3xl font-semibold">Organikally</div>
-            <div className="eyebrow mt-2 text-yellow">{site.tagline}</div>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-paper/70">
+            <div className="eyebrow mt-2">{site.tagline}</div>
+            <p className="mt-4 max-w-sm leading-relaxed text-ink-muted">
               Cold-pressed organic mustard oil, pulses and khand, made from organically grown seed.
               Nothing added, nothing taken out.
             </p>
-            <div className="mt-5 flex gap-3">
+            <div className="mt-5 flex gap-2.5">
               {[
                 { href: site.social.instagram, Icon: Instagram, label: 'Instagram' },
                 { href: site.social.facebook, Icon: Facebook, label: 'Facebook' },
@@ -27,7 +27,7 @@ export default function SiteFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-paper/20 text-paper/80 transition hover:border-yellow hover:text-yellow"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink-muted transition hover:border-yellow hover:bg-yellow/10 hover:text-yellow-ink"
                 >
                   <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                 </a>
@@ -36,11 +36,11 @@ export default function SiteFooter() {
           </div>
 
           <nav aria-label="Sections">
-            <h2 className="eyebrow text-yellow">Explore</h2>
-            <ul className="mt-4 space-y-2.5 text-sm text-paper/70">
+            <h2 className="eyebrow">Explore</h2>
+            <ul className="mt-4 space-y-2.5 text-ink-muted">
               {nav.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} className="transition hover:text-paper">
+                  <a href={item.href} className="transition hover:text-ink">
                     {item.label}
                   </a>
                 </li>
@@ -49,19 +49,19 @@ export default function SiteFooter() {
           </nav>
 
           <div>
-            <h2 className="eyebrow text-yellow">Contact</h2>
-            <ul className="mt-4 space-y-2.5 text-sm text-paper/70">
+            <h2 className="eyebrow">Contact</h2>
+            <ul className="mt-4 space-y-2.5 text-ink-muted">
               <li>
-                <a href={`mailto:${site.email}`} className="transition hover:text-paper">
+                <a href={`mailto:${site.email}`} className="transition hover:text-ink">
                   {site.email}
                 </a>
               </li>
-              <li className="text-paper/60">Business address to be added</li>
+              <li>Business address to be added</li>
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 py-7 text-xs text-paper/60 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-2 py-7 text-sm text-ink-muted md:flex-row md:items-center md:justify-between">
           <p>
             {site.fssaiLicence} · © {year} Organikally. All rights reserved.
           </p>

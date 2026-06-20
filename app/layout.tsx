@@ -7,6 +7,7 @@ const serif = Playfair_Display({
   variable: '--font-serif',
   display: 'swap',
   weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
 });
 
 const sans = Hanken_Grotesk({

@@ -7,8 +7,8 @@ export default function Hero() {
       <div className="mx-auto w-full max-w-container px-5 md:px-10">
         <div className="glass-strong max-w-xl rounded-[2rem] p-8 md:p-11">
           <p className="eyebrow">Cold-pressed organic mustard oil</p>
-          <h1 className="mt-4 font-serif text-[clamp(2.7rem,6vw,4.6rem)] font-semibold leading-[1.02]">
-            The oil that smells like home.
+          <h1 className="mt-4 font-serif text-[clamp(2.7rem,6vw,4.6rem)] font-semibold leading-[1.03]">
+            The oil that smells like <span className="italic">home.</span>
           </h1>
           <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-muted">
             Pressed cold from organically grown yellow mustard seed. Nothing added, nothing taken
@@ -18,7 +18,7 @@ export default function Hero() {
             <Cta href={whatsapp()} variant="primary" whatsapp external>
               Buy mustard oil
             </Cta>
-            <Cta href="#range" variant="secondary">
+            <Cta href="#range" variant="secondary" arrow>
               See the range
             </Cta>
           </div>

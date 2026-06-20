@@ -14,13 +14,14 @@ export default function JournalTeaser() {
       <div className="mx-auto max-w-container px-5 md:px-10">
         <div className="flex items-end justify-between gap-6">
           <h2 className="font-serif text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.05]">
-            Worth a read.
+            Worth a <span className="italic">read.</span>
           </h2>
           <Link
             href="/journal/"
-            className="hidden shrink-0 items-center gap-1 font-semibold text-yellow-ink hover:text-ink md:inline-flex"
+            className="group hidden shrink-0 items-center gap-1.5 font-semibold text-yellow-ink transition hover:text-ink md:inline-flex"
           >
-            All posts <ArrowRight className="h-4 w-4" />
+            All posts
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
 
@@ -28,18 +29,17 @@ export default function JournalTeaser() {
           <Reveal>
             <Link
               href={`/journal/${featured.slug}/`}
-              className="group flex h-full flex-col justify-between gap-8 rounded-[1.75rem] bg-yellow p-8 transition duration-300 ease-brand hover:-translate-y-1 md:p-10"
+              className="group glass-strong flex h-full flex-col justify-between gap-10 rounded-[1.9rem] p-8 transition duration-300 ease-brand hover:-translate-y-1 md:p-10"
             >
-              <p className="text-sm font-medium text-ink/70">
+              <p className="text-sm font-medium text-yellow-ink">
                 {formatDate(featured.date)} · {featured.readingMinutes} min read
               </p>
-              <div>
-                <h3 className="font-serif text-3xl font-semibold leading-tight text-ink md:text-4xl">
+              <div className="flex items-end justify-between gap-6">
+                <h3 className="font-serif text-3xl font-semibold leading-[1.08] text-ink md:text-[2.6rem]">
                   {featured.title}
                 </h3>
-                <span className="mt-5 inline-flex items-center gap-1 font-semibold text-ink">
-                  Read the piece
-                  <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-yellow text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
+                  <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
                 </span>
               </div>
             </Link>
@@ -50,13 +50,17 @@ export default function JournalTeaser() {
               <Reveal key={p.slug} delay={(i + 1) * 80}>
                 <Link
                   href={`/journal/${p.slug}/`}
-                  className="group glass flex h-full flex-col justify-between gap-4 rounded-[1.75rem] p-7 transition duration-300 ease-brand hover:-translate-y-1"
+                  className="group glass flex h-full flex-col justify-between gap-4 rounded-[1.9rem] p-7 transition duration-300 ease-brand hover:-translate-y-1"
                 >
                   <p className="text-sm text-ink-muted">
                     {formatDate(p.date)} · {p.readingMinutes} min read
                   </p>
-                  <h3 className="font-serif text-2xl font-semibold leading-snug text-ink">
+                  <h3 className="flex items-center justify-between gap-3 font-serif text-2xl font-semibold leading-snug text-ink">
                     {p.title}
+                    <ArrowUpRight
+                      className="h-5 w-5 shrink-0 text-yellow-ink opacity-0 transition duration-300 group-hover:opacity-100"
+                      aria-hidden="true"
+                    />
                   </h3>
                 </Link>
               </Reveal>
