@@ -5,14 +5,22 @@ const year = 2026;
 
 export default function SiteFooter() {
   return (
-    <footer
-      className="relative z-10 bg-white/80 pt-24 text-ink backdrop-blur-md [mask-image:linear-gradient(to_bottom,transparent,#000_80px)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,#000_80px)]"
-    >
+    <footer className="relative z-10 border-t border-line bg-surface pt-20 text-ink">
       <div className="mx-auto max-w-container px-5 md:px-10">
-        <div className="grid gap-10 border-b border-ink/10 pb-12 md:grid-cols-[1.5fr_1fr_1fr]">
+        <div className="grid gap-10 border-b border-line pb-12 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
-            <div className="font-serif text-3xl font-semibold">Organikally</div>
-            <div className="eyebrow mt-2">{site.tagline}</div>
+            <picture>
+              <source srcSet="/brand/organikally-wordmark.webp" type="image/webp" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/brand/organikally-wordmark.png"
+                alt="Organikally"
+                width={805}
+                height={200}
+                className="h-11 w-auto"
+              />
+            </picture>
+            <div className="eyebrow mt-3">{site.tagline}</div>
             <p className="mt-4 max-w-sm leading-relaxed text-ink-muted">
               Cold-pressed organic mustard oil, pulses and khand, made from organically grown seed.
               Nothing added, nothing taken out.
@@ -29,7 +37,7 @@ export default function SiteFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink-muted transition hover:border-yellow hover:bg-yellow/10 hover:text-yellow-ink"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink-muted transition hover:border-yellow hover:bg-yellow/10 hover:text-yellow-ink"
                 >
                   <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                 </a>

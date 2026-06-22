@@ -35,8 +35,18 @@ export default function SiteHeader({ forceSolid = false }: { forceSolid?: boolea
           elevated ? 'shadow-[0_18px_40px_-24px_rgba(28,25,18,0.5)]' : 'shadow-none'
         }`}
       >
-        <Link href="/" className="font-serif text-xl font-semibold tracking-tight text-ink md:text-2xl">
-          Organikally
+        <Link href="/" aria-label="Organikally, home" className="flex shrink-0 items-center">
+          <picture>
+            <source srcSet="/brand/organikally-wordmark.webp" type="image/webp" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/organikally-wordmark.png"
+              alt="Organikally"
+              width={805}
+              height={200}
+              className="h-[1.7rem] w-auto md:h-[2rem]"
+            />
+          </picture>
         </Link>
 
         <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
@@ -72,7 +82,17 @@ export default function SiteHeader({ forceSolid = false }: { forceSolid?: boolea
       {open && (
         <div className="fixed inset-0 z-50 bg-paper text-ink md:hidden">
           <div className="flex items-center justify-between px-6 py-5">
-            <span className="font-serif text-2xl font-semibold">Organikally</span>
+            <picture>
+              <source srcSet="/brand/organikally-wordmark.webp" type="image/webp" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/brand/organikally-wordmark.png"
+                alt="Organikally"
+                width={448}
+                height={85}
+                className="h-8 w-auto"
+              />
+            </picture>
             <button type="button" aria-label="Close menu" onClick={() => setOpen(false)} className="p-2">
               <X className="h-6 w-6" />
             </button>
@@ -83,7 +103,7 @@ export default function SiteHeader({ forceSolid = false }: { forceSolid?: boolea
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-line py-4 font-serif text-2xl"
+                className="border-b border-line py-4 text-2xl"
               >
                 {item.label}
               </a>
