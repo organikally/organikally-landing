@@ -1,0 +1,167 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+
+/**
+ * Full-page background hero film. A fixed, full-viewport <video> plays the
+ * cold-pressed-oil film at full quality the moment the page loads — no frame
+ * scrubbing, no streamed frames, no initial-load throttling. While it buffers, a
+ * warm shimmer-and-ripple loader holds the space and fades out the instant the
+ * film can play. Page content scrolls over it. On prefers-reduced-motion the
+ * film is left paused on its poster frame.
+ */
+export default function HeroFilm() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [ready, setReady] = useState(false);
+
+  // Load + play the film straight away on visit. Reduced-motion users keep the
+  // static poster instead of an autoplaying loop.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      v.removeAttribute('loop');
+      setReady(true);
+      return;
+    }
+    v.muted = true;
+    const reveal = () => setReady(true);
+    v.addEventListener('canplay', reveal);
+    v.addEventListener('playing', reveal);
+    const play = () => {
+      const p = v.play();
+      if (p && typeof p.catch === 'function') p.catch(() => {});
+    };
+    play();
+    // Some browsers only accept play() once data has arrived; retry then.
+    v.addEventListener('loadeddata', play);
+    return () => {
+      v.removeEventListener('canplay', reveal);
+      v.removeEventListener('playing', reveal);
+      v.removeEventListener('loadeddata', play);
+    };
+  }, []);
+
+  // Scroll choreography: Lenis smooth scroll (also the engine SmoothScroll uses
+  // for anchor nav), the scrubbed kinetic hero copy, and the hero column / CTA
+  // fades. No video work here — the film plays on its own. Skipped on
+  // reduced-motion (static, native scrolling).
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let destroyed = false;
+    let teardown: Array<() => void> = [];
+
+    const start = async () => {
+      const [lenisMod, gsapMod, stMod] = await Promise.all([
+        import('lenis'),
+        import('gsap'),
+        import('gsap/ScrollTrigger'),
+      ]);
+      if (destroyed) return;
+      const Lenis = lenisMod.default;
+      const gsap = gsapMod.gsap ?? gsapMod.default;
+      const ScrollTrigger = stMod.ScrollTrigger;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+      // Exposed app-wide so SmoothScroll drives anchor navigation through the same
+      // instance (otherwise a native fallback handles it).
+      (window as unknown as { __lenis?: unknown }).__lenis = lenis;
+      lenis.on('scroll', ScrollTrigger.update);
+      const ticker = (t: number) => lenis.raf(t * 1000);
+      gsap.ticker.add(ticker);
+      gsap.ticker.lagSmoothing(0);
+
+      const heroStage = document.querySelector('#hero-stage');
+      const heroContent = document.querySelector<HTMLElement>('#hero-content');
+      const heroCta = document.querySelector<HTMLElement>('#hero-cta');
+      const beatEls = Array.from(document.querySelectorAll<HTMLElement>('[data-hero-beat]'));
+
+      const clamp01 = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);
+      const smooth = (v: number) => {
+        const t = clamp01(v);
+        return t * t * (3 - 2 * t);
+      };
+
+      // The hero copy is positioned directly from scroll progress (no masks).
+      const { createHeroKinetic } = await import('./heroKinetic');
+      if (destroyed) return;
+      const kinetic = createHeroKinetic(beatEls);
+
+      const st = ScrollTrigger.create({
+        trigger: heroStage ?? document.documentElement,
+        start: 'top top',
+        end: 'bottom top',
+        onUpdate: (self) => {
+          const p = self.progress;
+          kinetic.setProgress(p);
+          // Fade the hero column out late in the stage so the content sheet can rise.
+          if (heroContent) {
+            heroContent.style.opacity = String(1 - smooth((p - 0.6) / 0.14));
+          }
+          // The actions clear the moment you start scrolling; the header keeps an Order button.
+          if (heroCta) {
+            const e = smooth(p / 0.04);
+            heroCta.style.opacity = String(1 - e);
+            heroCta.style.transform = `translate3d(0, ${24 * e}px, 0)`;
+            heroCta.style.pointerEvents = e > 0.5 ? 'none' : '';
+          }
+        },
+      });
+
+      teardown.push(() => {
+        st.kill();
+        kinetic.destroy();
+        gsap.ticker.remove(ticker);
+        lenis.destroy();
+        delete (window as unknown as { __lenis?: unknown }).__lenis;
+      });
+    };
+
+    if (document.readyState === 'complete') void start();
+    else {
+      const onLoad = () => void start();
+      window.addEventListener('load', onLoad, { once: true });
+      teardown.push(() => window.removeEventListener('load', onLoad));
+    }
+
+    return () => {
+      destroyed = true;
+      teardown.forEach((fn) => fn());
+      teardown = [];
+    };
+  }, []);
+
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-x-0 bottom-0 top-[4.5rem] z-0 overflow-hidden md:top-[5rem]"
+      style={{ transform: 'translateZ(0)' }}
+    >
+      <video
+        ref={videoRef}
+        className="absolute inset-0 h-full w-full object-cover object-[72%_50%] md:object-center"
+        poster="/hero/poster.jpg"
+        muted
+        loop
+        playsInline
+        preload="auto"
+      >
+        <source src="/hero/hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* Loading state — a warm shimmer with an oil-drop ripple, held until the
+          film can play, then faded out. */}
+      <div className={`hero-loader ${ready ? 'is-ready' : ''}`}>
+        <div className="hero-loader-ripple">
+          <span className="ring" />
+          <span className="ring" />
+          <span className="ring" />
+          <span className="dot" />
+        </div>
+      </div>
+    </div>
+  );
+}

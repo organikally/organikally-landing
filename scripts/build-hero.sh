@@ -1,80 +1,28 @@
 #!/usr/bin/env bash
-# Build the hero scroll-scrub assets from the source animation.
-# Output: AVIF frame sets (desktop + mobile), poster (avif+jpg), fallback mp4, manifest.
-# Reproducible — safe to re-run. Requires ffmpeg (libsvtav1) + cwebp.
+# Build the hero film assets from the source animation.
+# Output: a full-quality, progressively-streamable MP4 + a poster (first frame).
+# Reproducible — safe to re-run. Requires ffmpeg.
+#
+# The hero is a real autoplaying <video> (see HeroFilm.tsx), not a frame scrub, so
+# this just hands the native 1080p source to the web with faststart (moov atom
+# moved to the front) so it begins playing while it downloads. No re-encode — the
+# source is already the best quality we have, so the stream is copied losslessly.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SRC="$ROOT/assets/source/Organikally_hero_ribbons.mp4"
-WORK="$ROOT/assets/hero-work"
 OUT="$ROOT/public/hero"
-FR_D="$OUT/frames/desktop"
-FR_M="$OUT/frames/mobile"
 
-# No horizontal crop: this hero already frames the bottle right-of-centre as it
-# bursts into oil ribbons, and the explosion fills the full width — cropping the
-# right would clip the ribbons. Keep the native 1920×1080 16:9 frame.
-DESKTOP_W=1920      # full native width — the video is the centrepiece, top quality
-MOBILE_W=1280
-CRF_D=18            # near-transparent quality (lower = better); size is not a concern here
-CRF_M=24            # mobile frames, still high quality
-MOBILE_STRIDE=1     # keep every frame on mobile too (192 frames, fully smooth)
+mkdir -p "$OUT"
 
-echo "→ clean"
-rm -rf "$WORK" "$FR_D" "$FR_M"
-mkdir -p "$WORK/d" "$WORK/m" "$FR_D" "$FR_M" "$OUT"
-
-echo "→ extract desktop PNGs @${DESKTOP_W}px"
+echo "→ hero.mp4 (lossless remux, audio stripped, faststart)"
 ffmpeg -y -hide_banner -loglevel error -i "$SRC" \
-  -vf "scale=${DESKTOP_W}:-2:flags=lanczos" -start_number 1 "$WORK/d/%04d.png"
+  -c:v copy -an -movflags +faststart "$OUT/hero.mp4"
 
-echo "→ extract mobile PNGs @${MOBILE_W}px (every ${MOBILE_STRIDE})"
+echo "→ poster.jpg (first frame — video poster + OG/share image)"
 ffmpeg -y -hide_banner -loglevel error -i "$SRC" \
-  -vf "scale=${MOBILE_W}:-2:flags=lanczos,select=not(mod(n\,${MOBILE_STRIDE}))" \
-  -vsync 0 -start_number 1 "$WORK/m/%04d.png"
-
-enc() { # $1 png dir, $2 out dir, $3 crf
-  local n=0
-  for png in "$1"/*.png; do
-    n=$((n+1))
-    printf -v idx "%04d" "$n"
-    ffmpeg -y -hide_banner -loglevel error -i "$png" \
-      -c:v libsvtav1 -crf "$3" -frames:v 1 "$2/f${idx}.avif" 2>/dev/null
-  done
-  echo "$n"
-}
-
-echo "→ encode desktop AVIF (crf ${CRF_D})"
-D_COUNT=$(enc "$WORK/d" "$FR_D" "$CRF_D")
-echo "→ encode mobile AVIF (crf ${CRF_M})"
-M_COUNT=$(enc "$WORK/m" "$FR_M" "$CRF_M")
-
-echo "→ poster (LCP) from frame 1"
-cp "$WORK/d/0001.png" "$WORK/poster.png"
-ffmpeg -y -hide_banner -loglevel error -i "$WORK/poster.png" -c:v libsvtav1 -crf 20 -frames:v 1 "$OUT/poster.avif" 2>/dev/null
-cwebp -quiet -q 92 "$WORK/poster.png" -o "$OUT/poster.webp"
-ffmpeg -y -hide_banner -loglevel error -i "$WORK/poster.png" -q:v 3 "$OUT/poster.jpg"
-
-echo "→ fallback scrub mp4 (no audio, dense keyframes, faststart)"
-ffmpeg -y -hide_banner -loglevel error -i "$SRC" \
-  -an -movflags +faststart -g 12 -keyint_min 12 -sc_threshold 0 \
-  -c:v libx264 -crf 24 -pix_fmt yuv420p -vf "scale=1280:-2:flags=lanczos" \
-  "$OUT/hero-scrub.mp4"
-
-# dimensions
-read -r DW DH < <(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0:s=' ' "$FR_D/f0001.avif" 2>/dev/null || echo "$DESKTOP_W 0")
-
-echo "→ manifest"
-cat > "$OUT/manifest.json" <<JSON
-{
-  "desktop": { "count": ${D_COUNT}, "width": ${DESKTOP_W}, "path": "/hero/frames/desktop", "ext": "avif" },
-  "mobile":  { "count": ${M_COUNT}, "width": ${MOBILE_W}, "stride": ${MOBILE_STRIDE}, "path": "/hero/frames/mobile", "ext": "avif" },
-  "poster":  { "avif": "/hero/poster.avif", "webp": "/hero/poster.webp", "jpg": "/hero/poster.jpg" },
-  "fallbackVideo": "/hero/hero-scrub.mp4"
-}
-JSON
+  -frames:v 1 -q:v 3 "$OUT/poster.jpg"
 
 echo "→ sizes"
-du -sh "$FR_D" "$FR_M" "$OUT/poster.jpg" "$OUT/hero-scrub.mp4" 2>/dev/null
-echo "desktop frames: ${D_COUNT}  mobile frames: ${M_COUNT}"
-echo "✓ hero assets built"
+du -h "$OUT/hero.mp4" "$OUT/poster.jpg"
+echo "✓ hero assets built → public/hero/"

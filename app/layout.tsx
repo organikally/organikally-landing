@@ -76,8 +76,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${display.variable} ${sans.variable} ${deva.variable}`}
     >
       <head>
-        {/* The hero poster is the canvas baseline, load it early so the scrub paints fast. */}
-        <link rel="preload" as="image" href="/hero/poster.avif" type="image/avif" fetchPriority="high" />
+        {/* Start fetching the hero film as early as possible so it's ready to play. */}
+        <link rel="preload" as="video" href="/hero/hero.mp4" type="video/mp4" />
       </head>
       <body className="bg-paper font-sans text-ink antialiased">
         <a

@@ -1,4 +1,4 @@
-import HeroScrub from '@/components/hero/HeroScrub';
+import HeroFilm from '@/components/hero/HeroFilm';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
 import Hero from '@/components/sections/Hero';
@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       <JsonLd data={[organizationSchema(), websiteSchema(), productSchema(), faqSchema()]} />
-      <HeroScrub />
+      <HeroFilm />
       <SiteHeader />
 
       <main id="main" className="relative z-10">

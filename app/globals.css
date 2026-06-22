@@ -231,6 +231,97 @@
     }
   }
 
+  /* Hero film loading state: a warm paper wash with a soft gold shimmer sweep and
+     an oil-drop ripple at the centre. Holds the frame while the video buffers,
+     then fades out (see HeroFilm: .is-ready) the instant it can play. */
+  .hero-loader {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: radial-gradient(
+      135% 95% at 50% 26%,
+      rgb(var(--surface)) 0%,
+      rgb(var(--paper)) 62%,
+      rgb(var(--paper)) 100%
+    );
+    transition: opacity 0.7s var(--ease);
+  }
+  .hero-loader.is-ready {
+    opacity: 0;
+    pointer-events: none;
+  }
+  /* A slow diagonal sheen drifting across the wash. */
+  .hero-loader::after {
+    content: '';
+    position: absolute;
+    inset: -20% -40%;
+    background: linear-gradient(
+      105deg,
+      transparent 38%,
+      rgb(var(--yellow) / 0.1) 50%,
+      transparent 62%
+    );
+    transform: translateX(-60%);
+    animation: hero-sheen 2.6s var(--ease) infinite;
+  }
+  .hero-loader-ripple {
+    position: relative;
+    height: 76px;
+    width: 76px;
+  }
+  .hero-loader-ripple .ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    border: 1.5px solid rgb(var(--yellow-deep) / 0.5);
+    animation: hero-ripple 1.9s var(--ease) infinite;
+  }
+  .hero-loader-ripple .ring:nth-child(2) {
+    animation-delay: 0.63s;
+  }
+  .hero-loader-ripple .ring:nth-child(3) {
+    animation-delay: 1.26s;
+  }
+  .hero-loader-ripple .dot {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    height: 14px;
+    width: 14px;
+    border-radius: 9999px;
+    background: rgb(var(--yellow));
+    box-shadow: 0 0 0 7px rgb(var(--yellow) / 0.16);
+    animation: hero-breathe 1.9s var(--ease) infinite;
+  }
+  @keyframes hero-sheen {
+    to {
+      transform: translateX(60%);
+    }
+  }
+  @keyframes hero-ripple {
+    0% {
+      transform: scale(0.25);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+  @keyframes hero-breathe {
+    0%,
+    100% {
+      transform: scale(0.82);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
 }
 
 /* Lenis smooth-scroll baseline */
