@@ -3,50 +3,64 @@
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * Full-page background hero film. A fixed, full-viewport <video> plays the
- * cold-pressed-oil film at full quality the moment the page loads — no frame
- * scrubbing, no streamed frames, no initial-load throttling. While it buffers, a
- * warm shimmer-and-ripple loader holds the space and fades out the instant the
- * film can play. Page content scrolls over it. On prefers-reduced-motion the
- * film is left paused on its poster frame.
+ * Full-page background hero film, scrubbed by scroll. A fixed, full-viewport
+ * <video> is driven frame-accurately from scroll progress over the hero stage —
+ * scroll forward and the film plays forward; stop and it holds. The source is the
+ * full-quality native 1080p film, re-encoded all-intra so every frame is a
+ * keyframe and seeking stays smooth (no frame-decode lag). While it buffers, a
+ * warm shimmer-and-oil-drop loader holds the space and fades out the moment the
+ * first frame is ready. On prefers-reduced-motion the film holds on its poster.
  */
 export default function HeroFilm() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady] = useState(false);
 
-  // Load + play the film straight away on visit. Reduced-motion users keep the
-  // static poster instead of an autoplaying loop.
+  // Prepare the film for scrubbing: prime decoding (so setting currentTime renders
+  // frames, incl. iOS Safari) and reveal once the first frame is available. The
+  // rest streams in as the user scrolls. Reduced-motion keeps the static poster.
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) {
-      v.removeAttribute('loop');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setReady(true);
       return;
     }
     v.muted = true;
+
     const reveal = () => setReady(true);
+    v.addEventListener('loadeddata', reveal);
     v.addEventListener('canplay', reveal);
-    v.addEventListener('playing', reveal);
-    const play = () => {
+
+    // A brief muted play()→pause() unlocks frame-accurate seeking on a paused
+    // <video> (some browsers won't repaint on currentTime changes otherwise).
+    const prime = () => {
       const p = v.play();
-      if (p && typeof p.catch === 'function') p.catch(() => {});
+      if (p && typeof p.then === 'function') {
+        p.then(() => {
+          v.pause();
+          v.currentTime = 0;
+        }).catch(() => {});
+      } else {
+        try {
+          v.pause();
+        } catch {
+          /* noop */
+        }
+      }
     };
-    play();
-    // Some browsers only accept play() once data has arrived; retry then.
-    v.addEventListener('loadeddata', play);
+    v.addEventListener('loadedmetadata', prime);
+
     return () => {
+      v.removeEventListener('loadeddata', reveal);
       v.removeEventListener('canplay', reveal);
-      v.removeEventListener('playing', reveal);
-      v.removeEventListener('loadeddata', play);
+      v.removeEventListener('loadedmetadata', prime);
     };
   }, []);
 
   // Scroll choreography: Lenis smooth scroll (also the engine SmoothScroll uses
-  // for anchor nav), the scrubbed kinetic hero copy, and the hero column / CTA
-  // fades. No video work here — the film plays on its own. Skipped on
-  // reduced-motion (static, native scrolling).
+  // for anchor nav), the film scrub (scroll progress → video.currentTime), the
+  // scrubbed kinetic hero copy, and the hero column / CTA fades. Skipped on
+  // reduced-motion (static poster, native scrolling).
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -97,6 +111,21 @@ export default function HeroFilm() {
         onUpdate: (self) => {
           const p = self.progress;
           kinetic.setProgress(p);
+
+          // Scrub the film: scroll progress → frame. Stop a hair short of the end
+          // so we never land on a stalled past-last-frame seek.
+          const v = videoRef.current;
+          if (v && Number.isFinite(v.duration) && v.duration > 0) {
+            const t = Math.min(v.duration - 0.05, p * v.duration);
+            if (Math.abs(t - v.currentTime) > 0.02) {
+              try {
+                v.currentTime = t;
+              } catch {
+                /* seeking before metadata; ignored */
+              }
+            }
+          }
+
           // Fade the hero column out late in the stage so the content sheet can rise.
           if (heroContent) {
             heroContent.style.opacity = String(1 - smooth((p - 0.6) / 0.14));
@@ -145,7 +174,6 @@ export default function HeroFilm() {
         className="absolute inset-0 h-full w-full object-cover object-[72%_50%] md:object-center"
         poster="/hero/poster.jpg"
         muted
-        loop
         playsInline
         preload="auto"
       >
@@ -153,7 +181,7 @@ export default function HeroFilm() {
       </video>
 
       {/* Loading state — a warm shimmer with an oil-drop ripple, held until the
-          film can play, then faded out. */}
+          film's first frame is ready, then faded out. */}
       <div className={`hero-loader ${ready ? 'is-ready' : ''}`}>
         <div className="hero-loader-ripple">
           <span className="ring" />

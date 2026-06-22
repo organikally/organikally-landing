@@ -3,10 +3,10 @@
 # Output: a full-quality, progressively-streamable MP4 + a poster (first frame).
 # Reproducible — safe to re-run. Requires ffmpeg.
 #
-# The hero is a real autoplaying <video> (see HeroFilm.tsx), not a frame scrub, so
-# this just hands the native 1080p source to the web with faststart (moov atom
-# moved to the front) so it begins playing while it downloads. No re-encode — the
-# source is already the best quality we have, so the stream is copied losslessly.
+# The hero is a scroll-scrubbed <video> (see HeroFilm.tsx): scroll progress drives
+# video.currentTime. For that to seek smoothly the file is encoded ALL-INTRA (every
+# frame a keyframe, -g 1), at high quality (CRF 18) from the native 1080p source,
+# with faststart so it streams progressively while the user scrolls.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -15,9 +15,10 @@ OUT="$ROOT/public/hero"
 
 mkdir -p "$OUT"
 
-echo "→ hero.mp4 (lossless remux, audio stripped, faststart)"
+echo "→ hero.mp4 (all-intra, CRF 18, audio stripped, faststart)"
 ffmpeg -y -hide_banner -loglevel error -i "$SRC" \
-  -c:v copy -an -movflags +faststart "$OUT/hero.mp4"
+  -c:v libx264 -preset slow -crf 18 -g 1 -keyint_min 1 -sc_threshold 0 \
+  -pix_fmt yuv420p -an -movflags +faststart "$OUT/hero.mp4"
 
 echo "→ poster.jpg (first frame — video poster + OG/share image)"
 ffmpeg -y -hide_banner -loglevel error -i "$SRC" \
