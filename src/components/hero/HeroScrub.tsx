@@ -35,12 +35,18 @@ export default function HeroScrub() {
     let target = 0;
     let teardown: Array<() => void> = [];
 
+    // The canvas fills its wrapper, which is inset below the navbar (see render),
+    // so the bottle's cap never sits under the floating pill.
+    const wrap = canvas.parentElement as HTMLElement;
+
     const fit = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.round(window.innerWidth * dpr);
-      canvas.height = Math.round(window.innerHeight * dpr);
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
+      const w = wrap.clientWidth;
+      const h = wrap.clientHeight;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
     };
 
     const drawCover = (img: HTMLImageElement) => {
@@ -52,7 +58,11 @@ export default function HeroScrub() {
       const scale = Math.max(cw / iw, ch / ih);
       const dw = iw * scale;
       const dh = ih * scale;
-      ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+      // Narrow screens show far less width, so bias the crop right to keep the
+      // bottle (which sits right-of-centre in the frame) in view rather than the
+      // empty left of the frame.
+      const posX = window.innerWidth < 768 ? 0.72 : 0.5;
+      ctx.drawImage(img, (cw - dw) * posX, (ch - dh) / 2, dw, dh);
     };
 
     const nearestLoaded = (i: number) => {
@@ -138,33 +148,62 @@ export default function HeroScrub() {
       gsap.registerPlugin(ScrollTrigger);
 
       const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
-      if (process.env.NODE_ENV !== 'production') {
-        (window as unknown as { __lenis?: unknown }).__lenis = lenis;
-      }
+      // Exposed app-wide so SmoothScroll can drive anchor navigation through the
+      // same instance (otherwise a native fallback handles it).
+      (window as unknown as { __lenis?: unknown }).__lenis = lenis;
       lenis.on('scroll', ScrollTrigger.update);
       const ticker = (t: number) => lenis.raf(t * 1000);
       gsap.ticker.add(ticker);
       gsap.ticker.lagSmoothing(0);
 
-      // The video scrubs across the hero "stage" only (a tall pinned region), so the
-      // film plays out during the opening scroll and then content arrives after it.
+      // The video scrubs across the WHOLE stage ('bottom top'), so it keeps
+      // advancing while the content sheet rises over it: the film and the hand-off
+      // move together and the last frame lands exactly as Act 2 fills the screen,
+      // with no frozen frame in between.
       const heroStage = document.querySelector('#hero-stage');
       const heroContent = document.querySelector<HTMLElement>('#hero-content');
-      const canvasEl = canvas;
+      const heroCta = document.querySelector<HTMLElement>('#hero-cta');
+      const beatEls = Array.from(document.querySelectorAll<HTMLElement>('[data-hero-beat]'));
+
+      const clamp01 = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);
+      const smooth = (v: number) => {
+        const t = clamp01(v);
+        return t * t * (3 - 2 * t);
+      };
+
+      // Each beat's lines/marks are positioned DIRECTLY from scroll progress —
+      // scrubbed, not triggered — so the copy physically tracks the wheel and is
+      // never clipped (no masks). See heroKinetic for the enter/hold/exit windows.
+      const { createHeroKinetic } = await import('./heroKinetic');
+      if (destroyed) return;
+      const kinetic = createHeroKinetic(beatEls);
+      if (process.env.NODE_ENV !== 'production') {
+        (window as unknown as { __gsap?: unknown; __heroKinetic?: unknown }).__gsap = gsap;
+        (window as unknown as { __heroKinetic?: unknown }).__heroKinetic = kinetic;
+      }
+
       const st = ScrollTrigger.create({
         trigger: heroStage ?? document.documentElement,
         start: 'top top',
-        end: 'bottom bottom',
+        end: 'bottom top',
         onUpdate: (self) => {
-          render(Math.round(self.progress * (count - 1)));
-          // Fade the sparse hero copy out as the film finishes, then dim the canvas
-          // slightly so the rising content reads cleanly over the final frame.
+          const p = self.progress;
+          render(Math.round(p * (count - 1)));
+          kinetic.setProgress(p);
+          // Fade the whole hero column out once the last beat has had its hold, so
+          // the film's oil-burst plays as the finale and the content sheet rises.
           if (heroContent) {
-            heroContent.style.opacity = String(
-              self.progress < 0.62 ? 1 : Math.max(0, 1 - (self.progress - 0.62) / 0.3),
-            );
+            heroContent.style.opacity = String(1 - smooth((p - 0.6) / 0.14));
           }
-          canvasEl.style.opacity = String(self.progress < 0.86 ? 1 : 1 - (self.progress - 0.86) / 0.14 * 0.35);
+          // The actions clear the canvas the moment you start scrolling: they slide
+          // down and fade out within the first sliver of the stage, so the upcoming
+          // storytelling phases have room. The header keeps a persistent Order button.
+          if (heroCta) {
+            const e = smooth(p / 0.04); // gone by ~4% of the stage
+            heroCta.style.opacity = String(1 - e);
+            heroCta.style.transform = `translate3d(0, ${24 * e}px, 0)`;
+            heroCta.style.pointerEvents = e > 0.5 ? 'none' : '';
+          }
         },
       });
 
@@ -179,8 +218,10 @@ export default function HeroScrub() {
       teardown.push(() => {
         window.removeEventListener('resize', onResize);
         st.kill();
+        kinetic.destroy();
         gsap.ticker.remove(ticker);
         lenis.destroy();
+        delete (window as unknown as { __lenis?: unknown }).__lenis;
       });
       };
 
@@ -214,7 +255,7 @@ export default function HeroScrub() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0"
+      className="pointer-events-none fixed inset-x-0 bottom-0 top-[4.5rem] z-0 md:top-[5rem]"
       style={{ transform: 'translateZ(0)', willChange: 'transform' }}
     >
       <picture>
@@ -225,7 +266,7 @@ export default function HeroScrub() {
           alt=""
           fetchPriority="high"
           decoding="async"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover object-[72%_50%] md:object-center"
         />
       </picture>
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
