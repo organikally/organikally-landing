@@ -1,19 +1,20 @@
 import type { Metadata } from 'next';
-import { Newsreader, Hanken_Grotesk, Tiro_Devanagari_Hindi } from 'next/font/google';
+import { Chelsea_Market, Bricolage_Grotesque, Tiro_Devanagari_Hindi } from 'next/font/google';
 import './globals.css';
+import SmoothScroll from '@/components/ui/SmoothScroll';
 
-// Display face: a warm editorial serif with genuine journal character and the
-// kind of italics our same-family accents lean on ("home.", "deserves.").
-// Chosen over a high-contrast Didone so the heritage brand reads earthy, not bridal.
-const serif = Newsreader({
+// Display face for headings: Chelsea Market — a warm, casual slab/display face with
+// a handcrafted character. Single weight (400), no italic.
+const display = Chelsea_Market({
   subsets: ['latin'],
-  variable: '--font-serif',
+  variable: '--font-display',
   display: 'swap',
-  weight: ['400', '500', '600'],
-  style: ['normal', 'italic'],
+  weight: '400',
 });
 
-const sans = Hanken_Grotesk({
+// Body / paragraph face: Bricolage Grotesque — a contemporary grotesque with a
+// little character, readable at text sizes; counterpart to the Chelsea Market display.
+const sans = Bricolage_Grotesque({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
@@ -70,7 +71,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${serif.variable} ${sans.variable} ${deva.variable}`}>
+    <html
+      lang="en-IN"
+      className={`${display.variable} ${sans.variable} ${deva.variable}`}
+    >
       <head>
         {/* The hero poster is the canvas baseline, load it early so the scrub paints fast. */}
         <link rel="preload" as="image" href="/hero/poster.avif" type="image/avif" fetchPriority="high" />
@@ -82,6 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <SmoothScroll />
         {children}
       </body>
     </html>

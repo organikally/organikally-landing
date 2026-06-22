@@ -2,15 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Colours as RGB channels so Tailwind /opacity works. White + golden yellow + warm ink. */
+/* ───────────────────────── Tokens ─────────────────────────
+   Warm, tinted neutrals (never pure #000 / #fff). RGB channels so Tailwind
+   /opacity utilities work: rgb(var(--x) / <alpha-value>). */
 :root {
-  --paper: 250 249 245; /* near-white base */
-  --yellow: 240 182 26; /* vivid golden yellow, the oil */
+  --paper: 250 249 245; /* base surface, warm off-white */
+  --surface: 244 241 233; /* raised paper, the one solid panel tint */
+  --yellow: 240 182 26; /* the oil */
   --yellow-deep: 206 150 10; /* hover / depth */
-  --gold-ink: 146 100 9; /* text-safe gold accent on white (AA) */
+  --gold-ink: 146 100 9; /* AA-safe gold text on paper */
   --ink: 28 25 18; /* warm near-black, headings & body */
-  --ink-muted: 64 57 44; /* secondary text — kept dark so body stays AA-legible over very transparent glass on any video frame */
-  --line: 232 226 213; /* hairline on white */
+  --ink-muted: 64 57 44; /* secondary text, AA on paper */
+  --ink-faint: 122 114 98; /* labels, indices, captions */
+  --line: 230 224 211; /* hairline rule on paper */
+
+  /* Motion: one rhythm everywhere. Ease-out only (no bounce/elastic). */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.2s;
+  --dur: 0.45s;
+  --dur-slow: 0.8s;
 }
 
 @layer base {
@@ -21,32 +31,46 @@
     background-color: rgb(var(--paper));
     color: rgb(var(--ink));
     font-family: var(--font-sans), system-ui, sans-serif;
-    font-size: 1.0625rem; /* 17px comfortable reading body */
+    font-size: 1.0625rem; /* 17px reading body */
     line-height: 1.6;
     letter-spacing: -0.002em;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     font-feature-settings: 'kern' 1, 'liga' 1;
   }
+  /* Display headings: Chelsea Market — a warm, casual handcrafted face. Single
+     weight, not variable, so no font-variation-settings. Near-zero tracking (the
+     letterforms are already generous); leading opened a touch for its tall, bouncy
+     forms. Body and all other non-heading text use the Bricolage Grotesque sans. */
   h1,
   h2,
   h3 {
-    font-family: var(--font-serif), Georgia, serif;
     color: rgb(var(--ink));
-    letter-spacing: -0.018em;
-    line-height: 1.05;
-    text-wrap: balance;
+    font-family: var(--font-display), Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.1;
     font-feature-settings: 'kern' 1, 'liga' 1;
+    text-wrap: balance;
   }
-  /* Same-family italic accents inside display headings: keep optical leading so
-     descenders (y g j p q) never clip, and reserve a hair of space. */
+  h1 {
+    letter-spacing: -0.005em;
+    line-height: 1.04;
+  }
+  h2 {
+    line-height: 1.06;
+  }
+  h3 {
+    line-height: 1.16;
+  }
+  /* Chelsea Market has no italic; neutralise the accent spans so they don't render
+     as a synthesised faux-oblique. The face's own character carries the accent. */
   h1 .italic,
   h2 .italic,
-  h3 .italic {
-    line-height: 1.1;
-    padding-bottom: 0.04em;
+  h3 .italic,
+  .font-display .italic {
+    font-style: normal;
   }
-  /* Figures that line up in columns (reading time, dates) align on tabular nums. */
   .tnum {
     font-feature-settings: 'tnum' 1, 'lnum' 1;
     font-variant-numeric: tabular-nums lining-nums;
@@ -57,51 +81,92 @@
   }
   :focus-visible {
     outline: 2px solid rgb(var(--gold-ink));
-    outline-offset: 2px;
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 }
 
 @layer components {
+  /* ── Editorial type scale ──
+     One scale, ≥1.25 contrast between steps. Headings inherit the serif from
+     the base layer; these set size / measure only. */
+  /* Tuned for Chelsea Market (wide, chunky casual face): zero tracking, a little
+     more leading, and slightly eased max sizes so the heavier letterforms don't
+     overwhelm. No variation settings — it's a single-weight, non-variable face. */
+  .t-display {
+    font-size: clamp(2.5rem, 5.6vw, 4.4rem);
+    line-height: 1.04;
+    letter-spacing: 0;
+  }
+  .t-headline {
+    font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+    line-height: 1.07;
+    letter-spacing: 0;
+  }
+  .t-title {
+    font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+    line-height: 1.12;
+    letter-spacing: 0;
+  }
+  .t-subtitle {
+    font-size: clamp(1.25rem, 1.7vw, 1.5rem);
+    line-height: 1.3;
+    letter-spacing: 0;
+  }
+  .t-lead {
+    font-size: clamp(1.0625rem, 0.9vw + 0.9rem, 1.2rem);
+    line-height: 1.62;
+    color: rgb(var(--ink-muted));
+  }
+
+  /* Section label, used sparingly (eyebrow budget ~1 per 3 sections). */
   .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: rgb(var(--gold-ink));
   }
-
-  /*
-   * BLEND GLASS, not a card.
-   *
-   * The goal is a soft luminous haze that the foreground text floats inside,
-   * dissolving into the moving video with no crisp edge. We feather the whole
-   * element (fill, blur and shadow) with a radial mask so the rectangle melts
-   * outward. Center stays a touch more opaque to protect AA legibility; the
-   * edges fade fully transparent.
-   *
-   * The non-supports declaration below is the legible base: a translucent
-   * white wash so text is never stranded where backdrop-filter is missing.
-   */
-  .glass,
-  .glass-strong {
-    /* Feather the whole panel so its rectangle dissolves into the video. The
-       core stays fully opaque well past the text (out to ~62%), then the outer
-       rim fades to nothing, so content never sits in a half-faded zone. */
-    --feather: radial-gradient(125% 125% at 50% 50%, #000 62%, rgba(0, 0, 0, 0.6) 82%, transparent 100%);
-    -webkit-mask-image: var(--feather);
-    mask-image: var(--feather);
-    box-shadow: 0 40px 90px -48px rgba(28, 25, 18, 0.4);
+  /* A short tick before the label, so it reads as editorial kicker not a tag. */
+  .eyebrow::before {
+    content: '';
+    width: 1.6rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
   }
-  .glass {
-    background: radial-gradient(120% 120% at 50% 40%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.34));
-  }
-  .glass-strong {
-    background: radial-gradient(120% 120% at 50% 40%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.42));
+  .eyebrow.eyebrow-bare::before {
+    display: none;
   }
 
-  /* The nav pill is short and wide, so a radial feather would fade its base.
-     It gets a uniform translucent wash instead (no feather mask), with a soft
-     hairline so it reads as a floating control rather than a hard bar. */
+  /* Hairline divider between editorial blocks. */
+  .rule {
+    height: 1px;
+    border: 0;
+    background: rgb(var(--line));
+  }
+
+  /* Big tabular index numeral for sequenced steps (01 / 02 / 03). */
+  .index-num {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-feature-settings: 'tnum' 1, 'lnum' 1;
+    font-variant-numeric: tabular-nums lining-nums;
+    color: rgb(var(--ink-faint));
+    line-height: 1;
+  }
+
+  /* The ONE solid panel treatment (warm raised paper), used where a block
+     genuinely needs to lift off the page, e.g. the closing CTA. Not frosted. */
+  .panel {
+    background: rgb(var(--surface));
+    border: 1px solid rgb(var(--line));
+  }
+
+  /* The header pill is the one purposeful translucent surface, it floats over
+     the moving video. Solid fallback where blur is unsupported/reduced. */
   .glass-pill {
     background: rgba(255, 255, 255, 0.42);
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -109,57 +174,53 @@
   }
   @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .glass-pill {
-      background: rgba(255, 255, 255, 0.22);
-      backdrop-filter: blur(12px) saturate(1.4);
-      -webkit-backdrop-filter: blur(12px) saturate(1.4);
+      background: rgba(252, 251, 246, 0.62);
+      backdrop-filter: blur(14px) saturate(1.3);
+      -webkit-backdrop-filter: blur(14px) saturate(1.3);
     }
   }
 
-  /* Genuinely see-through glass that merges with the video: low blur, high
-     transparency, feathered to nothing at the edges. */
-  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .glass {
-      background: radial-gradient(120% 120% at 50% 40%, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-      backdrop-filter: blur(9px) saturate(1.35);
-      -webkit-backdrop-filter: blur(9px) saturate(1.35);
-    }
-    .glass-strong {
-      background: radial-gradient(120% 120% at 50% 40%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.16));
-      backdrop-filter: blur(11px) saturate(1.3);
-      -webkit-backdrop-filter: blur(11px) saturate(1.3);
-    }
-  }
-
+  /* ── Reveal on scroll ──
+     Communicates reading order: content settles in, then stays. IntersectionObserver
+     driven (see Reveal.tsx), never a scroll listener, so it never fights the scrub. */
   .reveal {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(22px);
     transition:
-      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity var(--dur-slow) var(--ease),
+      transform var(--dur-slow) var(--ease);
     will-change: opacity, transform;
   }
   .reveal-up {
-    transform: translateY(20px);
+    transform: translateY(22px);
   }
   .reveal-left {
-    transform: translateX(-22px);
+    transform: translateX(-26px);
   }
   .reveal-right {
-    transform: translateX(22px);
+    transform: translateX(26px);
   }
   .reveal-in {
     opacity: 1;
     transform: none;
   }
 
-  /* Hero entrance: a short, eased sequence that establishes reading order on
-     first paint (eyebrow, headline, subhead, then the actions). Each child sets
-     its own --i; only runs where motion is welcomed. */
+  /* Hide the native scrollbar on horizontal scroll-snap tracks (the carousel). */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hero entrance: establishes reading order on first paint (eyebrow, headline,
+     subhead, actions). Each child sets its own --i. Motion-gated. */
   @media (prefers-reduced-motion: no-preference) {
     .hero-enter > * {
       opacity: 0;
       transform: translateY(16px);
-      animation: hero-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: hero-rise 0.85s var(--ease) forwards;
       animation-delay: calc(120ms + var(--i, 0) * 110ms);
     }
   }
@@ -169,20 +230,7 @@
       transform: none;
     }
   }
-}
 
-/* Solid fallback when transparency/blur is reduced or unsupported. The mask is
-   removed so text never sits on a half-faded panel that drops below AA. */
-@media (prefers-reduced-transparency: reduce) {
-  .glass,
-  .glass-strong,
-  .glass-pill {
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
 }
 
 /* Lenis smooth-scroll baseline */
