@@ -41,3 +41,4 @@ coverage/
 
 # Raw Pexels downloads — only the optimised public/media/ output is committed.
 assets/media-work/
+.vercel
