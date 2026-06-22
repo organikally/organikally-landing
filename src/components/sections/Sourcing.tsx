@@ -1,62 +1,76 @@
-import { Sprout, Wind, Package } from 'lucide-react';
 import Reveal from '@/components/ui/Reveal';
 import Media from '@/components/ui/Media';
 
+// The journey from seed to kitchen, told as an image-led horizontal process (it sits
+// right under the product it explains). Four photographed steps, numbered, in the
+// site's editorial language. Copy stays to approved process/sensory claims
+// (organically grown, cold-pressed, no heat/solvent).
 const steps = [
   {
-    Icon: Sprout,
-    title: 'Grown without synthetic inputs',
-    body: 'Yellow mustard seed grown organically, then sorted and cleaned before it ever reaches the press.',
+    media: 'step-grown',
+    title: 'Grown clean',
+    body: 'Yellow mustard grown organically, without synthetic inputs — then sorted and cleaned.',
   },
   {
-    Icon: Wind,
-    title: 'Pressed cold, kachi ghani',
-    body: 'Crushed slowly at low temperature. No heat forced in, no solvents, no deodorising afterwards.',
+    media: 'step-pressed',
+    title: 'Cold-pressed',
+    body: 'Crushed slow in a kachi ghani, at low temperature. No heat forced in, no solvents.',
   },
   {
-    Icon: Package,
-    title: 'Bottled as it comes',
-    body: 'Filled straight from the press, so the colour, aroma and goodness reach your kitchen intact.',
+    media: 'step-bottled',
+    title: 'Bottled fresh',
+    body: 'Filled straight from the press and sealed — stamped with the day it was pressed.',
+  },
+  {
+    media: 'step-kitchen',
+    title: 'To your kitchen',
+    body: 'It reaches you the way it left the field: golden, aromatic and unrefined.',
   },
 ];
 
 export default function Sourcing() {
   return (
-    <section id="sourcing" className="relative z-10 py-24 md:py-32">
+    <section id="sourcing" className="relative z-10 py-16 md:py-32">
       <div className="mx-auto max-w-container px-5 md:px-10">
-        <Reveal className="glass-strong overflow-hidden rounded-[2rem] p-9 md:p-14">
-          <div className="grid gap-10 md:grid-cols-[0.85fr_1fr] md:items-stretch md:gap-14">
-            <Reveal direction="left" className="md:order-1">
-              <Media
-                name="field"
-                alt="A mustard field in bloom in Punjab, the source of the cold-pressed oil"
-                width={1200}
-                height={1500}
-                className="h-full min-h-[280px] rounded-[1.5rem] shadow-[0_36px_70px_-44px_rgba(28,25,18,0.6)]"
-              />
-            </Reveal>
-            <div className="md:order-2">
-              <h2 className="max-w-xl font-serif text-[clamp(2.1rem,4.6vw,3.5rem)] font-semibold leading-[1.04] tracking-[-0.02em]">
-                From field to bottle, honestly.
-              </h2>
-              <div className="mt-8 divide-y divide-line/80">
-                {steps.map((s, i) => (
-                  <Reveal key={s.title} delay={i * 80} direction="right">
-                    <div className="flex items-start gap-5 py-6 first:pt-0 last:pb-0">
-                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-yellow/15 text-yellow-deep">
-                        <s.Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
-                      </span>
-                      <div>
-                        <h3 className="font-serif text-2xl font-semibold text-ink">{s.title}</h3>
-                        <p className="mt-1.5 max-w-xl text-ink-muted">{s.body}</p>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </div>
+        <Reveal>
+          <p className="eyebrow">Our process</p>
+          <h2 className="t-headline mt-6 max-w-2xl font-semibold text-ink">
+            From field to bottle, honestly.
+          </h2>
+          <p className="t-lead mt-5 max-w-measure">
+            No middlemen, no refining, no shortcuts — just four honest steps between the seed and
+            your kitchen.
+          </p>
         </Reveal>
+
+        {/* Mobile: a compact timeline — small thumbnail beside the step, so four
+            steps read at a glance instead of four full-height stacked cards.
+            sm+: the photographed cards return in a 2- then 4-up grid. */}
+        <ol className="mt-10 grid grid-cols-1 gap-y-7 sm:mt-12 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:mt-16 lg:grid-cols-4">
+          {steps.map((s, i) => (
+            <li key={s.title}>
+              <Reveal delay={i * 90} className="flex items-start gap-4 sm:block">
+                <Media
+                  name={s.media}
+                  alt={s.title}
+                  width={800}
+                  height={600}
+                  className="aspect-[4/3] w-28 shrink-0 rounded-media shadow-sm sm:w-full sm:rounded-card"
+                  sizes="(min-width: 1024px) 22vw, (min-width: 640px) 44vw, 30vw"
+                />
+                <div className="min-w-0 sm:mt-5">
+                  <div className="flex items-baseline gap-3">
+                    <span className="index-num text-xl text-yellow-deep md:text-2xl">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="text-lg font-semibold text-ink md:text-xl">{s.title}</h3>
+                  </div>
+                  <p className="mt-2 leading-relaxed text-ink-muted">{s.body}</p>
+                </div>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

@@ -11,6 +11,8 @@ export type Product = {
   blurb: string;
   icon: string;
   image?: string;
+  /** base name of a /public/media AVIF·WebP·JPG triplet, used as the range thumbnail */
+  media?: string;
   hindi?: string;
   available: boolean;
   hero?: boolean;
@@ -22,10 +24,11 @@ export const products: Product[] = [
     name: 'Yellow Mustard Oil',
     category: 'oil',
     categoryLabel: 'Cold-pressed oil',
-    blurb: 'Cold-pressed from organically grown yellow mustard seed. High in MUFA & Omega-3.',
+    blurb: 'Cold-pressed from organically grown yellow mustard seed. Kachi ghani, nothing refined out.',
     icon: 'droplet',
     image: '/brand/product-bottle.webp',
-    hindi: 'शुद्ध सरसों तेल',
+    media: 'seeds',
+    hindi: 'सरसों का तेल',
     available: true,
     hero: true,
   },
@@ -36,6 +39,7 @@ export const products: Product[] = [
     categoryLabel: 'Everyday staples',
     blurb: 'A growing range of organically grown dals, unpolished, sorted, and honestly graded.',
     icon: 'wheat',
+    media: 'dals',
     available: true,
   },
   {
@@ -45,6 +49,7 @@ export const products: Product[] = [
     categoryLabel: 'Unrefined sugar',
     blurb: 'Organic unrefined jaggery sugar, the warm, mineral-rich sweetness of slow-cooked cane.',
     icon: 'candy',
+    media: 'khand',
     available: true,
   },
   {
@@ -54,6 +59,7 @@ export const products: Product[] = [
     categoryLabel: 'The wider kitchen',
     blurb: 'Organic kitchen essentials, added with the same care as the oil, more arriving soon.',
     icon: 'basket',
+    media: 'pantry',
     available: true,
   },
 ];

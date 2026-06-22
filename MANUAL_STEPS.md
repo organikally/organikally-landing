@@ -25,9 +25,36 @@ Legend: 🔴 blocks a real build deliverable · 🟡 needed before launch · �
 
 ## Compliance & legal
 
-- [ ] 🔴 **FSSAI licence number** + any mandatory regulatory text for the footer.
-- [ ] 🟡 Confirm the legal claims set is approved (cold-pressed, organic certification body
-  & cert number if any, "Cholesterol-Free", "High in MUFA & Omega-3"). See `docs/COMPLIANCE.md`.
+- [ ] 🔴 **FSSAI licence number** + any mandatory regulatory text for the footer. Renders as
+  a placeholder in the footer today; the trust strip no longer self-asserts "FSSAI compliant"
+  (non-standard phrasing) — the licence number is the correct signal and lives in the footer.
+- [ ] 🔴 **Organic certification — scope decides the wording.** Is NPOP/PGS certification held for
+  the **finished oil**, or only the **seed/farm**? This gates every "organic" string on the page:
+  - finished-oil cert → may say **"Certified Organic"** + display the Jaivik Bharat logo + cert no.
+  - seed/farm only → keep the current safer **"organically grown seed"** phrasing (used in the
+    hero, the Product badge, the trust strip); do **not** use bare/absolute "Organic" or "100%".
+  Supply cert body, cert number, and Jaivik Bharat logo rights. (Absolute "100% Organic" and the
+  `शुद्ध`/"pure" flourish were removed as un-substantiable absolute claims.)
+- [ ] 🟡 **Nutrition lab report (per-100g)** — MUFA, ALA (omega-3), saturated fat, cholesterol,
+  vitamin E (tocopherol). Needed to substantiate the Product benefits list, which still shows
+  **"High in MUFA and Omega-3"** and **"Rich in antioxidants"** pending data. Compliant rewrites
+  on file once data exists: "Naturally high in MUFA, a source of omega-3 (ALA)" and "A source of
+  vitamin E, a natural antioxidant". The "cholesterol-free like all vegetable oils" qualifier is
+  already applied (no data needed). Also review the Story line "Purity you can smell…" ("purity").
+- [ ] 🟡 **Process attestation** — written confirmation the oil is genuinely cold-pressed / kachi
+  ghani with **no external heat, no solvent, no deodorising step**, so the hero's negative process
+  claims ("Nothing refined out", "No heat forced in, no solvents, no deodorising") and the "Proof"
+  section's process comparison stay true.
+- [ ] 🔴 **Press date — wire per-batch, don't hard-code.** The "Proof. Not promises." section shows
+  a "Pressed on …" stamp from `site.pressDate` (`src/lib/site.ts`), currently the illustrative
+  placeholder **24 May 2026**. Wire it to a real per-batch/per-SKU value, or set it to `''` to show a
+  neutral "Small-batch fresh" stamp. A stale literal date is misleading.
+- [ ] 🔴 **Press-date-on-bottle attestation.** Confirm the press/batch date is physically printed on
+  **every** bottle/SKU — the line "We print the press date on every bottle" / "Freshness you can
+  verify" is misleading otherwise. Qualify the copy if only some SKUs carry it.
+  - Note: the supplied comparison copy "Zero Adulterants", "100% pure", "No other Indian brand prints
+    this", and "Argemone risk" were **removed** as absolute / unsubstantiated-comparative /
+    disparaging-safety claims. A future "tested free of argemone" line needs per-batch lab reports.
 - [ ] 🟡 Business legal name, registered address, customer-care email/phone.
 
 ## Social proof
@@ -40,9 +67,15 @@ Legend: 🔴 blocks a real build deliverable · 🟡 needed before launch · �
   attribution required) and optimised by `scripts/build-media.sh` into `public/media/`. Swapping
   in real Organikally field, seed, press and achaar photography is the highest-authenticity
   upgrade. Current sources (Pexels photo IDs / photographers):
-  - `field` & `field-band` — Punjab mustard fields, Zaryab Haider (#36381366) & Dhally Romy (#12656534)
-  - `seeds` — mustard seed macro, Petr Ganaj (#18346906)
+  - `field` — Punjab mustard field still, Zaryab Haider (#36381366)
+  - `field-band` — **video** of farmers threshing the rice harvest, Pexels video #19578432
+    (2:1 crop framing the figures, warm-graded; raw `farmer-threshing.mp4` in `assets/media-work/`).
+    Note: stock harvest footage — swap for Organikally's own farm/mustard footage before launch.
+  - `seeds` — mustard seed macro, Petr Ganaj (#18346906) — also the Range "Yellow Mustard Oil" thumbnail
   - `achaar` — mango achaar in a martaban, Ambika (#7812134)
+  - `dals` — raw brown lentils, Pexels #30204272 (Range — Pulses & Dals)
+  - `khand` — unrefined sugar in a wooden bowl, Pexels #19123122 (Range — Khand)
+  - `pantry` — masala dabba spice box, Pexels #37911515 (Range — Pantry Staples)
 
 ## Channels
 
