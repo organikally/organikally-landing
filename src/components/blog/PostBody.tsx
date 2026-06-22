@@ -7,7 +7,7 @@ export default function PostBody({ blocks }: { blocks: Block[] }) {
         switch (b.type) {
           case 'h2':
             return (
-              <h2 key={i} className="pt-4 font-serif text-3xl font-semibold text-ink">
+              <h2 key={i} className="pt-4 text-3xl font-semibold text-ink">
                 {b.text}
               </h2>
             );
@@ -26,7 +26,7 @@ export default function PostBody({ blocks }: { blocks: Block[] }) {
             return (
               <blockquote
                 key={i}
-                className="border-l-2 border-yellow py-1 pl-5 font-serif text-2xl leading-snug text-ink"
+                className="my-4 text-[1.6rem] italic leading-snug tracking-[-0.01em] text-ink"
               >
                 {b.text}
               </blockquote>

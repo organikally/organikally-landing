@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
+import Media from '@/components/ui/Media';
 import JsonLd from '@/components/seo/JsonLd';
 import { posts } from '@/content/blog/posts';
 import { formatDate } from '@/lib/format';
@@ -27,29 +28,47 @@ export default function JournalIndex() {
       />
       <SiteHeader forceSolid />
       <main id="main" className="min-h-dvh bg-paper pt-32 md:pt-40">
-        <div className="mx-auto max-w-container px-5 pb-24 md:px-10">
+        <div className="mx-auto max-w-container px-5 pb-28 md:px-10">
           <p className="eyebrow">The journal</p>
-          <h1 className="mt-3 max-w-2xl font-serif text-[clamp(2.6rem,6vw,4.4rem)] font-semibold leading-[1.04]">
+          <h1 className="t-headline mt-6 max-w-2xl font-semibold text-ink">
             Knowing your oil is part of trusting it.
           </h1>
-          <div className="mt-14 grid gap-4 md:grid-cols-3">
+
+          {/* Editorial contents list, hairline-separated rows. */}
+          <ul className="mt-16 border-t border-line">
             {all.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/journal/${p.slug}/`}
-                className="group flex h-full flex-col rounded-3xl border border-line bg-white p-7 transition duration-300 ease-brand hover:-translate-y-1 hover:border-yellow"
-              >
-                <p className="text-sm text-ink-muted">
-                  {formatDate(p.date)} · {p.readingMinutes} min read
-                </p>
-                <h2 className="mt-3 font-serif text-2xl font-semibold text-ink">{p.title}</h2>
-                <p className="mt-3 flex-1 text-ink-muted">{p.excerpt}</p>
-                <span className="mt-5 inline-flex items-center gap-1 font-semibold text-yellow-ink">
-                  Read <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                </span>
-              </Link>
+              <li key={p.slug}>
+                <Link
+                  href={`/journal/${p.slug}/`}
+                  className="group grid gap-x-8 gap-y-4 border-b border-line py-8 md:grid-cols-[16rem_1fr] md:items-center md:py-10"
+                >
+                  <Media
+                    name={p.cover}
+                    alt=""
+                    width={1300}
+                    height={866}
+                    className="aspect-[3/2] w-full rounded-media shadow-sm"
+                    sizes="(min-width: 768px) 16rem, 100vw"
+                  />
+                  <div className="flex flex-col">
+                    <div className="max-w-2xl">
+                      <p className="tnum text-sm text-ink-faint">
+                        {formatDate(p.date)} · {p.readingMinutes} min read
+                      </p>
+                      <h2 className="t-subtitle mt-2.5 font-semibold text-ink transition-colors duration-300 group-hover:text-yellow-ink">
+                        {p.title}
+                      </h2>
+                      <p className="mt-2 leading-relaxed text-ink-muted">{p.excerpt}</p>
+                    </div>
+                    <span className="mt-4 inline-flex items-center gap-1.5 font-semibold text-yellow-ink">
+                      Read
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-brand group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </main>
       <SiteFooter />

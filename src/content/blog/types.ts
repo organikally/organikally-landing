@@ -12,5 +12,8 @@ export type Post = {
   readingMinutes: number;
   author: string;
   tags: string[];
+  /** base name of the /public/media AVIF·WebP·JPG cover triplet */
+  cover: string;
+  coverAlt: string;
   body: Block[];
 };

@@ -61,6 +61,7 @@ export function articleSchema(post: Post) {
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
+    image: abs(`/media/${post.cover}.jpg`),
     datePublished: post.date,
     dateModified: post.date,
     author: { '@type': 'Organization', name: site.name },

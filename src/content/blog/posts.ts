@@ -15,6 +15,8 @@ export const posts: Post[] = [
     readingMinutes: 5,
     author: AUTHOR,
     tags: ['mustard oil', 'cold-pressed', 'how it’s made'],
+    cover: 'blog-cold-pressed',
+    coverAlt: 'A ribbon of deep golden cold-pressed mustard oil pouring from a wooden ghani into a glass jar',
     body: [
       {
         type: 'p',
@@ -58,6 +60,8 @@ export const posts: Post[] = [
     readingMinutes: 6,
     author: AUTHOR,
     tags: ['organic', 'buying guide', 'pantry'],
+    cover: 'blog-organic-pantry',
+    coverAlt: 'Hands holding a plain glass bottle of golden mustard oil up to the window light to check its colour',
     body: [
       {
         type: 'p',
@@ -102,6 +106,8 @@ export const posts: Post[] = [
     readingMinutes: 4,
     author: AUTHOR,
     tags: ['mustard oil', 'yellow mustard', 'cooking'],
+    cover: 'blog-yellow-black',
+    coverAlt: 'Two rustic bowls side by side, one of pale yellow mustard seeds and one of dark black mustard seeds',
     body: [
       {
         type: 'p',
@@ -128,6 +134,170 @@ export const posts: Post[] = [
       {
         type: 'p',
         text: 'If you are building a single bottle into your daily cooking, yellow mustard oil is the easy place to start: enough character to taste, gentle enough to use every day.',
+      },
+    ],
+  },
+  {
+    slug: 'how-to-cook-with-mustard-oil',
+    title: 'How to cook with mustard oil (and why you heat it first)',
+    excerpt:
+      'Raw mustard oil is sharp on purpose. One simple step before you cook turns that bite into the warm, rounded flavour a good tadka is built on.',
+    date: '2026-06-19',
+    readingMinutes: 4,
+    author: AUTHOR,
+    tags: ['mustard oil', 'cooking', 'technique'],
+    cover: 'blog-cooking',
+    coverAlt: 'Golden mustard oil heating in a steel kadhai on the stove, just reaching smoking point',
+    body: [
+      {
+        type: 'p',
+        text: 'Cold-pressed mustard oil arrives with its full pungency intact, that is the point of pressing it gently. Used straight from the bottle in a cold dish it can taste sharp, which is why generations of Indian cooks heat it first.',
+      },
+      { type: 'h2', text: 'Heat it to smoking, then ease off' },
+      {
+        type: 'p',
+        text: 'Warm the oil in a pan until it just begins to smoke and the sharp edge softens, then bring the heat down before you add anything. This short step mellows the raw bite and leaves the warm, nutty character you actually want to cook in.',
+      },
+      { type: 'h2', text: 'Then build your tadka' },
+      {
+        type: 'p',
+        text: 'Once the oil is ready, drop in mustard seeds, hing and curry leaves and let them crackle. That sizzle is the base of dal, sabzi and chutney across the country, and the oil carries every one of those flavours.',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Heat to smoking point, then lower the flame before adding aromatics.',
+          'Use it for tempering, sautéing, shallow-frying and pickling.',
+          'A clean golden oil with real pungency does more work than a neutral, refined one.',
+        ],
+      },
+      {
+        type: 'quote',
+        text: 'The smell that fills the kitchen when the oil hits the pan is half the cooking.',
+      },
+      {
+        type: 'p',
+        text: 'Treat the oil as an ingredient, not just a medium, and a plain weeknight sabzi starts tasting like something made with intent.',
+      },
+    ],
+  },
+  {
+    slug: 'what-unrefined-khand-keeps',
+    title: 'Khand: what unrefined sugar keeps that white sugar loses',
+    excerpt:
+      'White sugar is stripped down to pure sweetness. Khand is cane sugar that stops earlier, keeping the colour, aroma and minerals refining takes out.',
+    date: '2026-06-16',
+    readingMinutes: 4,
+    author: AUTHOR,
+    tags: ['khand', 'unrefined sugar', 'pantry'],
+    cover: 'blog-khand',
+    coverAlt: 'A broken block of golden-brown unrefined khand jaggery beside a scoop of granulated khand',
+    body: [
+      {
+        type: 'p',
+        text: 'Most sugar on the shelf has been refined to a single thing: clean, white, uniform sweetness. Khand takes the same cane juice and stops well before that point, which is exactly why it tastes of more.',
+      },
+      { type: 'h2', text: 'What refining removes' },
+      {
+        type: 'p',
+        text: 'To make white sugar, cane juice is clarified, crystallised and spun in a centrifuge to throw off the molasses, then often bleached. Each step lightens the colour and strips the flavour until what is left is sweetness and very little else.',
+      },
+      { type: 'h2', text: 'What khand keeps' },
+      {
+        type: 'p',
+        text: 'Khand is slow-cooked and left partly unrefined, so it holds on to some of the molasses, its natural warm colour and the minerals that come with it. The result is a softer, golden sugar with a faint caramel, almost toffee, character.',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Colour: a natural warm gold, not bleached white.',
+          'Flavour: a gentle molasses note instead of flat sweetness.',
+          'Process: slow-cooked and partly unrefined, not centrifuged and bleached.',
+        ],
+      },
+      {
+        type: 'p',
+        text: 'Use it anywhere you would use sugar, in chai, in kheer, in baking, and it quietly adds a depth that plain white sugar cannot.',
+      },
+    ],
+  },
+  {
+    slug: 'why-mustard-oil-makes-achaar-keep',
+    title: 'Why mustard oil makes aam ka achaar keep',
+    excerpt:
+      'A good pickle has to survive a year on the shelf. Mustard oil is the traditional reason it can, and the reason it tastes the way it does.',
+    date: '2026-06-08',
+    readingMinutes: 5,
+    author: AUTHOR,
+    tags: ['mustard oil', 'achaar', 'tradition'],
+    cover: 'blog-achaar',
+    coverAlt: 'A glass jar of golden mango achaar maturing on a sunlit windowsill',
+    body: [
+      {
+        type: 'p',
+        text: 'Across India, achaar is made in summer and eaten all year. The oil it is packed in is not incidental, it is what lets a jar of mango and spice sit in the pantry for months and only get better.',
+      },
+      { type: 'h2', text: 'The oil does real work' },
+      {
+        type: 'p',
+        text: 'Packed over the cut fruit and spices, mustard oil seals the achaar from air and keeps it submerged, while its pungency runs through every piece. A pickle left to mature in the sun draws all of that flavour in slowly, over weeks.',
+      },
+      { type: 'h2', text: 'Why cold-pressed matters here' },
+      {
+        type: 'p',
+        text: 'A refined, deodorised oil brings none of this character to the jar. Cold-pressed mustard oil keeps the sharp, warming pungency that defines a traditional aam ka achaar, the taste people remember from a grandmother’s kitchen.',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Pack the fruit and spices so the oil covers them completely.',
+          'Let the jar mature in the sun, giving it a stir every few days.',
+          'Use a cold-pressed oil with real bite, the pickle takes its character from it.',
+        ],
+      },
+      {
+        type: 'quote',
+        text: 'A jar of achaar is mustard oil with patience added.',
+      },
+    ],
+  },
+  {
+    slug: 'unpolished-dals-what-polishing-removes',
+    title: 'Unpolished dals: what polishing takes off',
+    excerpt:
+      'Glossy, uniform dal looks appealing on the shelf. That shine is added, and the pulse gives up a little of itself to get there.',
+    date: '2026-05-22',
+    readingMinutes: 4,
+    author: AUTHOR,
+    tags: ['dals', 'organic', 'pantry'],
+    cover: 'blog-dals',
+    coverAlt: 'Close-up of unpolished split pulses showing their natural matte surface and colour variation',
+    body: [
+      {
+        type: 'p',
+        text: 'Two bags of the same dal can look very different, one bright and glossy, the other a little duller and more varied. The difference is usually polishing, and the duller bag is often the more honest one.',
+      },
+      { type: 'h2', text: 'What polishing is' },
+      {
+        type: 'p',
+        text: 'After milling, many dals are buffed for shine, sometimes with water and oil, sometimes with agents added only for looks, so the pulse appears uniform and appealing. It is cosmetic: it changes how the dal looks, not how it cooks or tastes.',
+      },
+      { type: 'h2', text: 'Why we leave them unpolished' },
+      {
+        type: 'p',
+        text: 'Unpolished dals keep their natural matte surface and a little batch-to-batch variation. They soak and cook just as well, and you are buying the pulse itself rather than a finish applied to sell it.',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Look: a natural matte surface, not a manufactured shine.',
+          'Variation: real pulses differ slightly, perfect uniformity is a processing trait.',
+          'Honesty: nothing added for appearance, just the dal, sorted and graded.',
+        ],
+      },
+      {
+        type: 'p',
+        text: 'Cook them the way you always have, the only thing missing is the polish that was never doing you any favours.',
       },
     ],
   },
