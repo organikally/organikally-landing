@@ -1,0 +1,7 @@
+# Build only needs app/, src/, public/ and configs. Keep raw originals, docs and
+# local tooling out of the Vercel upload (they're not part of the deployed site).
+assets/
+docs/
+scripts/
+.claude/
+MANUAL_STEPS.md
