@@ -1,0 +1,13 @@
+import type { Metadata } from 'next';
+import ForgotPasswordForm from '@/components/store/auth/ForgotPasswordForm';
+
+export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+  title: 'Forgot password',
+  robots: { index: false, follow: false },
+};
+
+export default function ForgotPasswordPage() {
+  return <ForgotPasswordForm />;
+}

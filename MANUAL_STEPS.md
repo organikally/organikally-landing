@@ -81,8 +81,39 @@ Legend: 🔴 blocks a real build deliverable · 🟡 needed before launch · �
 
 - [ ] 🟢 Social handles (Instagram, Facebook, YouTube, etc.) for the footer.
 
-## Deployment (Cloudflare)
+## Deployment (Vercel — store requires the Next.js server)
 
-- [ ] 🟡 Connect Cloudflare account / create the Pages project (`devops-deployer` documents
-  the exact steps in `docs/DEPLOY.md`).
+- [ ] 🔴 **Create the Vercel project** for `organikally-landing` (already has `vercel.json`).
+  `output:'export'` has been removed so the storefront can run SSR/ISR; marketing routes stay
+  static. Cloudflare via `@opennextjs/cloudflare` is a best-effort fallback only (not
+  feature-equivalent: tag revalidation/ISR cache differ).
 - [ ] 🟡 Custom domain + DNS (e.g. `organikally.com` / `.in`) once acquired.
+
+## Store (D2C `/store`) — env, Razorpay, legal
+
+- [ ] 🔴 **Landing env vars** (set in Vercel; template in `.env.example`):
+  - `API_BASE` — server-only backend base, e.g. `https://api.organikally.com/api/v1`.
+  - `NEXT_PUBLIC_API_BASE` — same base, exposed to the browser for cart/checkout/auth.
+  - `NEXT_PUBLIC_RAZORPAY_KEY_ID` — optional; if unset the client uses the key the backend
+    returns from checkout / `GET /store/config`.
+  - `REVALIDATE_SECRET` — generate once, set on **both** Vercel and the backend (it calls
+    `POST https://organikally.com/api/revalidate` on catalog changes). `SITE_URL` is NOT an env
+    var — it's the constant in `src/lib/site.ts`.
+- [ ] 🔴 **Razorpay** (backend owns the secrets; the storefront only opens checkout.js): create the
+  account, generate `RAZORPAY_KEY_ID`/`RAZORPAY_KEY_SECRET`, add the webhook
+  → `https://api.organikally.com/api/v1/store/webhooks/razorpay` (events: payment.authorized,
+  payment.captured, payment.failed, order.paid, refund.created, refund.processed), set
+  `RAZORPAY_WEBHOOK_SECRET`, and **enable auto-capture**.
+- [ ] 🟡 **Product content**: real photography, copy, prices and `compare_at_price` (the seed uses
+  placeholders). Do **not** add fabricated ratings — `aggregateRating` ships only with a verified
+  first-party review system.
+- [ ] 🟡 **Pincode serviceability**: replace the seed's sample serviceable list with the real set
+  (admin → Store settings).
+- [ ] 🔴 **Legal/policy (DPDP 2023 + Razorpay activation)**: publish Privacy Policy, Refund/Returns
+  Policy, Shipping Policy and Terms, and link them from checkout + the footer.
+
+## Security
+
+- [ ] 🔴 **Rotate the leaked `GEMINI_API_KEY`** committed in `.env` (it should never have been
+  committed — `.env` is git-ignored going forward). Rotate the key at source and purge it from any
+  history/backups.

@@ -111,4 +111,25 @@ Append-only record of cross-agent decisions. Newest first. Format:
   80-frame set; zero console errors. `docs/QA_CHECKLIST.md`. Cross-browser/device pass deferred
   to the live URL (Phase 6).
 
+## 2026-06-29 · Phase 6 — D2C Storefront (`/store`)
+
+- **rendering** · export→Vercel server, Cloudflare Pages→Vercel (Cloudflare next-on-pages
+  deprecated) · required for SSR storefront + on-demand revalidation per STORE_CONTRACT.
+  `output:'export'` removed from `next.config.mjs`; `images.unoptimized` + `trailingSlash`
+  retained. Marketing (`/`, `/journal/**`) stays static; only `/store/**` is dynamic.
+- **Render split (STORE_CONTRACT §2.2)**: `/store` listing = ISR (`revalidate:300`) + tag
+  `store-products`; `/store/[slug]` PDP = request-time SSR (`force-dynamic`, `cache:'no-store'`,
+  no `generateStaticParams`) so crawlers get fresh price/stock + JSON-LD. Cart/checkout/account
+  pages = `force-dynamic`, `robots:{index:false}`.
+- **On-demand revalidation**: `app/api/revalidate` (POST, `x-revalidate-secret` === `REVALIDATE_SECRET`)
+  → `revalidateTag`/`revalidatePath`. Listing + `app/sitemap.ts` both tagged `store-products`.
+- **SEO**: per-product `generateMetadata` (title/desc/canonical w/ trailing slash, product OG via
+  `metadata.other`, Twitter card); additive `storeProductSchema()`/`storeBreadcrumbSchema()` in
+  `lib/schema.ts` (existing `productSchema()`/`breadcrumbSchema()` left frozen). No `aggregateRating`
+  at launch (no verified reviews). Sitemap now lists every published product slug.
+- **Commerce**: typed store API client (`lib/store/`), guest localStorage cart → merge-on-login
+  (set-to-max), auth gate before checkout (email+password, token `aud:"store"`), Razorpay Standard
+  Checkout (`checkout.js`) + fast-path verify, INR-from-paise formatter (display-only; backend total
+  authoritative). `SITE_URL` consolidated to `lib/site.ts` (dropped the local const in `layout.tsx`).
+
 <!-- New entries above this line -->

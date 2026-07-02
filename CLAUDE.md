@@ -32,9 +32,16 @@ an excuse for a generic result.
 
 ## Stack (locked)
 
-Next.js (App Router, `output: 'export'`) · Tailwind (tokenised) · GSAP + ScrollTrigger ·
-Lenis · TypeScript strict · AVIF/WebP assets · Cloudflare Pages. Self-hosted subset
+Next.js (App Router, Vercel server — marketing static, `/store/**` SSR/ISR) · Tailwind
+(tokenised) · GSAP + ScrollTrigger · Lenis · TypeScript strict · AVIF/WebP assets ·
+Cloudflare via `@opennextjs/cloudflare` as best-effort fallback. Self-hosted subset
 fonts, `font-display: swap`. Per-file < 25 MiB, < 20,000 files per deploy.
+
+> Reversal logged 2026-06-29 (see `docs/DECISIONS.md`): the prior `output:'export'` +
+> Cloudflare Pages stack was dropped for the SSR storefront + on-demand revalidation
+> required by `STORE_CONTRACT` §2. This supersedes the locked stack for those two points
+> only; everything else here (Conventional Commits, no AI attribution, taste/compliance
+> gates, perf budget) still governs.
 
 ## Brand palette (starting point — refine via taste skill)
 

@@ -2,6 +2,7 @@ import { SITE_URL, site } from './site';
 import { faqs } from '@/content/faqs';
 import { heroProduct } from '@/content/products';
 import type { Post } from '@/content/blog/types';
+import type { StorefrontProductDetail } from '@/lib/store/types';
 
 const abs = (path: string) => `${SITE_URL}${path}`;
 
@@ -76,6 +77,58 @@ export function articleSchema(post: Post) {
 }
 
 export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.name,
+      item: abs(it.path),
+    })),
+  };
+}
+
+// ── Storefront schema (STORE_CONTRACT §10) — additive; the parameterless
+// productSchema()/breadcrumbSchema() above are FROZEN and unchanged. ──────────
+
+/**
+ * JSON-LD Product for a storefront PDP. Built from request-time-fresh data so the
+ * crawler-visible offer price + availability always match the live page. Backend
+ * image URLs are absolute (S3/CDN), so they are NOT prefixed with SITE_URL.
+ * `aggregateRating` is intentionally omitted at launch — emitted only when a
+ * verified first-party review source exists (no self-serving ratings).
+ */
+export function storeProductSchema(product: StorefrontProductDetail) {
+  const path = product.canonical_path || `/store/${product.slug}/`;
+  const images = product.images?.length ? product.images : [product.primary_image];
+  const offer: Record<string, unknown> = {
+    '@type': 'Offer',
+    price: (product.price_paise / 100).toFixed(2),
+    priceCurrency: product.currency || 'INR',
+    availability: product.in_stock
+      ? 'https://schema.org/InStock'
+      : 'https://schema.org/OutOfStock',
+    url: abs(path),
+  };
+
+  const schema: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    image: images,
+    description: product.seo_description || product.description,
+    brand: { '@type': 'Brand', name: product.brand || site.name },
+    offers: offer,
+  };
+  if (product.sku_code) schema.sku = product.sku_code;
+  if (product.gtin) schema.gtin = product.gtin;
+  if (product.category) schema.category = product.category;
+  return schema;
+}
+
+/** BreadcrumbList for the storefront (additive; mirrors breadcrumbSchema). */
+export function storeBreadcrumbSchema(items: Array<{ name: string; path: string }>) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
