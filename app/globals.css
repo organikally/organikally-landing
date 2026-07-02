@@ -16,6 +16,14 @@
   --ink-faint: 122 114 98; /* labels, indices, captions */
   --line: 230 224 211; /* hairline rule on paper */
 
+  /* Ojasya-replication system: deep forest green primary, warm cream ground, rust
+     eyebrows. Gold accent = existing --yellow. Forest-green is Organikally's
+     documented primary brand colour, so this leads the after-hero page. */
+  --forest: 30 71 43; /* #1E472B headings, frames, timeline nodes */
+  --forest-deep: 18 51 30; /* #12331E trust bar, dark bands, footer */
+  --cream: 243 241 231; /* #F3F1E7 the after-hero page ground */
+  --rust: 166 74 40; /* #A64A28 eyebrows, question labels */
+
   /* Motion: one rhythm everywhere. Ease-out only (no bounce/elastic). */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 0.2s;

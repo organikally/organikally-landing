@@ -1,7 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Quote } from 'lucide-react';
+import SectionTitle from '@/components/ui/SectionTitle';
 import Reveal from '@/components/ui/Reveal';
 import { testimonials } from '@/content/testimonials';
 
@@ -68,39 +69,12 @@ export default function SocialProof() {
   return (
     <section id="reviews" className="relative z-10 py-16 md:py-32">
       <div className="mx-auto max-w-container px-5 md:px-10">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <Reveal>
-            <p className="eyebrow">Word of mouth</p>
-            <h2 className="t-headline mt-6 max-w-xl font-semibold text-ink">
-              Kitchens that know the difference.
-            </h2>
-            <p className="t-lead mt-5 max-w-measure">
-              From the first whiff to the last spoon of a tadka — here’s what people noticed.
-            </p>
-          </Reveal>
-
-          {/* Arrows — paired with the heading, desktop. */}
-          <Reveal className="hidden gap-3 md:flex">
-            <button
-              type="button"
-              onClick={() => go(active - 1)}
-              disabled={active === 0}
-              aria-label="Previous testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition hover:border-yellow hover:bg-yellow/10 hover:text-yellow-ink disabled:pointer-events-none disabled:opacity-30"
-            >
-              <ArrowLeft className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
-            </button>
-            <button
-              type="button"
-              onClick={() => go(active + 1)}
-              disabled={active === count - 1}
-              aria-label="Next testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition hover:border-yellow hover:bg-yellow/10 hover:text-yellow-ink disabled:pointer-events-none disabled:opacity-30"
-            >
-              <ArrowRight className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
-            </button>
-          </Reveal>
-        </div>
+        <SectionTitle eyebrow="Word of mouth">Kitchens that know the difference</SectionTitle>
+        <Reveal className="mx-auto mt-5 max-w-measure text-center">
+          <p className="t-lead">
+            From the first whiff to the last spoon of a tadka — here’s what people noticed.
+          </p>
+        </Reveal>
 
         {/* The track — full-bleed within the container so the next card peeks in. */}
         <div
@@ -118,18 +92,20 @@ export default function SocialProof() {
               data-slide={i}
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${count}`}
-              className="flex w-[86%] shrink-0 snap-start flex-col rounded-card bg-surface p-7 sm:w-[58%] md:p-8 lg:w-[40%]"
+              className="flex w-[86%] shrink-0 snap-start flex-col rounded-card border border-forest/15 bg-surface p-7 shadow-sm sm:w-[58%] md:p-8 lg:w-[40%]"
             >
-              <span aria-hidden="true" className="block font-display text-4xl leading-none text-yellow-deep/45">
-                &ldquo;
-              </span>
-              <blockquote className="mt-3 text-[1.0625rem] leading-relaxed text-ink md:text-lg">
+              <Quote
+                aria-hidden="true"
+                className="h-8 w-8 text-forest/60"
+                strokeWidth={1.6}
+              />
+              <blockquote className="mt-4 text-[1.0625rem] leading-relaxed text-ink md:text-lg">
                 {t.quote}
               </blockquote>
               <figcaption className="mt-auto flex items-center gap-3 pt-7">
                 <span
                   aria-hidden="true"
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-yellow/40 bg-yellow/10 text-sm font-semibold text-yellow-ink"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-forest/25 bg-forest/10 text-sm font-semibold text-forest"
                 >
                   {t.name.charAt(0)}
                 </span>
@@ -142,22 +118,43 @@ export default function SocialProof() {
           ))}
         </div>
 
-        {/* Dots — position + jump. */}
-        <div className="mt-8 flex items-center justify-center gap-2.5">
-          {testimonials.map((t, i) => (
-            <button
-              key={`${t.name}-dot-${i}`}
-              type="button"
-              onClick={() => go(i)}
-              aria-label={`Go to testimonial ${i + 1}`}
-              aria-current={active === i}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                active === i ? 'w-6 bg-yellow-deep' : 'w-2 bg-line hover:bg-ink-faint'
-              }`}
-            />
-          ))}
-        </div>
+        {/* Controls — arrows (desktop) flanking the position dots, in forest/gold. */}
+        <div className="mt-8 flex items-center justify-center gap-4">
+          <button
+            type="button"
+            onClick={() => go(active - 1)}
+            disabled={active === 0}
+            aria-label="Previous testimonial"
+            className="hidden h-11 w-11 items-center justify-center rounded-full border border-forest/25 text-forest transition hover:border-forest hover:bg-forest hover:text-cream disabled:pointer-events-none disabled:opacity-30 md:flex"
+          >
+            <ArrowLeft className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+          </button>
 
+          <div className="flex items-center gap-2.5">
+            {testimonials.map((t, i) => (
+              <button
+                key={`${t.name}-dot-${i}`}
+                type="button"
+                onClick={() => go(i)}
+                aria-label={`Go to testimonial ${i + 1}`}
+                aria-current={active === i}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  active === i ? 'w-6 bg-yellow' : 'w-2 bg-forest/25 hover:bg-forest/50'
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => go(active + 1)}
+            disabled={active === count - 1}
+            aria-label="Next testimonial"
+            className="hidden h-11 w-11 items-center justify-center rounded-full border border-forest/25 text-forest transition hover:border-forest hover:bg-forest hover:text-cream disabled:pointer-events-none disabled:opacity-30 md:flex"
+          >
+            <ArrowRight className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+          </button>
+        </div>
       </div>
     </section>
   );

@@ -1,76 +1,143 @@
-import Reveal from '@/components/ui/Reveal';
+import type { CSSProperties } from 'react';
+import SectionTitle from '@/components/ui/SectionTitle';
+import Ornament from '@/components/ui/Ornament';
 import Media from '@/components/ui/Media';
+import Reveal from '@/components/ui/Reveal';
 
-// The journey from seed to kitchen, told as an image-led horizontal process (it sits
-// right under the product it explains). Four photographed steps, numbered, in the
-// site's editorial language. Copy stays to approved process/sensory claims
-// (organically grown, cold-pressed, no heat/solvent).
+// "The Traditional Journey of Our Oil" — the Ojasya-style infographic. The illustrated
+// farm scene is the section itself: it bleeds full-width across the left half and the
+// section background is set to the illustration's own warm cream so there is no visible
+// box or seam. The heavy forest title is set into the scene's open middle; the five-step
+// timeline floats on the right. Copy is approved-claims only (organically grown,
+// cold-pressed / kachi ghani, unrefined, press-dated) — no medical language, no invented data.
+const BAND = 'rgb(251 241 214)'; // = the journey illustration's flat background colour
+
 const steps = [
-  {
-    media: 'step-grown',
-    title: 'Grown clean',
-    body: 'Yellow mustard grown organically, without synthetic inputs — then sorted and cleaned.',
-  },
-  {
-    media: 'step-pressed',
-    title: 'Cold-pressed',
-    body: 'Crushed slow in a kachi ghani, at low temperature. No heat forced in, no solvents.',
-  },
-  {
-    media: 'step-bottled',
-    title: 'Bottled fresh',
-    body: 'Filled straight from the press and sealed — stamped with the day it was pressed.',
-  },
-  {
-    media: 'step-kitchen',
-    title: 'To your kitchen',
-    body: 'It reaches you the way it left the field: golden, aromatic and unrefined.',
-  },
+  { media: 'step-grown', title: 'Grown Organically', body: 'Yellow mustard grown without synthetic inputs.' },
+  { media: 'seed-macro', title: 'Cleaned & Sorted', body: 'Seed hand-sorted and cleaned before pressing.' },
+  { media: 'step-pressed', title: 'Cold-Pressed in Kachi Ghani', body: 'Crushed slow — no heat, no solvents.' },
+  { media: 'step-bottled', title: 'Settled & Filtered', body: 'Rested and filtered, nothing refined out.' },
+  { media: 'step-kitchen', title: 'Bottled & Press-Dated', body: 'Sealed fresh, the press date on every bottle.' },
 ];
+
+function JourneyLede() {
+  return (
+    <>
+      <SectionTitle align="left" eyebrow="Seed to bottle">
+        The Traditional Journey of Our Oil
+      </SectionTitle>
+      <Ornament className="mt-4 h-4 w-24 text-forest/45" />
+      <p className="mt-4 max-w-[17rem] text-[0.95rem] leading-relaxed text-ink-muted">
+        Five slow steps between an organic mustard field and your kitchen — nothing refined
+        out, nothing rushed.
+      </p>
+    </>
+  );
+}
 
 export default function Sourcing() {
   return (
-    <section id="sourcing" className="relative z-10 py-16 md:py-32">
-      <div className="mx-auto max-w-container px-5 md:px-10">
-        <Reveal>
-          <p className="eyebrow">Our process</p>
-          <h2 className="t-headline mt-6 max-w-2xl font-semibold text-ink">
-            From field to bottle, honestly.
-          </h2>
-          <p className="t-lead mt-5 max-w-measure">
-            No middlemen, no refining, no shortcuts — just four honest steps between the seed and
-            your kitchen.
-          </p>
-        </Reveal>
+    <section
+      id="sourcing"
+      className="relative overflow-hidden py-16 md:py-24"
+      style={{ backgroundColor: BAND }}
+    >
+      {/* Desktop: the illustration bleeds across the left half of the viewport, seamless
+          with the band. Its inner edge melts back into the band so the timeline reads. */}
+      <div aria-hidden="true" className="absolute inset-y-0 left-0 hidden w-1/2 lg:block">
+        <Media
+          name="journey-art"
+          alt=""
+          width={1100}
+          height={1376}
+          className="h-full w-full"
+          imgClassName="object-cover object-center"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: `linear-gradient(90deg, transparent 56%, ${BAND} 90%)` }}
+        />
+      </div>
 
-        {/* Mobile: a compact timeline — small thumbnail beside the step, so four
-            steps read at a glance instead of four full-height stacked cards.
-            sm+: the photographed cards return in a 2- then 4-up grid. */}
-        <ol className="mt-10 grid grid-cols-1 gap-y-7 sm:mt-12 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:mt-16 lg:grid-cols-4">
-          {steps.map((s, i) => (
-            <li key={s.title}>
-              <Reveal delay={i * 90} className="flex items-start gap-4 sm:block">
-                <Media
-                  name={s.media}
-                  alt={s.title}
-                  width={800}
-                  height={600}
-                  className="aspect-[4/3] w-28 shrink-0 rounded-media shadow-sm sm:w-full sm:rounded-card"
-                  sizes="(min-width: 1024px) 22vw, (min-width: 640px) 44vw, 30vw"
-                />
-                <div className="min-w-0 sm:mt-5">
-                  <div className="flex items-baseline gap-3">
-                    <span className="index-num text-xl text-yellow-deep md:text-2xl">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className="text-lg font-semibold text-ink md:text-xl">{s.title}</h3>
-                  </div>
-                  <p className="mt-2 leading-relaxed text-ink-muted">{s.body}</p>
-                </div>
+      <div className="relative mx-auto max-w-container px-5 md:px-10">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+          {/* LEFT — title. On mobile it stacks above an in-flow illustration; on desktop it
+              sits vertically centred, set into the open middle of the bleed illustration. */}
+          <div className="relative flex flex-col justify-center">
+            {/* Mobile / tablet */}
+            <div className="lg:hidden">
+              <Reveal>
+                <JourneyLede />
               </Reveal>
-            </li>
-          ))}
-        </ol>
+              <Reveal delay={80} className="mt-7">
+                <Media
+                  name="journey-art"
+                  alt="An illustrated mustard farm — songbirds in the tree, a farmhouse and a cow beside a blooming field"
+                  width={1100}
+                  height={1376}
+                  className="aspect-[4/5] w-full"
+                  sizes="100vw"
+                />
+              </Reveal>
+            </div>
+
+            {/* Desktop — set into the scene, with a soft same-colour halo for legibility */}
+            <div className="hidden max-w-[20rem] lg:block">
+              <div className="relative">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-x-5 -inset-y-5 rounded-[2rem] bg-[#fbf1d6]/70 blur-lg"
+                />
+                <div className="relative">
+                  <JourneyLede />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT — vertical dashed timeline: numbered forest nodes linked to cards */}
+          <ol className="relative">
+            {steps.map((s, i) => (
+              <li key={s.title} className="flex gap-4 pb-8 last:pb-0 md:gap-5">
+                <div className="flex flex-col items-center">
+                  <span
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-forest font-heading text-lg font-bold text-cream shadow-sm ring-2 ring-forest ring-offset-2"
+                    style={{ '--tw-ring-offset-color': BAND } as CSSProperties}
+                  >
+                    {i + 1}
+                  </span>
+                  {i < steps.length - 1 && (
+                    <span
+                      aria-hidden="true"
+                      className="mt-2 w-0 flex-1 border-l-2 border-dashed border-forest/30"
+                    />
+                  )}
+                </div>
+
+                <Reveal direction="right" delay={i * 80} className="flex-1 pb-1">
+                  <div className="flex items-center gap-4 rounded-2xl border border-forest/12 bg-paper p-4 shadow-sm transition-shadow duration-300 ease-brand hover:shadow-md md:p-5">
+                    <Media
+                      name={s.media}
+                      alt={s.title}
+                      width={200}
+                      height={200}
+                      className="h-16 w-16 shrink-0 rounded-full ring-1 ring-forest/15 md:h-20 md:w-20"
+                      sizes="(min-width: 768px) 80px, 64px"
+                    />
+                    <div className="min-w-0">
+                      <h3 className="font-heading text-base font-bold uppercase leading-snug tracking-[-0.01em] text-forest md:text-lg">
+                        {s.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-relaxed text-ink-muted md:text-[0.95rem]">
+                        {s.body}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   );

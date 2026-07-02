@@ -1,90 +1,120 @@
-import { Droplets, Wheat, Candy, ShoppingBasket, type LucideIcon } from 'lucide-react';
+import type { CSSProperties } from 'react';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import Link from 'next/link';
+import SectionTitle from '@/components/ui/SectionTitle';
 import Reveal from '@/components/ui/Reveal';
-import Cta from '@/components/ui/Cta';
 import Media from '@/components/ui/Media';
-import { whatsapp } from '@/lib/site';
-import { products } from '@/content/products';
+import { products, type Product } from '@/content/products';
 
-const icons: Record<string, LucideIcon> = {
-  droplet: Droplets,
-  wheat: Wheat,
-  candy: Candy,
-  basket: ShoppingBasket,
+// Product-in-scene illustrations for the collectible stamp cards. The slots live in
+// scripts/image-manifest.json; while a shot is mid-generation we fall back to the
+// product's existing media triplet so the section always renders a real image (never a
+// missing name) — see OJASYA_REPLICATION.md §7.
+const STAMP_BY_SLUG: Record<string, string> = {
+  'yellow-mustard-oil': 'stamp-oil',
+  'pulses-dals': 'stamp-dals',
+  khand: 'stamp-khand',
+  'pantry-staples': 'stamp-pantry',
+};
+
+const MEDIA_DIR = join(process.cwd(), 'public', 'media');
+
+function stampFor(p: Product): string {
+  const preferred = STAMP_BY_SLUG[p.slug];
+  const fallback = p.media ?? 'seeds';
+  if (!preferred) return fallback;
+  try {
+    return existsSync(join(MEDIA_DIR, `${preferred}.jpg`)) ? preferred : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+// The scalloped/perforated postage-stamp silhouette, cut cleanly with a CSS mask (vector,
+// crisp at any size — no raster stamp image). Four radial-gradient layers punch half-circle
+// perforations along each edge; `mask-composite: intersect` keeps the interior solid so the
+// forest frame and its image window stay intact. `drop-shadow` follows the cut silhouette.
+const R = 5; // perforation radius (px)
+const G = 14; // perforation pitch (px)
+const CUT = '#0000 94%, #000 96%';
+const MASK = [
+  `radial-gradient(circle ${R}px at 50% 0, ${CUT})`,
+  `radial-gradient(circle ${R}px at 50% 100%, ${CUT})`,
+  `radial-gradient(circle ${R}px at 0 50%, ${CUT})`,
+  `radial-gradient(circle ${R}px at 100% 50%, ${CUT})`,
+].join(', ');
+
+const stampMask: CSSProperties = {
+  WebkitMaskImage: MASK,
+  maskImage: MASK,
+  WebkitMaskSize: `${G}px 100%, ${G}px 100%, 100% ${G}px, 100% ${G}px`,
+  maskSize: `${G}px 100%, ${G}px 100%, 100% ${G}px, 100% ${G}px`,
+  WebkitMaskRepeat: 'repeat-x, repeat-x, repeat-y, repeat-y',
+  maskRepeat: 'repeat-x, repeat-x, repeat-y, repeat-y',
+  WebkitMaskPosition: '50% 0, 50% 100%, 0 50%, 100% 50%',
+  maskPosition: '50% 0, 50% 100%, 0 50%, 100% 50%',
+  WebkitMaskComposite: 'source-in',
+  maskComposite: 'intersect',
+  filter: 'drop-shadow(0 16px 26px rgb(18 51 30 / 0.2))',
 };
 
 export default function Range() {
   return (
-    <section id="range" className="relative z-10 pb-24 pt-12 md:pb-32 md:pt-16">
+    <section id="range" className="relative bg-cream py-16 md:py-24">
       <div className="mx-auto max-w-container px-5 md:px-10">
-        {/* Bridge from the oil: a fading thread + connective line so the range reads
-            as the oil's trust extended, not a new topic. */}
+        <SectionTitle eyebrow="The full range">PRODUCT RANGE</SectionTitle>
         <Reveal>
-          <div className="mx-auto mb-12 max-w-measure text-center md:mb-20">
-            <span
-              className="mx-auto block h-12 w-px bg-gradient-to-b from-transparent to-line"
-              aria-hidden="true"
-            />
-            <p className="eyebrow eyebrow-bare mt-7 text-ink-faint">Beyond the bottle</p>
-            <p className="mt-4 text-[1.35rem] italic leading-snug text-ink-muted md:text-[1.5rem]">
-              The same press, the same patience — now across the rest of your kitchen.
-            </p>
-          </div>
+          <p className="mx-auto mt-5 max-w-measure text-center text-ink-muted">
+            Beyond the bottle — the same organic care and slow press, carried across the rest
+            of the kitchen.
+          </p>
         </Reveal>
 
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <Reveal>
-            <h2 className="t-title max-w-xl font-semibold text-ink">More than oil.</h2>
-            <p className="t-lead mt-4 max-w-md">
-              A growing line of organic kitchen essentials, built to expand without losing the trust
-              the oil earns.
-            </p>
-          </Reveal>
-          <Reveal>
-            <Cta
-              href={whatsapp('Hi Organikally, I would like to know more about your range.')}
-              variant="secondary"
-              external
-            >
-              Ask about the range
-            </Cta>
-          </Reveal>
-        </div>
-
-        {/* Editorial index, not a card grid: numbered rows split by hairlines. */}
-        <ul className="mt-14 border-t border-line">
+        <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 md:mt-16 md:grid-cols-2 lg:grid-cols-4">
           {products.map((p, i) => {
-            const Icon = icons[p.icon] ?? ShoppingBasket;
+            const stamp = stampFor(p);
+            const eyebrow = p.category === 'oil' ? '100% Cold-Pressed' : 'Organically Grown';
             return (
               <Reveal key={p.slug} delay={i * 70}>
-                <li className="grid grid-cols-[auto_1fr] items-start gap-x-5 gap-y-5 border-b border-line py-7 md:grid-cols-[3rem_1fr_13rem] md:items-center md:gap-x-8 md:py-8">
-                  <span className="index-num pt-1 text-2xl md:text-[2rem]">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">
-                      <Icon className="h-4 w-4 text-yellow-deep" strokeWidth={1.8} aria-hidden="true" />
-                      {p.categoryLabel}
-                    </p>
-                    <h3 className="t-subtitle mt-2.5 font-semibold text-ink">{p.name}</h3>
-                    <p className="mt-2 max-w-md leading-relaxed text-ink-muted">{p.blurb}</p>
-                  </div>
-                  {p.media && (
-                    <div className="col-span-2 md:col-span-1 md:col-start-3">
+                <Link
+                  href="/store/"
+                  aria-label={`${p.name} — view in the store`}
+                  className="group block rounded-sm text-center"
+                >
+                  {/* The stamp: a forest-green perforated frame with a cream image window. */}
+                  <div
+                    style={stampMask}
+                    className="bg-forest p-2.5 transition-transform duration-300 ease-brand group-hover:-translate-y-1.5 group-focus-visible:-translate-y-1.5"
+                  >
+                    <div className="relative bg-cream p-1.5">
                       <Media
-                        name={p.media}
-                        alt={p.name}
-                        width={900}
-                        height={675}
-                        className="aspect-[16/10] w-full rounded-media shadow-sm md:aspect-[4/3]"
-                        sizes="(min-width: 768px) 13rem, 100vw"
+                        name={stamp}
+                        alt={`${p.name} illustration`}
+                        width={800}
+                        height={1000}
+                        className="aspect-[4/5] w-full"
+                        sizes="(min-width: 1024px) 16rem, (min-width: 768px) 40vw, 88vw"
                       />
                     </div>
-                  )}
-                </li>
+                  </div>
+
+                  {/* Below the frame: rust eyebrow · forest name · short gold underline. */}
+                  <p className="mt-6 text-[0.7rem] font-bold uppercase tracking-[0.18em] text-rust">
+                    {eyebrow}
+                  </p>
+                  <h3 className="mt-2 font-heading text-lg font-extrabold uppercase leading-tight tracking-[-0.01em] text-forest">
+                    {p.name}
+                  </h3>
+                  <span
+                    aria-hidden="true"
+                    className="mx-auto mt-3 block h-[3px] w-10 rounded-full bg-yellow transition-[width] duration-300 ease-brand group-hover:w-14"
+                  />
+                </Link>
               </Reveal>
             );
           })}
-        </ul>
+        </div>
       </div>
     </section>
   );

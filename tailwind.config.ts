@@ -18,9 +18,16 @@ const config: Config = {
           faint: 'rgb(var(--ink-faint) / <alpha-value>)',
         },
         line: 'rgb(var(--line) / <alpha-value>)',
+        forest: {
+          DEFAULT: 'rgb(var(--forest) / <alpha-value>)',
+          deep: 'rgb(var(--forest-deep) / <alpha-value>)',
+        },
+        cream: 'rgb(var(--cream) / <alpha-value>)',
+        rust: 'rgb(var(--rust) / <alpha-value>)',
       },
       fontFamily: {
         display: ['var(--font-display)', 'Georgia', 'serif'],
+        heading: ['var(--font-heading)', 'Poppins', 'system-ui', 'sans-serif'],
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         deva: ['var(--font-deva)', 'serif'],
       },

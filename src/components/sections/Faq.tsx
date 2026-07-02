@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
+import SectionTitle from '@/components/ui/SectionTitle';
 import { faqs } from '@/content/faqs';
 
 export default function Faq() {
@@ -17,12 +18,12 @@ export default function Faq() {
   return (
     <section id="faq" className="relative z-10 py-16 md:py-32">
       <div className="mx-auto max-w-3xl px-5 md:px-10">
-        <h2 className="t-title font-semibold text-ink">The honest details.</h2>
-        <dl className="mt-10 border-t border-line">
+        <SectionTitle eyebrow="Good to know">The honest details</SectionTitle>
+        <dl className="mt-12 border-t border-forest/15">
           {faqs.map((item, i) => {
             const isOpen = open.has(i);
             return (
-              <div key={i} className="border-b border-line">
+              <div key={i} className="border-b border-forest/15">
                 <dt>
                   <button
                     type="button"
@@ -31,11 +32,11 @@ export default function Faq() {
                     aria-controls={`faq-panel-${i}`}
                     className="group/faq flex w-full items-center justify-between gap-4 py-5 text-left"
                   >
-                    <span className="text-xl font-medium text-ink transition-colors duration-300 group-hover/faq:text-yellow-ink">
+                    <span className="text-xl font-semibold text-forest transition-colors duration-300 group-hover/faq:text-forest-deep">
                       {item.q}
                     </span>
                     <span
-                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-yellow-ink transition-all duration-500 ease-brand ${isOpen ? 'rotate-45 bg-yellow/25' : 'bg-yellow/12 group-hover/faq:bg-yellow/20'}`}
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-500 ease-brand ${isOpen ? 'rotate-45 bg-forest text-cream' : 'bg-yellow/25 text-yellow-ink group-hover/faq:bg-yellow/40'}`}
                     >
                       <Plus className="h-4 w-4" aria-hidden="true" />
                     </span>

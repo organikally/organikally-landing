@@ -47,7 +47,7 @@ export const products: Product[] = [
     name: 'Khand',
     category: 'sweetener',
     categoryLabel: 'Unrefined sugar',
-    blurb: 'Organic unrefined jaggery sugar, the warm, mineral-rich sweetness of slow-cooked cane.',
+    blurb: 'Organically grown, unrefined khand, the warm, golden sweetness of slow-cooked cane with its natural colour and aroma kept in.',
     icon: 'candy',
     media: 'khand',
     available: true,

@@ -18,10 +18,10 @@ export const site = {
   url: SITE_URL,
   // Placeholders, see MANUAL_STEPS.md
   fssaiLicence: '[FSSAI Lic. No., to be supplied]',
-  // Illustrative press date for the "Proof" section stamp. Wire to a per-batch
-  // value before launch (see MANUAL_STEPS); empty string → a neutral small-batch
-  // stamp with no date.
-  pressDate: '24 May 2026',
+  // Real per-batch press date, printed on the pack. Kept empty so the "Proof"
+  // section shows its honest neutral "Small-batch fresh" stamp rather than a
+  // fabricated date; wire the true batch date here before launch (see MANUAL_STEPS).
+  pressDate: '',
   email: 'hello@organikally.com',
   whatsappConfigured: WHATSAPP_NUMBER.length > 0,
   social: {
@@ -33,8 +33,9 @@ export const site = {
 
 export const nav = [
   { label: 'Why us', href: '/#proof' },
-  { label: 'Mustard oil', href: '/#product' },
+  { label: 'Our story', href: '/#story' },
   { label: 'The range', href: '/#range' },
+  { label: 'Shop', href: '/store/' },
   { label: 'Journal', href: '/journal/' },
   { label: 'FAQ', href: '/#faq' },
 ] as const;

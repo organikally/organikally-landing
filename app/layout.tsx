@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import { Chelsea_Market, Bricolage_Grotesque, Tiro_Devanagari_Hindi } from 'next/font/google';
+import { Chelsea_Market, Bricolage_Grotesque, Poppins, Tiro_Devanagari_Hindi } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/ui/SmoothScroll';
+import { SITE_URL } from '@/lib/site';
 
 // Display face for headings: Chelsea Market — a warm, casual slab/display face with
 // a handcrafted character. Single weight (400), no italic.
@@ -21,6 +22,16 @@ const sans = Bricolage_Grotesque({
   weight: ['400', '500', '600', '700'],
 });
 
+// Heading face for the Ojasya-replication sections: Poppins — the heavy, geometric,
+// uppercase-friendly grotesque behind the reference's section titles, product names and
+// benefit headings. Used via `font-heading`; the film hero keeps Chelsea Market.
+const heading = Poppins({
+  subsets: ['latin'],
+  variable: '--font-heading',
+  display: 'swap',
+  weight: ['600', '700', '800'],
+});
+
 const deva = Tiro_Devanagari_Hindi({
   subsets: ['latin', 'devanagari'],
   variable: '--font-deva',
@@ -30,9 +41,8 @@ const deva = Tiro_Devanagari_Hindi({
   preload: false,
 });
 
-// NOTE: replace with the live domain once acquired (see MANUAL_STEPS.md).
-const SITE_URL = 'https://organikally.com';
-
+// SITE_URL is the single source of truth (STORE_CONTRACT §2.4) — imported from
+// @/lib/site so canonical/OG/sitemap URLs cannot diverge across the app.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -73,7 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en-IN"
-      className={`${display.variable} ${sans.variable} ${deva.variable}`}
+      className={`${display.variable} ${heading.variable} ${sans.variable} ${deva.variable}`}
     >
       <head>
         {/* Start fetching the hero film as early as possible so it's ready to play. */}

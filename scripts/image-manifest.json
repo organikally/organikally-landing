@@ -1,0 +1,189 @@
+{
+  "_comment": "Art-directed homely imagery for the landing. name -> gen-<name>.png in assets/media-work; build-media.sh maps it to the matching public/media triplet. 'gap' = we don't have this shot yet (generate first). 'use_bottle' = edit the real Organikally bottle in. Regenerating a 'refresh' slot replaces the current placeholder with a cohesive shoot. STYLE suffix is added by gen-images.py.",
+  "images": [
+    {
+      "name": "compare-coldpressed",
+      "slot": "compare-coldpressed",
+      "gap": true,
+      "prompt": "A tall clear glass bottle of rich golden-amber cold-pressed yellow mustard oil on a warm cream surface, a few whole yellow mustard seeds scattered beside it, the oil glowing in soft morning light. Fresh, pure, premium, inviting. Single hero bottle, generous negative space above."
+    },
+    {
+      "name": "compare-refined",
+      "slot": "compare-refined",
+      "gap": true,
+      "prompt": "A plain generic pale, thin, almost colourless refined cooking oil in a nondescript clear plastic bottle on a flat neutral grey surface under cool even light. Ordinary, industrial, characterless, a little dull. No brand, no label text. Understated, honest, not exaggerated or scary."
+    },
+    {
+      "name": "bottle-hero",
+      "slot": "bottle-hero",
+      "use_bottle": true,
+      "prompt": "Place this exact Organikally mustard oil bottle upright on a warm cream handloom cloth on a wooden table, soft window light from the left, a small brass bowl of yellow mustard seeds beside it, a sprig of mustard flowers. Keep the bottle and its label exactly as given. Cozy home-kitchen still life, generous space above the bottle."
+    },
+    {
+      "name": "pour",
+      "slot": "pour",
+      "prompt": "A ribbon of golden mustard oil pouring from a steel spoon into a hot black kadhai for a tadka, tiny cumin seeds crackling, warm steam, close and appetising. Portrait orientation, the pour as the hero."
+    },
+    {
+      "name": "kitchen",
+      "slot": "kitchen",
+      "prompt": "A lived-in Indian home kitchen counter at morning: a glass bottle of golden mustard oil, a wooden board with chopped vegetables, a steel tadka pan, cream linen, brass. Warm, homely, real, gently cluttered with care."
+    },
+    {
+      "name": "thali",
+      "slot": "thali",
+      "prompt": "A simple home-cooked Indian thali on a brass plate, sabzi and dal tempered in golden mustard oil, a wooden table, cream cloth, warm light. Honest home food, not a restaurant styling."
+    },
+    {
+      "name": "tadka",
+      "slot": "tadka",
+      "prompt": "Close-up of a tadka blooming in golden mustard oil in a small steel kadhai, mustard seeds popping, curry leaves, warm glow. Appetising, homely, alive."
+    },
+    {
+      "name": "heritage-hands",
+      "slot": "heritage-hands",
+      "prompt": "Two weathered hands of an older Indian person gently holding out a glass bottle of golden mustard oil toward the viewer, over a mustard field softly blurred behind, golden hour. Warmth, trust, heritage. Face not shown."
+    },
+    {
+      "name": "seed-macro",
+      "slot": "seed-macro",
+      "prompt": "Extreme macro of whole yellow mustard seeds in a small heap, each round seed catching soft golden light, a few in sharp focus and the rest melting into bokeh. Square, tactile, rich."
+    },
+    {
+      "name": "field",
+      "slot": "field",
+      "prompt": "A yellow mustard field in full bloom at golden hour under a soft sky, rows receding to the horizon, gentle warm haze. Wide, calm, heritage. Landscape 16:9."
+    },
+    {
+      "name": "step-grown",
+      "slot": "step-grown",
+      "prompt": "Hands cupping cleaned yellow mustard seeds over a jute sack in a bright barn, sorted and clean. Step one of a process story."
+    },
+    {
+      "name": "step-pressed",
+      "slot": "step-pressed",
+      "prompt": "A traditional wooden kachi ghani cold-press turning, golden mustard oil beginning to run out, warm workshop light, no machinery gloss. Step two of a process story."
+    },
+    {
+      "name": "step-bottled",
+      "slot": "step-bottled",
+      "prompt": "Fresh golden mustard oil being filled into a clear glass bottle straight from the press, a hand-stamped press date visible on a small kraft label, clean and honest. Step three of a process story."
+    },
+    {
+      "name": "step-kitchen",
+      "slot": "step-kitchen",
+      "prompt": "The finished golden mustard oil bottle at home on a sunlit kitchen shelf beside brass and terracotta, arrived and at rest. Step four of a process story."
+    },
+    {
+      "name": "journey-art",
+      "slot": "journey-art",
+      "gap": true,
+      "style": "Flat vector storybook illustration, soft pastel palette of sage green, golden mustard-yellow and cream, gentle gradients, clean rounded friendly shapes, decorative and homely Indian countryside, no photorealism, no text, no words, no logos, no watermark. A uniform warm cream (#F3F1E7) background that blends seamlessly into a cream webpage; leave generous empty cream space.",
+      "prompt": "A tall vertical decorative panel composed in three horizontal bands on a uniform warm cream background. TOP BAND (top third): a large leafy tree branch reaching in from the top-left corner with several small colourful songbirds perched along it, a few soft blossoms, and a pale golden sun to the right. MIDDLE BAND (middle third): COMPLETELY EMPTY warm cream, no elements at all, calm open space reserved for a title, at most a barely-visible faint pale line-drawing of low hills. BOTTOM BAND (bottom third): a gentle rolling green-and-gold blooming mustard field with a small farmhouse on the left and a white humped Indian cow beside it and a low wooden fence. Homely, premium, storybook."
+    },
+    {
+      "name": "benefit-1",
+      "slot": "benefit-1",
+      "gap": true,
+      "prompt": "A small round still-life: a little heap of golden yellow mustard seeds with a single glistening drop of golden oil, on cream linen, soft light. Tight square vignette."
+    },
+    {
+      "name": "benefit-2",
+      "slot": "benefit-2",
+      "gap": true,
+      "prompt": "A small round still-life: a tiny brass bowl of golden mustard oil beside fresh green mustard leaves and a sprig of mustard flowers, on cream linen, soft light. Tight square vignette."
+    },
+    {
+      "name": "benefit-3",
+      "slot": "benefit-3",
+      "gap": true,
+      "prompt": "A small round still-life: a close detail of a traditional wooden kachi ghani cold-press with golden oil beading, warm workshop light. Tight square vignette."
+    },
+    {
+      "name": "benefit-4",
+      "slot": "benefit-4",
+      "gap": true,
+      "prompt": "A small round still-life: yellow mustard flowers and a few whole seeds cupped in soil-dusted fingertips over a field, golden hour. Tight square vignette."
+    },
+    {
+      "name": "quiz-portrait",
+      "slot": "quiz-portrait",
+      "gap": true,
+      "prompt": "A warm, festive Indian home scene: a smiling middle-aged woman in a saree at a wooden table with two bottles of golden cold-pressed mustard oil, lit diyas, marigold flowers and brass vessels around her, soft glowing evening light. Inviting and homely. Portrait composition, the bottles clearly in frame."
+    },
+    {
+      "name": "stamp-oil",
+      "slot": "stamp-oil",
+      "gap": true,
+      "use_bottle": true,
+      "style": "The product bottle rendered cleanly and realistically, set into a flat pastel storybook illustration of a blooming green-and-gold mustard field with a small farmhouse and soft blue sky. Decorative, homely, framed with breathing room. No text or logos other than what is on the product, no watermark.",
+      "prompt": "Place this exact Organikally mustard oil bottle standing in the foreground of the illustrated field scene, as the hero of a collectible postage-stamp style product card. Keep the bottle and its label exactly as given."
+    },
+    {
+      "name": "stamp-dals",
+      "slot": "stamp-dals",
+      "gap": true,
+      "style": "Flat pastel storybook illustration blended with a realistic product, sage green and golden palette, small farmhouse and field, decorative and homely, no text, no logos, no watermark.",
+      "prompt": "A collectible postage-stamp style product card: an open jute sack of assorted organic dals and pulses in the foreground of an illustrated green field with a farmhouse. Warm and wholesome."
+    },
+    {
+      "name": "stamp-khand",
+      "slot": "stamp-khand",
+      "gap": true,
+      "style": "Flat pastel storybook illustration blended with a realistic product, sage green and golden palette, small farmhouse and sugarcane, decorative and homely, no text, no logos, no watermark.",
+      "prompt": "A collectible postage-stamp style product card: a bowl and a small heap of golden unrefined khand (jaggery sugar) in the foreground of an illustrated field with sugarcane and a farmhouse. Warm and wholesome."
+    },
+    {
+      "name": "stamp-pantry",
+      "slot": "stamp-pantry",
+      "gap": true,
+      "style": "Flat pastel storybook illustration blended with realistic products, sage green and golden palette, small farmhouse and field, decorative and homely, no text, no logos, no watermark.",
+      "prompt": "A collectible postage-stamp style product card: a small still-life of assorted organic pantry staples (grains, spices, a jar) in the foreground of an illustrated green field with a farmhouse. Warm and wholesome."
+    },
+    {
+      "name": "shop-oil",
+      "slot": "shop-oil",
+      "gap": true,
+      "use_bottle": true,
+      "prompt": "Place this exact Organikally mustard oil bottle as a clean product shot on a warm cream linen surface with a few whole mustard seeds and a soft blurred kitchen behind, gentle callout space around it. Keep the bottle and label exactly as given. Square composition."
+    },
+    {
+      "name": "shop-dals",
+      "slot": "shop-dals",
+      "gap": true,
+      "prompt": "A clean product-style shot of organic dals and pulses in a glass jar and a small bowl on warm cream linen with a soft blurred kitchen behind, gentle space around. Square composition."
+    },
+    {
+      "name": "shop-khand",
+      "slot": "shop-khand",
+      "gap": true,
+      "prompt": "A clean product-style shot of golden unrefined khand (jaggery sugar) in a glass jar and a small bowl on warm cream linen with a soft blurred kitchen behind, gentle space around. Square composition."
+    },
+    {
+      "name": "shop-pantry",
+      "slot": "shop-pantry",
+      "gap": true,
+      "prompt": "A clean product-style shot of assorted organic pantry staples in jars on warm cream linen with a soft blurred kitchen behind, gentle space around. Square composition."
+    },
+    {
+      "name": "ghar-line",
+      "slot": "ghar-line",
+      "gap": true,
+      "style": "Very light single-colour line drawing (thin sage-green lines on plain cream), minimal, sparse, decorative watermark art, lots of empty space, no fill, no text, no logo, no watermark label.",
+      "prompt": "A faint minimal line-art of a small Indian village house, a mustard plant and a wooden oil press, sparse and delicate, meant to sit at low opacity behind a section."
+    },
+    {
+      "name": "proof-date",
+      "slot": "proof-date",
+      "gap": true,
+      "use_bottle": true,
+      "prompt": "Place this exact Organikally mustard oil bottle in a warm, intimate close-up on cream linen, tied with a small kraft-paper batch tag on twine, a few whole yellow mustard seeds scattered beside it, soft morning light. The feeling is freshness and honesty, a just-pressed small batch. Keep the bottle and its label exactly as given; the little tag can look hand-stamped but leave any date soft and unreadable. Landscape composition with the bottle to one side and gentle space."
+    },
+    {
+      "name": "story",
+      "slot": "story",
+      "gap": true,
+      "prompt": "A warm, homely portrait: two weathered older hands and a younger hand together cradling a tall glass bottle of golden cold-pressed mustard oil, a softly blurred sunlit blooming mustard field and a small farmhouse behind, golden-hour light, a few loose yellow mustard seeds. Tender, trustworthy, heritage, food made with care and passed down. Faces not shown. Photorealistic, cream and golden tones, portrait composition."
+    }
+  ]
+}

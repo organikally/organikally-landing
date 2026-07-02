@@ -51,7 +51,11 @@ export default function SiteHeader({ forceSolid = false }: { forceSolid?: boolea
 
         <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
           {nav.map((item) => (
-            <a key={item.href} href={item.href} className="text-ink/70 transition hover:text-ink">
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-ink/70 transition hover:text-forest"
+            >
               {item.label}
             </a>
           ))}
@@ -80,7 +84,7 @@ export default function SiteHeader({ forceSolid = false }: { forceSolid?: boolea
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-50 bg-paper text-ink md:hidden">
+        <div className="fixed inset-0 z-50 bg-cream text-ink md:hidden">
           <div className="flex items-center justify-between px-6 py-5">
             <picture>
               <source srcSet="/brand/organikally-wordmark.webp" type="image/webp" />
@@ -103,7 +107,7 @@ export default function SiteHeader({ forceSolid = false }: { forceSolid?: boolea
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-line py-4 text-2xl"
+                className="border-b border-line py-4 text-2xl transition hover:text-forest"
               >
                 {item.label}
               </a>

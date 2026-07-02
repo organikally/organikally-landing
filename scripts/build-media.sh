@@ -46,6 +46,33 @@ configs=(
   "gen-field|field|16|9|1600"                    # mustard field at golden hour
   "gen-farmer|farmer|3|2|1300"                   # farmer in the field
   "gen-heritage-hands|heritage-hands|3|2|1300"   # hands presenting the bottle
+  # Homely lifestyle (kitchen warmth) — powers the refactored benefit / compare / quiz blocks
+  "gen-kitchen|kitchen|3|2|1300"                 # oil at work in a warm home kitchen
+  "gen-pour|pour|4|5|1000"                        # golden oil pouring — the sensory hero
+  "gen-thali|thali|3|2|1300"                     # a home-cooked thali
+  "gen-bottle-hero|bottle-hero|4|5|1000"          # clean bottle on warm paper
+  "gen-seed-macro|seed-macro|1|1|1000"            # yellow mustard seed macro (square)
+  # Comparison visuals (the one true image gap — generate via gen-images.py first)
+  "gen-compare-coldpressed|compare-coldpressed|4|5|900"  # golden cold-pressed in glass — our side
+  "gen-compare-refined|compare-refined|4|5|900"          # pale ordinary refined — the contrast
+  # Ojasya-replication imagery (see docs/OJASYA_REPLICATION.md §7)
+  "gen-journey-art|journey-art|4|5|1100"          # illustrated field/farm panel for the journey
+  "gen-benefit-1|benefit-1|1|1|700"               # benefit blob — seeds & oil
+  "gen-benefit-2|benefit-2|1|1|700"               # benefit blob — oil & greens
+  "gen-benefit-3|benefit-3|1|1|700"               # benefit blob — kachi ghani press
+  "gen-benefit-4|benefit-4|1|1|700"               # benefit blob — flowers & seed
+  "gen-quiz-portrait|quiz-portrait|4|5|1100"      # festive home cook + bottles (quiz)
+  "gen-stamp-oil|stamp-oil|3|4|900"               # postage-stamp product card — oil
+  "gen-stamp-dals|stamp-dals|3|4|900"             # postage-stamp product card — dals
+  "gen-stamp-khand|stamp-khand|3|4|900"           # postage-stamp product card — khand
+  "gen-stamp-pantry|stamp-pantry|3|4|900"         # postage-stamp product card — pantry
+  "gen-shop-oil|shop-oil|1|1|900"                 # shop grid product shot — oil
+  "gen-shop-dals|shop-dals|1|1|900"               # shop grid product shot — dals
+  "gen-shop-khand|shop-khand|1|1|900"             # shop grid product shot — khand
+  "gen-shop-pantry|shop-pantry|1|1|900"           # shop grid product shot — pantry
+  "gen-ghar-line|ghar-line|4|3|1400"              # faint line-art watermark
+  "gen-proof-date|proof-date|4|3|1100"            # freshness / press-date proof close-up
+  "gen-story|story|4|5|1000"                      # heritage hands + bottle for the brand-story section
   # Backgrounds / textures (wide)
   "gen-texture-flowers|texture-flowers|16|9|1600"
   "gen-oil-swirl|oil-swirl|16|9|1600"
