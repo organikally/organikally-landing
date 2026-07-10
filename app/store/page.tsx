@@ -3,8 +3,11 @@ import JsonLd from '@/components/seo/JsonLd';
 import Filters from '@/components/store/Filters';
 import Pagination from '@/components/store/Pagination';
 import ProductCard from '@/components/store/ProductCard';
-import StoreHero from '@/components/store/StoreHero';
-import FeaturedRow from '@/components/store/FeaturedRow';
+import BannerCarousel, { type BannerSlide } from '@/components/store/BannerCarousel';
+import CategoryRail from '@/components/store/CategoryRail';
+import ProductRail from '@/components/store/ProductRail';
+import StoreTrustBand from '@/components/store/StoreTrustBand';
+import StoreJournalRail from '@/components/store/StoreJournalRail';
 import {
   getProducts,
   getCategories,
@@ -16,9 +19,11 @@ import {
 import { storeBreadcrumbSchema } from '@/lib/schema';
 import { SITE_URL } from '@/lib/site';
 
-// ISR listing (STORE_CONTRACT §2.2). The product fetch is tagged `store-products`
-// so a catalog publish revalidates the grid on-demand (§2.3). Filter/sort/pagination
-// permutations are served dynamically but always canonicalize to /store/ (§10).
+// Listing (STORE_CONTRACT §2.2). Reading searchParams makes the route render
+// per-request in Next 15, so the caching that actually holds is at the fetch
+// layer: every catalog call is tagged `store-products` with revalidate 300, and
+// a catalog publish revalidates on-demand (§2.3). Filter/sort/pagination
+// permutations always canonicalize to /store/ (§10).
 export const revalidate = 300;
 
 const PAGE_SIZE = 12;
@@ -54,6 +59,11 @@ function num(v: string | string[] | undefined): number | undefined {
   return Number.isFinite(n) ? n : undefined;
 }
 
+/** Integer-rupee display for banner copy — ₹999, never ₹999.00. */
+function inr(paise: number): string {
+  return `₹${Math.round(paise / 100).toLocaleString('en-IN')}`;
+}
+
 export default async function StoreListingPage({
   searchParams,
 }: {
@@ -78,9 +88,9 @@ export default async function StoreListingPage({
     page_size: PAGE_SIZE,
   };
 
-  // The hero + featured showcase belongs to the clean landing view only. Once a shopper
-  // narrows the range (category / search / price / stock / page 2+), swap it for a
-  // compact results header so the grid leads instead of the brand pitch.
+  // The banner/categories/rails showcase belongs to the clean landing view only.
+  // Once a shopper narrows the range (category / search / price / stock / page 2+),
+  // collapse to a results view so the grid leads instead of the pitch.
   const isBrowsing = Boolean(
     query.category ||
       query.q ||
@@ -90,17 +100,61 @@ export default async function StoreListingPage({
       page > 1,
   );
 
-  const [products, categories, config, hero, featured] = await Promise.all([
+  const [products, categories, config, hero, featured, oils, pulses] = await Promise.all([
     getProducts(query),
     getCategories(),
     getStoreConfig(),
     isBrowsing ? Promise.resolve(null) : getHero(),
     isBrowsing ? Promise.resolve([]) : getFeatured(),
+    isBrowsing
+      ? Promise.resolve(null)
+      : getProducts({ category: 'Oils', sort: 'featured', page_size: 8 }),
+    isBrowsing
+      ? Promise.resolve(null)
+      : getProducts({ category: 'Pulses', sort: 'featured', page_size: 8 }),
   ]);
 
-  // Drop the spotlight product from the featured strip so it isn't shown twice.
-  const heroId = hero?.id;
-  const featuredStrip = featured.filter((p) => p.id !== heroId);
+  // Fallbacks mirror StoreConfig's model defaults — only reached if the config
+  // fetch itself degrades, in which case they match what checkout would charge.
+  const freeShip = inr(config?.free_shipping_threshold_paise ?? 99900);
+  const flatFee = inr(config?.flat_fee_paise ?? 4900);
+
+  // Promotional banners — copy stays within the approved claim set (cold-pressed /
+  // organic / unrefined are process & sourcing descriptors, FSSAI-safe).
+  const slides: BannerSlide[] = [
+    {
+      key: 'ghani',
+      imageBase: '/media/field',
+      imageAlt: 'Yellow mustard field at golden hour, rows leading to the horizon',
+      eyebrow: 'Kachi-ghani mustard',
+      hindi: 'सरसों का तेल',
+      title: 'Cold-pressed. Never refined.',
+      body: 'Yellow mustard oil pressed slow from organically grown seed — nothing added, nothing stripped away.',
+      cta: hero
+        ? { label: 'Shop mustard oil', href: `/store/${hero.slug}/` }
+        : { label: 'Shop oils', href: '/store/?category=Oils' },
+      cta2: { label: 'All oils', href: '/store/?category=Oils' },
+    },
+    {
+      key: 'pantry',
+      imageBase: '/media/pantry',
+      imageAlt: 'Glass jars of grains and a masala dabba on a sunlit pantry shelf',
+      eyebrow: 'The whole pantry',
+      title: 'One pantry. Zero shortcuts.',
+      body: 'Organic dals, hand-churned ghee, sun-cured achaar — made the way home remembers.',
+      cta: { label: 'Browse categories', href: '/store/#categories' },
+      cta2: { label: 'See featured picks', href: '/store/#featured' },
+    },
+    {
+      key: 'delivery',
+      imageBase: '/media/oil-swirl',
+      imageAlt: 'Golden mustard oil rippling in a ceramic bowl',
+      eyebrow: 'Simple, honest delivery',
+      title: `Free delivery over ${freeShip}.`,
+      body: `Flat ${flatFee} below that — no surprises at checkout.`,
+      cta: { label: 'Start your basket', href: '/store/#catalog' },
+    },
+  ];
 
   const totalPages = Math.max(1, Math.ceil((products.total || 0) / (products.page_size || PAGE_SIZE)));
 
@@ -125,10 +179,32 @@ export default async function StoreListingPage({
             </h1>
           </header>
         ) : (
-          <div className="pt-6 md:pt-10">
-            <StoreHero product={hero} />
-            <FeaturedRow products={featuredStrip} />
-          </div>
+          <>
+            <BannerCarousel slides={slides} firstIsH1 />
+            <CategoryRail categories={categories} />
+            {/* Curated picks, not sales data — the numerals are curation order. */}
+            <ProductRail
+              id="featured"
+              eyebrow="Handpicked"
+              title="Featured picks"
+              products={featured}
+              viewAll={{ label: 'View all', href: '/store/#catalog' }}
+              ranked
+            />
+            <StoreTrustBand />
+            <ProductRail
+              eyebrow="The ghani section"
+              title="Cold-pressed oils"
+              products={oils?.items ?? []}
+              viewAll={{ label: 'All oils', href: '/store/?category=Oils' }}
+            />
+            <ProductRail
+              eyebrow="Everyday staples"
+              title="Dals & pulses"
+              products={pulses?.items ?? []}
+              viewAll={{ label: 'All pulses', href: '/store/?category=Pulses' }}
+            />
+          </>
         )}
 
         {config && config.store_enabled === false && (
@@ -138,7 +214,7 @@ export default async function StoreListingPage({
           </p>
         )}
 
-        <div id="catalog" className="scroll-mt-24">
+        <div id="catalog" className="scroll-mt-36">
           {!isBrowsing && (
             <div className="mt-14 border-b border-line pb-5 md:mt-20">
               <p className="eyebrow">The full range</p>
@@ -146,7 +222,7 @@ export default async function StoreListingPage({
             </div>
           )}
 
-          <div className="sticky top-20 z-20 -mx-5 mt-6 bg-paper/95 px-5 py-4 backdrop-blur md:top-24 md:mx-0 md:rounded-card md:px-6">
+          <div className="sticky top-32 z-20 -mx-5 mt-6 bg-paper/95 px-5 py-4 backdrop-blur md:top-36 md:mx-0 md:rounded-card md:px-6">
             <Filters categories={categories} />
           </div>
 
@@ -171,6 +247,8 @@ export default async function StoreListingPage({
             </>
           )}
         </div>
+
+        {!isBrowsing && <StoreJournalRail />}
       </div>
     </>
   );

@@ -1,20 +1,44 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, ShoppingBag, User } from 'lucide-react';
+import { Menu, X, Search, ShoppingBag, User } from 'lucide-react';
 import { useCart } from '@/lib/store/cart-context';
 import { useAuth } from '@/lib/store/auth-context';
+import StoreSearch from './StoreSearch';
+import type { StoreCategory } from '@/lib/store/types';
 
-// Store header — reuses the marketing glass-pill styling (SiteHeader idiom) and adds
-// a live cart indicator. Links back to the marketing site so the store feels native.
+// Prerender-safe placeholder while the search island (useSearchParams) streams in.
+function SearchFallback({ compact = false }: { compact?: boolean }) {
+  return (
+    <div
+      aria-hidden="true"
+      className={`flex items-center rounded-full border border-line bg-paper ${compact ? 'h-10' : 'h-11'}`}
+    >
+      <Search className="ml-4 h-4 w-4 shrink-0 text-ink-faint" strokeWidth={2} />
+      <span className="flex-1 px-3 text-sm text-ink-faint">Search the pantry…</span>
+      <span
+        className={`mr-1 flex items-center justify-center rounded-full bg-yellow ${compact ? 'h-8 w-8' : 'h-9 w-9'}`}
+      >
+        <Search className="h-4 w-4 text-ink" strokeWidth={2.2} />
+      </span>
+    </div>
+  );
+}
+
+// Store command bar — a two-row glass card: wordmark + search (with category
+// scope) + account/cart on top, quick-nav pills beneath. On phones the search
+// gets its own row so it stays one tap away. Heights here are load-bearing:
+// app/store/layout.tsx offsets <main> and the listing's sticky filter bar to match.
 const storeNav = [
-  { label: 'Shop', href: '/store/' },
+  { label: 'Shop all', href: '/store/' },
+  { label: 'Categories', href: '/store/#categories' },
+  { label: 'Featured', href: '/store/#featured' },
   { label: 'Journal', href: '/journal/' },
   { label: 'Our story', href: '/#proof' },
 ];
 
-export default function StoreHeader() {
+export default function StoreHeader({ categories = [] }: { categories?: StoreCategory[] }) {
   const { itemCount, ready, openCart } = useCart();
   const { isAuthed, ready: authReady } = useAuth();
   const [scrolled, setScrolled] = useState(false);
@@ -43,67 +67,93 @@ export default function StoreHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-40 px-3 pt-3 md:px-5 md:pt-4">
       <div
-        className={`glass-pill mx-auto flex max-w-container items-center justify-between rounded-full px-5 py-2.5 transition-shadow duration-300 md:px-6 ${
+        className={`glass-pill mx-auto max-w-container rounded-[24px] px-4 py-2.5 transition-shadow duration-300 md:rounded-[28px] md:px-6 md:py-3 ${
           scrolled ? 'shadow-[0_18px_40px_-24px_rgba(28,25,18,0.5)]' : 'shadow-none'
         }`}
       >
-        <Link href="/" aria-label="Organikaly, home" className="flex shrink-0 items-center">
-          <picture>
-            <source srcSet="/brand/organikally-wordmark.webp" type="image/webp" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/brand/organikally-wordmark.png"
-              alt="Organikaly"
-              width={805}
-              height={200}
-              className="h-[1.7rem] w-auto md:h-[2rem]"
-            />
-          </picture>
-        </Link>
+        <div className="flex items-center justify-between gap-4">
+          <Link href="/" aria-label="Organikaly, home" className="flex shrink-0 items-center">
+            <picture>
+              <source srcSet="/brand/organikally-wordmark.webp" type="image/webp" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/brand/organikally-wordmark.png"
+                alt="Organikaly"
+                width={805}
+                height={200}
+                className="h-[1.7rem] w-auto md:h-[1.9rem]"
+              />
+            </picture>
+          </Link>
 
-        <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
+          <div className="hidden min-w-0 max-w-xl flex-1 md:block">
+            <Suspense fallback={<SearchFallback />}>
+              <StoreSearch categories={categories} />
+            </Suspense>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-1.5">
+            <Link
+              href={accountHref}
+              aria-label={isAuthed ? 'Your account' : 'Sign in'}
+              className="flex h-10 w-10 items-center justify-center rounded-full text-ink transition hover:bg-paper/60"
+            >
+              <User className="h-5 w-5" strokeWidth={1.8} />
+            </Link>
+            <button
+              type="button"
+              onClick={openCart}
+              aria-label={`Cart${badge ? `, ${itemCount} items` : ''}`}
+              className="relative flex h-10 w-10 items-center justify-center rounded-full text-ink transition hover:bg-paper/60"
+            >
+              <ShoppingBag className="h-5 w-5" strokeWidth={1.8} />
+              {badge && (
+                <span className="tnum absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-yellow px-1 text-[0.7rem] font-bold text-ink">
+                  {itemCount}
+                </span>
+              )}
+            </button>
+            <button
+              type="button"
+              aria-label="Open menu"
+              aria-expanded={open}
+              onClick={() => setOpen(true)}
+              className="rounded-full p-1.5 text-ink md:hidden"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+          </div>
+        </div>
+
+        {/* Phones: search on its own row. Desktop: quick-nav pills. */}
+        <div className="mt-2.5 md:hidden">
+          <Suspense fallback={<SearchFallback compact />}>
+            <StoreSearch categories={categories} compact />
+          </Suspense>
+        </div>
+        <nav
+          aria-label="Store sections"
+          className="mt-2 hidden items-center justify-center gap-1 md:flex"
+        >
           {storeNav.map((item) => (
-            <Link key={item.href} href={item.href} className="text-ink/70 transition hover:text-ink">
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-full px-4 py-1.5 text-sm font-medium text-ink/70 transition hover:bg-paper/70 hover:text-ink"
+            >
               {item.label}
             </Link>
           ))}
         </nav>
-
-        <div className="flex items-center gap-1.5">
-          <Link
-            href={accountHref}
-            aria-label={isAuthed ? 'Your account' : 'Sign in'}
-            className="flex h-10 w-10 items-center justify-center rounded-full text-ink transition hover:bg-paper/60"
-          >
-            <User className="h-5 w-5" strokeWidth={1.8} />
-          </Link>
-          <button
-            type="button"
-            onClick={openCart}
-            aria-label={`Cart${badge ? `, ${itemCount} items` : ''}`}
-            className="relative flex h-10 w-10 items-center justify-center rounded-full text-ink transition hover:bg-paper/60"
-          >
-            <ShoppingBag className="h-5 w-5" strokeWidth={1.8} />
-            {badge && (
-              <span className="tnum absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-yellow px-1 text-[0.7rem] font-bold text-ink">
-                {itemCount}
-              </span>
-            )}
-          </button>
-          <button
-            type="button"
-            aria-label="Open menu"
-            aria-expanded={open}
-            onClick={() => setOpen(true)}
-            className="rounded-full p-1.5 text-ink md:hidden"
-          >
-            <Menu className="h-6 w-6" />
-          </button>
-        </div>
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-50 bg-paper text-ink md:hidden">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+          className="fixed inset-0 z-50 overflow-y-auto bg-paper text-ink md:hidden"
+        >
           <div className="flex items-center justify-between px-6 py-5">
             <picture>
               <source srcSet="/brand/organikally-wordmark.webp" type="image/webp" />
@@ -111,12 +161,19 @@ export default function StoreHeader() {
               <img
                 src="/brand/organikally-wordmark.png"
                 alt="Organikaly"
-                width={448}
-                height={85}
+                width={805}
+                height={200}
                 className="h-8 w-auto"
               />
             </picture>
-            <button type="button" aria-label="Close menu" onClick={() => setOpen(false)} className="p-2">
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={() => setOpen(false)}
+              // eslint-disable-next-line jsx-a11y/no-autofocus
+              autoFocus
+              className="p-2"
+            >
               <X className="h-6 w-6" />
             </button>
           </div>
