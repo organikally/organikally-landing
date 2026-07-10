@@ -85,10 +85,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en-IN"
       className={`${display.variable} ${heading.variable} ${sans.variable} ${deva.variable}`}
     >
-      <head>
-        {/* Start fetching the hero film as early as possible so it's ready to play. */}
-        <link rel="preload" as="video" href="/hero/hero.mp4" type="video/mp4" />
-      </head>
+      {/* The hero-film preload lives in app/page.tsx (ReactDOM.preload) — emitting it
+          here made every route, including the whole /store section, contend with a
+          17 MB MP4 download it never plays. */}
       <body className="bg-paper font-sans text-ink antialiased">
         <a
           href="#main"

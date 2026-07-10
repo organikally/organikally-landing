@@ -17,9 +17,14 @@ import JournalTeaser from '@/components/sections/JournalTeaser';
 import Faq from '@/components/sections/Faq';
 import Conversion from '@/components/sections/Conversion';
 import JsonLd from '@/components/seo/JsonLd';
+import { preload } from 'react-dom';
 import { organizationSchema, websiteSchema, productSchema, faqSchema } from '@/lib/schema';
 
 export default function Home() {
+  // Start fetching the hero film as early as possible — but only on this page.
+  // (Previously a <link rel="preload"> in the root layout, which made every
+  // /store route download a 17 MB MP4 it never plays.)
+  preload('/hero/hero.mp4', { as: 'video', type: 'video/mp4' });
   return (
     <>
       <JsonLd data={[organizationSchema(), websiteSchema(), productSchema(), faqSchema()]} />
