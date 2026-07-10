@@ -109,8 +109,16 @@ Legend: 🔴 blocks a real build deliverable · 🟡 needed before launch · �
   first-party review system.
 - [ ] 🟡 **Pincode serviceability**: replace the seed's sample serviceable list with the real set
   (admin → Store settings).
-- [ ] 🔴 **Legal/policy (DPDP 2023 + Razorpay activation)**: publish Privacy Policy, Refund/Returns
+- [x] 🔴 **Legal/policy (DPDP 2023 + Razorpay activation)**: publish Privacy Policy, Refund/Returns
   Policy, Shipping Policy and Terms, and link them from checkout + the footer.
+  → DONE 2026-07-11: /policies/{privacy,terms,shipping,refunds}/ + /contact/ live and
+  footer-linked. STILL NEEDS FOUNDER INPUT (placeholders are visibly marked in the pages):
+  - [ ] 🔴 Legal entity name + registered address (terms, privacy, contact page)
+  - [ ] 🔴 Real FSSAI licence number (src/lib/site.ts `fssaiLicence` — placeholder renders in the footer today)
+  - [ ] 🔴 Grievance officer name + contact (terms §Grievances; Consumer Protection E-Commerce Rules 2020)
+  - [ ] 🟡 Jurisdiction city in terms §Governing law
+  - [ ] 🟡 Real social profile URLs in src/lib/site.ts (currently bare instagram.com/facebook.com/youtube.com)
+  - [ ] 🟡 Support phone / WhatsApp number if offered (contact page + store config support_phone)
 
 ## Security
 

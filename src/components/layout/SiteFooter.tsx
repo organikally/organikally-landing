@@ -10,7 +10,7 @@ export default function SiteFooter() {
       {/* Gold section-foot accent, the reference's signature strip, full-bleed at the top. */}
       <GoldStrip />
       <div className="mx-auto max-w-container px-5 pt-16 md:px-10 md:pt-20">
-        <div className="grid gap-10 border-b border-cream/10 pb-12 md:grid-cols-[1.5fr_1fr_1fr]">
+        <div className="grid gap-10 border-b border-cream/10 pb-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
             {/* The two-tone wordmark (forest + gold) needs a light ground to read on the
                 deep-green band, so it sits on a cream plaque like a brand tile. */}
@@ -75,9 +75,40 @@ export default function SiteFooter() {
                   {site.email}
                 </a>
               </li>
+              <li>
+                <a href="/contact/" className="transition hover:text-yellow">
+                  Contact &amp; support
+                </a>
+              </li>
               <li>Business address to be added</li>
             </ul>
           </div>
+
+          <nav aria-label="Policies">
+            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-yellow">Policies</h2>
+            <ul className="mt-4 space-y-2.5 text-cream/75">
+              <li>
+                <a href="/policies/shipping/" className="transition hover:text-yellow">
+                  Shipping
+                </a>
+              </li>
+              <li>
+                <a href="/policies/refunds/" className="transition hover:text-yellow">
+                  Cancellation &amp; refunds
+                </a>
+              </li>
+              <li>
+                <a href="/policies/terms/" className="transition hover:text-yellow">
+                  Terms of service
+                </a>
+              </li>
+              <li>
+                <a href="/policies/privacy/" className="transition hover:text-yellow">
+                  Privacy
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
 
         <div className="flex flex-col gap-2 py-7 text-sm text-cream/60 md:flex-row md:items-center md:justify-between">
