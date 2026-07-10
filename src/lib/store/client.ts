@@ -108,6 +108,15 @@ function extractDetail(data: unknown, status: number): string {
 // ── Config / catalog (public) ──────────────────────────────────────────────
 export const storeApi = {
   config: () => request<StoreConfig>('/store/config'),
+  productReviews: (slug: string, page = 1) =>
+    request<import('./types').ReviewsPage>(
+      `/store/products/${encodeURIComponent(slug)}/reviews?page=${page}&page_size=10`,
+    ),
+  submitReview: (slug: string, body: { rating: number; title?: string; body: string }) =>
+    request<{ id: string; status: string }>(
+      `/store/products/${encodeURIComponent(slug)}/reviews`,
+      { method: 'POST', body, auth: true },
+    ),
   product: (slug: string) =>
     request<StorefrontProductDetail>(`/store/products/${encodeURIComponent(slug)}`),
 

@@ -9,7 +9,11 @@ import StockBadge from '@/components/store/StockBadge';
 import PdpBuyBox from '@/components/store/PdpBuyBox';
 import SocialShare from '@/components/store/SocialShare';
 import RelatedProducts from '@/components/store/RelatedProducts';
-import { getProduct, getRelated } from '@/lib/store/api';
+import ReviewsSection from '@/components/store/ReviewsSection';
+import DeliveryCheck from '@/components/store/DeliveryCheck';
+import { RecordRecentlyViewed } from '@/components/store/RecentlyViewed';
+import RatingStars from '@/components/store/RatingStars';
+import { getProduct, getRelated, getProductReviews } from '@/lib/store/api';
 import { storeProductSchema, storeBreadcrumbSchema } from '@/lib/schema';
 import { SITE_URL } from '@/lib/site';
 
@@ -73,7 +77,7 @@ export default async function ProductDetailPage({
   const product = await getProduct(slug);
   if (!product) notFound();
 
-  const related = await getRelated(slug);
+  const [related, reviews] = await Promise.all([getRelated(slug), getProductReviews(slug)]);
   const canonical = product.canonical_path || `/store/${product.slug}/`;
   const shareUrl = `${SITE_URL}${canonical}`;
   const images = product.images?.length ? product.images : [product.primary_image];
@@ -83,7 +87,7 @@ export default async function ProductDetailPage({
     <>
       <JsonLd
         data={[
-          storeProductSchema(product),
+          storeProductSchema(product, reviews),
           storeBreadcrumbSchema([
             { name: 'Home', path: '/' },
             { name: 'Shop', path: '/store/' },
@@ -94,6 +98,12 @@ export default async function ProductDetailPage({
       />
 
       <div className="mx-auto max-w-container px-5 pb-24 pt-6 md:px-10">
+        <RecordRecentlyViewed
+          slug={product.slug}
+          name={product.name}
+          image={product.primary_image}
+          pricePaise={product.price_paise}
+        />
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-sm text-ink-faint">
           <Link href="/store/" className="hover:text-ink">
@@ -124,6 +134,15 @@ export default async function ProductDetailPage({
             </div>
 
             <h1 className="t-title mt-3 font-semibold text-ink">{product.name}</h1>
+            {reviews.summary.count > 0 && reviews.summary.average != null && (
+              <a href="#reviews" className="mt-2.5 inline-flex items-center gap-2 text-sm text-ink-muted hover:text-ink">
+                <RatingStars value={reviews.summary.average} size={15} />
+                <span className="tnum font-semibold text-ink">{reviews.summary.average.toFixed(1)}</span>
+                <span>
+                  {reviews.summary.count} {reviews.summary.count === 1 ? 'review' : 'reviews'}
+                </span>
+              </a>
+            )}
             {product.subtitle && <p className="t-lead mt-3">{product.subtitle}</p>}
 
             <div className="mt-5 flex flex-wrap items-center gap-4">
@@ -140,6 +159,8 @@ export default async function ProductDetailPage({
             </div>
 
             <PdpBuyBox product={product} />
+
+            <DeliveryCheck />
 
             <div className="mt-8 border-t border-line pt-6">
               <SocialShare url={shareUrl} title={product.name} />
@@ -175,6 +196,8 @@ export default async function ProductDetailPage({
             )}
           </div>
         </section>
+
+        <ReviewsSection slug={product.slug} initial={reviews} />
 
         <RelatedProducts items={related} />
       </div>

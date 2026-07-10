@@ -2,7 +2,12 @@ import { SITE_URL, site } from './site';
 import { faqs } from '@/content/faqs';
 import { heroProduct } from '@/content/products';
 import type { Post } from '@/content/blog/types';
-import type { StorefrontProductDetail, RecipeDetail } from '@/lib/store/types';
+import type {
+  StorefrontProductDetail,
+  RecipeDetail,
+  ReviewItem,
+  ReviewSummary,
+} from '@/lib/store/types';
 
 const abs = (path: string) => `${SITE_URL}${path}`;
 
@@ -99,7 +104,10 @@ export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
  * `aggregateRating` is intentionally omitted at launch — emitted only when a
  * verified first-party review source exists (no self-serving ratings).
  */
-export function storeProductSchema(product: StorefrontProductDetail) {
+export function storeProductSchema(
+  product: StorefrontProductDetail,
+  reviews?: { items: ReviewItem[]; summary: ReviewSummary },
+) {
   const path = product.canonical_path || `/store/${product.slug}/`;
   const images = product.images?.length ? product.images : [product.primary_image];
   const offer: Record<string, unknown> = {
@@ -126,6 +134,24 @@ export function storeProductSchema(product: StorefrontProductDetail) {
   if (product.sku_code) schema.sku = product.sku_code;
   if (product.gtin) schema.gtin = product.gtin;
   if (product.category) schema.category = product.category;
+
+  // First-party review data only, and only once it actually exists — never a
+  // rating with zero reviews behind it.
+  if (reviews && reviews.summary.count > 0 && reviews.summary.average != null) {
+    schema.aggregateRating = {
+      '@type': 'AggregateRating',
+      ratingValue: reviews.summary.average.toFixed(1),
+      reviewCount: reviews.summary.count,
+    };
+    schema.review = reviews.items.slice(0, 5).map((r) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: r.customer_name },
+      datePublished: r.created_at,
+      ...(r.title ? { name: r.title } : {}),
+      reviewBody: r.body,
+      reviewRating: { '@type': 'Rating', ratingValue: r.rating, bestRating: 5 },
+    }));
+  }
   return schema;
 }
 

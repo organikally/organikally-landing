@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Star } from 'lucide-react';
 import StoreImage from './StoreImage';
 import Price from './Price';
 import StockBadge from './StockBadge';
@@ -52,6 +53,13 @@ export default function ProductCard({ product }: { product: StorefrontProduct })
             {product.name}
           </Link>
         </h3>
+        {(product.rating_count ?? 0) > 0 && product.rating_avg != null && (
+          <p className="mt-1 flex items-center gap-1 text-sm text-ink-muted">
+            <Star className="h-3.5 w-3.5 fill-yellow text-yellow-deep" strokeWidth={1.5} />
+            <span className="tnum font-semibold text-ink">{product.rating_avg.toFixed(1)}</span>
+            <span className="text-ink-faint">({product.rating_count})</span>
+          </p>
+        )}
         {product.subtitle && (
           <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-ink-muted">
             {product.subtitle}

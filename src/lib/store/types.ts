@@ -57,7 +57,28 @@ export type StorefrontProduct = {
   low_stock: boolean;
   sellable_qty: number;
   max_qty_per_order?: number | null;
+  rating_avg?: number | null;
+  rating_count?: number;
 };
+
+// Reviews (REVIEWS CONTRACT §3)
+export type ReviewItem = {
+  id: string;
+  customer_name: string;
+  rating: number;
+  title?: string | null;
+  body: string;
+  verified_purchase: boolean;
+  created_at: string;
+};
+
+export type ReviewSummary = {
+  average: number | null;
+  count: number;
+  histogram: Record<string, number>;
+};
+
+export type ReviewsPage = Paginated<ReviewItem> & { summary: ReviewSummary };
 
 // §5.2 StorefrontProductDetail = StorefrontProduct + SEO/long-copy fields
 export type StorefrontProductDetail = StorefrontProduct & {

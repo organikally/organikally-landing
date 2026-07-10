@@ -16,6 +16,7 @@ import type {
   RecipeCard,
   RecipeDetail,
   RecipeType,
+  ReviewsPage,
 } from './types';
 
 // Server-only base (e.g. https://api.organikaly.com/api/v1). Falls back to the
@@ -135,6 +136,15 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
     { items: [] },
   );
   return data.items ?? [];
+}
+
+/** Reviews for a PDP — fresh like the product itself (no-store, §2.2 idiom). */
+export function getProductReviews(slug: string, page = 1): Promise<ReviewsPage> {
+  return getJson(
+    `/store/products/${encodeURIComponent(slug)}/reviews?page=${page}&page_size=10`,
+    { cache: 'no-store' },
+    { items: [], total: 0, page: 1, page_size: 0, summary: { average: null, count: 0, histogram: {} } },
+  );
 }
 
 // ---------------------------------------------------------------------------
