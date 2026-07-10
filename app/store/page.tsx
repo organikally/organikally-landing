@@ -9,6 +9,7 @@ import ProductRail from '@/components/store/ProductRail';
 import StoreTrustBand from '@/components/store/StoreTrustBand';
 import StoreJournalRail from '@/components/store/StoreJournalRail';
 import ShopByConcern, { type Concern } from '@/components/store/ShopByConcern';
+import RecentlyViewed from '@/components/store/RecentlyViewed';
 import {
   getProducts,
   getCategories,
@@ -332,6 +333,7 @@ export default async function StoreListingPage({
           )}
         </div>
 
+        {!isBrowsing && <RecentlyViewed />}
         {!isBrowsing && <StoreJournalRail />}
       </div>
     </>

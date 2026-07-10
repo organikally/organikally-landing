@@ -9,6 +9,7 @@ import { useAuth } from '@/lib/store/auth-context';
 import { formatPaise } from '@/lib/format';
 import StoreImage from './StoreImage';
 import QuantityStepper from './QuantityStepper';
+import FreeShippingNudge from './FreeShippingNudge';
 
 export default function CartDrawer() {
   const { isOpen, closeCart, items, subtotalPaise, itemCount, notices, updateQty, remove } =
@@ -142,6 +143,8 @@ export default function CartDrawer() {
                 </li>
               ))}
             </ul>
+
+            <FreeShippingNudge subtotalPaise={subtotalPaise} />
 
             <div className="border-t border-line px-5 py-4">
               <div className="flex items-center justify-between">

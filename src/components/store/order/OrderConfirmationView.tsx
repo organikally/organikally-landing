@@ -77,7 +77,7 @@ export default function OrderConfirmationView({ code }: { code: string }) {
           {paid ? <CheckCircle2 className="h-7 w-7" /> : <Clock className="h-7 w-7" />}
         </div>
         <h1 className="t-title mt-5 font-semibold text-ink">
-          {paid ? 'Thank you for your order!' : 'We&apos;re confirming your payment'}
+          {paid ? 'Thank you for your order!' : 'We\u2019re confirming your payment'}
         </h1>
         <p className="mt-2 text-ink-muted">
           {paid
