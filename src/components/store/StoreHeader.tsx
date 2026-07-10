@@ -125,26 +125,32 @@ export default function StoreHeader({ categories = [] }: { categories?: StoreCat
           </div>
         </div>
 
-        {/* Phones: search on its own row. Desktop: quick-nav pills. */}
+        {/* Phones: search on its own row. Desktop: quick-nav pills. The pill row
+            collapses once the page scrolls so the header shrinks to a single bar
+            and stops eating the viewport (Cowberry-style compact state). */}
         <div className="mt-2.5 md:hidden">
           <Suspense fallback={<SearchFallback compact />}>
             <StoreSearch categories={categories} compact />
           </Suspense>
         </div>
-        <nav
-          aria-label="Store sections"
-          className="mt-2 hidden items-center justify-center gap-1 md:flex"
+        <div
+          className={`hidden overflow-hidden transition-[max-height,opacity,margin] duration-300 ease-brand md:block ${
+            scrolled ? 'mt-0 max-h-0 opacity-0' : 'mt-2 max-h-12 opacity-100'
+          }`}
         >
-          {storeNav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-full px-4 py-1.5 text-sm font-medium text-ink/70 transition hover:bg-paper/70 hover:text-ink"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+          <nav aria-label="Store sections" className="flex items-center justify-center gap-1">
+            {storeNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                tabIndex={scrolled ? -1 : undefined}
+                className="rounded-full px-4 py-1.5 text-sm font-medium text-ink/70 transition hover:bg-paper/70 hover:text-ink"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
       </div>
 
       {open && (

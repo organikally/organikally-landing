@@ -222,7 +222,9 @@ export default async function StoreListingPage({
             </div>
           )}
 
-          <div className="sticky top-32 z-20 -mx-5 mt-6 bg-paper/95 px-5 py-4 backdrop-blur md:top-36 md:mx-0 md:rounded-card md:px-6">
+          {/* Deliberately NOT sticky — pinned under the fixed header it stacked
+              into a second full-width bar and swallowed the viewport. */}
+          <div className="mt-6 rounded-card border border-line bg-surface/70 px-5 py-4 md:px-6">
             <Filters categories={categories} />
           </div>
 
