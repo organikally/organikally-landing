@@ -106,9 +106,23 @@ export default async function RecipesPage({ searchParams }: { searchParams: Prom
 
         {recipes.items.length === 0 ? (
           <div className="mt-16 rounded-card border border-line bg-surface px-6 py-16 text-center">
-            <p className="font-display text-2xl text-ink">No recipes here yet.</p>
+            <p className="font-display text-2xl text-ink">
+              {recipes.total > 0 ? 'Nothing on this page.' : 'No recipes here yet.'}
+            </p>
             <p className="mt-2 text-ink-muted">
-              {type ? (
+              {recipes.total > 0 ? (
+                // Out-of-range page — the recipes exist, just not this deep.
+                <>
+                  Head back to the{' '}
+                  <Link
+                    href={type ? `/recipes/?type=${encodeURIComponent(type)}` : '/recipes/'}
+                    className="font-semibold text-forest hover:text-forest-deep"
+                  >
+                    first page
+                  </Link>
+                  .
+                </>
+              ) : type ? (
                 <>
                   Nothing under this type so far —{' '}
                   <Link href="/recipes/" className="font-semibold text-forest hover:text-forest-deep">
