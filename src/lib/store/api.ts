@@ -15,7 +15,7 @@ import type {
   SitemapEntry,
 } from './types';
 
-// Server-only base (e.g. https://api.organikally.com/api/v1). Falls back to the
+// Server-only base (e.g. https://api.organikaly.com/api/v1). Falls back to the
 // public base, then to a local dev default, so a build without env still succeeds.
 export const API_BASE =
   process.env.API_BASE ?? process.env.NEXT_PUBLIC_API_BASE ?? 'http://localhost:8000/api/v1';
@@ -96,6 +96,15 @@ export async function getFeatured(): Promise<StorefrontProduct[]> {
     { items: [] },
   );
   return data.items ?? [];
+}
+
+/** §5.2 hero — the single spotlight product (is_hero), or null if none is set. */
+export async function getHero(): Promise<StorefrontProduct | null> {
+  return getJson<StorefrontProduct | null>(
+    `/store/products/hero`,
+    { next: { tags: [PRODUCTS_TAG], revalidate: 300 } },
+    null,
+  );
 }
 
 export async function getCategories(): Promise<StoreCategory[]> {
