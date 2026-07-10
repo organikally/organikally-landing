@@ -2,7 +2,7 @@ import { SITE_URL, site } from './site';
 import { faqs } from '@/content/faqs';
 import { heroProduct } from '@/content/products';
 import type { Post } from '@/content/blog/types';
-import type { StorefrontProductDetail } from '@/lib/store/types';
+import type { StorefrontProductDetail, RecipeDetail } from '@/lib/store/types';
 
 const abs = (path: string) => `${SITE_URL}${path}`;
 
@@ -140,5 +140,42 @@ export function storeBreadcrumbSchema(items: Array<{ name: string; path: string 
       name: it.name,
       item: abs(it.path),
     })),
+  };
+}
+
+/**
+ * Recipe rich-result schema (RECIPES CONTRACT §4). Times in ISO-8601 durations;
+ * ingredients flattened from their display groups; instructions as HowToSteps.
+ * Author is the brand kitchen (an Organization), matching the journal's idiom.
+ */
+export function recipeSchema(recipe: RecipeDetail) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Recipe',
+    name: recipe.title,
+    image: recipe.og_image || recipe.hero_image,
+    description: recipe.seo_description || recipe.description,
+    author: { '@type': 'Organization', name: site.name },
+    publisher: {
+      '@type': 'Organization',
+      name: site.name,
+      logo: { '@type': 'ImageObject', url: abs('/brand/organikally-logo.jpg') },
+    },
+    ...(recipe.created_at ? { datePublished: recipe.created_at } : {}),
+    prepTime: `PT${recipe.prep_min}M`,
+    cookTime: `PT${recipe.cook_min}M`,
+    totalTime: `PT${recipe.total_min}M`,
+    recipeYield: `${recipe.servings} servings`,
+    recipeCategory: recipe.recipe_type,
+    recipeCuisine: 'Indian',
+    keywords: recipe.tags.join(', '),
+    recipeIngredient: recipe.ingredients.flatMap((g) => g.items),
+    recipeInstructions: recipe.steps.map((text, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      text,
+    })),
+    mainEntityOfPage: abs(recipe.canonical_path),
+    inLanguage: 'en-IN',
   };
 }

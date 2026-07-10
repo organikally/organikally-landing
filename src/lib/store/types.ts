@@ -73,6 +73,42 @@ export type StorefrontProductDetail = StorefrontProduct & {
 
 export type StoreCategory = { key: string; label: string; count: number };
 
+// Recipes (RECIPES CONTRACT §2) — card on the listing, detail on /recipes/[slug].
+export type RecipeCard = {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle?: string | null;
+  recipe_type: string;
+  hero_image: string;
+  prep_min: number;
+  cook_min: number;
+  total_min: number;
+  servings: number;
+  difficulty: string;
+  tags: string[];
+  featured: boolean;
+};
+
+export type RecipeIngredientGroup = { heading?: string | null; items: string[] };
+
+export type RecipeDetail = RecipeCard & {
+  description: string;
+  ingredients: RecipeIngredientGroup[];
+  steps: string[];
+  tips: string[];
+  author: string;
+  seo_title?: string | null;
+  seo_description?: string | null;
+  og_image?: string | null;
+  canonical_path: string;
+  created_at?: string;
+  updated_at?: string;
+  related_products: StorefrontProduct[];
+};
+
+export type RecipeType = { key: string; label: string; count: number };
+
 // §5.2 GET /store/config (public)
 export type StoreConfig = {
   store_enabled: boolean;

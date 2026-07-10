@@ -84,6 +84,13 @@ configs=(
   "gen-blog-khand|blog-khand|3|2|1300"
   "gen-blog-achaar|blog-achaar|3|2|1300"
   "gen-blog-dals|blog-dals|3|2|1300"
+  # Recipe heroes (3:2) — /recipes pages
+  "gen-recipe-tadka-dal|recipe-tadka-dal|3|2|1300"
+  "gen-recipe-aloo-sabzi|recipe-aloo-sabzi|3|2|1300"
+  "gen-recipe-atta-halwa|recipe-atta-halwa|3|2|1300"
+  "gen-recipe-cheela|recipe-cheela|3|2|1300"
+  "gen-recipe-kachumber|recipe-kachumber|3|2|1300"
+  "gen-recipe-haldi-doodh|recipe-haldi-doodh|3|2|1300"
 )
 
 for row in "${configs[@]}"; do

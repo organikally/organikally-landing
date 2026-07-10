@@ -13,6 +13,9 @@ import type {
   StoreCategory,
   StoreConfig,
   SitemapEntry,
+  RecipeCard,
+  RecipeDetail,
+  RecipeType,
 } from './types';
 
 // Server-only base (e.g. https://api.organikaly.com/api/v1). Falls back to the
@@ -129,6 +132,58 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
   const data = await getJson<{ items: SitemapEntry[] }>(
     `/store/sitemap`,
     { next: { tags: [PRODUCTS_TAG], revalidate: 3600 } },
+    { items: [] },
+  );
+  return data.items ?? [];
+}
+
+// ---------------------------------------------------------------------------
+// Recipes (RECIPES CONTRACT §2) — tagged `recipes`; an admin publish hits the
+// /api/revalidate hook with that tag so pages refresh on demand.
+const RECIPES_TAG = 'recipes';
+
+export type RecipeQuery = {
+  type?: string;
+  q?: string;
+  page?: number;
+  page_size?: number;
+};
+
+export function getRecipes(query: RecipeQuery = {}): Promise<Paginated<RecipeCard>> {
+  const sp = new URLSearchParams();
+  if (query.type) sp.set('type', query.type);
+  if (query.q) sp.set('q', query.q);
+  if (query.page) sp.set('page', String(query.page));
+  if (query.page_size) sp.set('page_size', String(query.page_size));
+  const s = sp.toString();
+  return getJson(
+    `/store/recipes${s ? `?${s}` : ''}`,
+    { next: { tags: [RECIPES_TAG], revalidate: 300 } },
+    { items: [], total: 0, page: 1, page_size: 0 },
+  );
+}
+
+export async function getRecipeTypes(): Promise<RecipeType[]> {
+  const data = await getJson<{ items: RecipeType[] }>(
+    `/store/recipes/types`,
+    { next: { tags: [RECIPES_TAG], revalidate: 300 } },
+    { items: [] },
+  );
+  return data.items ?? [];
+}
+
+export function getRecipe(slug: string): Promise<RecipeDetail | null> {
+  return getJson<RecipeDetail | null>(
+    `/store/recipes/${encodeURIComponent(slug)}`,
+    { next: { tags: [RECIPES_TAG], revalidate: 300 } },
+    null,
+  );
+}
+
+export async function getRecipeSitemapEntries(): Promise<SitemapEntry[]> {
+  const data = await getJson<{ items: SitemapEntry[] }>(
+    `/store/recipes/sitemap`,
+    { next: { tags: [RECIPES_TAG], revalidate: 3600 } },
     { items: [] },
   );
   return data.items ?? [];

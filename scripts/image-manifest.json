@@ -184,6 +184,42 @@
       "slot": "story",
       "gap": true,
       "prompt": "A warm, homely portrait: two weathered older hands and a younger hand together cradling a tall glass bottle of golden cold-pressed mustard oil, a softly blurred sunlit blooming mustard field and a small farmhouse behind, golden-hour light, a few loose yellow mustard seeds. Tender, trustworthy, heritage, food made with care and passed down. Faces not shown. Photorealistic, cream and golden tones, portrait composition."
+    },
+    {
+      "name": "recipe-tadka-dal",
+      "slot": "recipe-tadka-dal",
+      "gap": true,
+      "prompt": "A rustic brass handi of golden yellow toor dal, a small iron tadka ladle of sizzling mustard oil with cumin-dark spices and a dried red chilli being poured over it, oil shimmering, a few coriander leaves. Steam rising softly. Homely Indian dal tadka moment, warm and appetising."
+    },
+    {
+      "name": "recipe-aloo-sabzi",
+      "slot": "recipe-aloo-sabzi",
+      "gap": true,
+      "prompt": "A well-worn iron kadhai of golden turmeric-stained aloo sabzi, potato cubes glistening with mustard oil, scattered coriander, a roti folded at the side on a terracotta plate. Rustic North-Indian home lunch, warm and generous."
+    },
+    {
+      "name": "recipe-atta-halwa",
+      "slot": "recipe-atta-halwa",
+      "gap": true,
+      "prompt": "A small brass bowl heaped with dark golden-brown atta halwa glistening with ghee, garnished with a few sliced almonds, a piece of jaggery and a vintage spoon beside it on cream linen. Festive yet homely Indian sweet, rich and warm."
+    },
+    {
+      "name": "recipe-cheela",
+      "slot": "recipe-cheela",
+      "gap": true,
+      "prompt": "Two golden moong-dal cheelas (savoury Indian lentil pancakes) folded on a terracotta plate, flecked with green chilli and coriander, a small steel bowl of green chutney beside them, a light drizzle of oil sheen. Fresh homely Indian breakfast."
+    },
+    {
+      "name": "recipe-kachumber",
+      "slot": "recipe-kachumber",
+      "gap": true,
+      "prompt": "A bright fresh kachumber salad of diced cucumber, tomato and red onion in a hammered brass bowl, glistening lightly with golden mustard-oil dressing, scattered coriander, a lemon half beside it. Crisp, fresh, homely Indian side salad."
+    },
+    {
+      "name": "recipe-haldi-doodh",
+      "slot": "recipe-haldi-doodh",
+      "gap": true,
+      "prompt": "A warm golden glass of haldi doodh (turmeric milk) on a small brass tray, gentle steam rising, a small piece of jaggery and a pinch of turmeric powder in a tiny wooden pinch-bowl beside it, evening window light. Calm, comforting Indian bedtime drink."
     }
   ]
 }
