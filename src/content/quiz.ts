@@ -1,4 +1,4 @@
-// "Find your Organikally" — a light 2-step matcher that routes intent to a real order
+// "Find your Organikaly" — a light 2-step matcher that routes intent to a real order
 // path. We only recommend what we actually sell (Yellow Mustard Oil) and, for the
 // pantry answer, nudge toward the range. No invented SKUs. All copy stays to the
 // approved claims (HOMELY_REFACTOR §5): sensory + culinary facts, never medical.
@@ -63,13 +63,13 @@ export function getResult(cooking: CookingId, audience: AudienceId): QuizResult 
     hindi: 'सरसों का तेल',
     line: cookingLine[cooking],
     image: cooking === 'pantry' ? 'pour' : 'bottle-hero',
-    order: "Hi Organikally, I'd like to order your cold-pressed Yellow Mustard Oil.",
+    order: "Hi Organikaly, I'd like to order your cold-pressed Yellow Mustard Oil.",
     rangeNudge: cooking === 'pantry',
   };
 
   if (audience === 'trade') {
     result.trade =
-      "Hi Organikally, I run a shop / kitchen and would like your bulk & trade pricing for cold-pressed Yellow Mustard Oil.";
+      "Hi Organikaly, I run a shop / kitchen and would like your bulk & trade pricing for cold-pressed Yellow Mustard Oil.";
   }
 
   return result;

@@ -100,7 +100,7 @@ export default function ShopTeaser() {
 
                     <div className="mt-auto flex flex-col gap-2.5 pt-6">
                       <Cta
-                        href={whatsapp(`Hi Organikally, I'd like to order ${product.name}.`)}
+                        href={whatsapp(`Hi Organikaly, I'd like to order ${product.name}.`)}
                         variant="primary"
                         whatsapp
                         external

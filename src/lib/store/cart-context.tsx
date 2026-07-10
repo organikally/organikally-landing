@@ -1,7 +1,7 @@
 'use client';
 
 // Cart (STORE_CONTRACT §5.3, §5.3.2, §8). Two modes:
-//  • Guest  → cart in localStorage (`organikally.cart`), display totals computed
+//  • Guest  → cart in localStorage (`organikaly.cart`), display totals computed
 //             locally for UX only (never sent to the server as money).
 //  • Authed → server cart is authoritative; all mutations hit /store/cart/**.
 // On login the guest cart MERGES (set-to-max, idempotent) into the server cart, then

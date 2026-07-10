@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Organikally homely-imagery generator (Gemini "Nano Banana", gemini-2.5-flash-image).
+Organikaly homely-imagery generator (Gemini "Nano Banana", gemini-2.5-flash-image).
 
 Produces the art-directed source set in assets/media-work/gen-*.png. Then run
 scripts/build-media.sh to optimise into the public/media AVIF+WebP+JPG triplet.

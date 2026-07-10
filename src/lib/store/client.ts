@@ -22,9 +22,9 @@ import type {
 export const PUBLIC_API_BASE =
   process.env.NEXT_PUBLIC_API_BASE ?? 'http://localhost:8000/api/v1';
 
-export const TOKEN_KEY = 'organikally.token';
-export const CUSTOMER_KEY = 'organikally.customer';
-export const GUEST_CART_KEY = 'organikally.cart';
+export const TOKEN_KEY = 'organikaly.token';
+export const CUSTOMER_KEY = 'organikaly.customer';
+export const GUEST_CART_KEY = 'organikaly.cart';
 
 export class ApiError extends Error {
   status: number;

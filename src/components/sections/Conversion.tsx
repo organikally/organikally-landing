@@ -35,7 +35,7 @@ export default function Conversion() {
                   Order on WhatsApp
                 </Cta>
                 <Cta
-                  href={whatsapp('Hi Organikally, I have a bulk or trade enquiry.')}
+                  href={whatsapp('Hi Organikaly, I have a bulk or trade enquiry.')}
                   variant="secondaryDark"
                   external
                   arrow

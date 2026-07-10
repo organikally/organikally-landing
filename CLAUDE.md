@@ -1,4 +1,4 @@
-# Organikally Landing — Operating Context
+# Organikaly Landing — Operating Context
 
 Read this before touching the repo. These rules override convenience.
 

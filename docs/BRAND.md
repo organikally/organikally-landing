@@ -7,7 +7,7 @@ Status: **draft for Phase 1 lock.**
 ## Positioning
 
 **For** discerning Indian households and the diaspora who are wary of adulterated, over-refined
-oils and empty "organic" labels, **Organikally is** an organic pantry brand led by cold-pressed
+oils and empty "organic" labels, **Organikaly is** an organic pantry brand led by cold-pressed
 yellow mustard oil **that** makes purity visible — farm-to-bottle, kachi-ghani honest —
 **unlike** loud discount-FMCG oils, because we treat trust as something earned through process,
 not claimed on a label.

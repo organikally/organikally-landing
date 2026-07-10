@@ -1,7 +1,7 @@
 // "Not all mustard oil is the same" — a warm, honest comparison of ordinary refined
-// oil vs Organikally cold-pressed. Rows stay to process / sensory / source contrasts
+// oil vs Organikaly cold-pressed. Rows stay to process / sensory / source contrasts
 // (HOMELY_REFACTOR §3b + §5): no medical claims, no "toxic"/scare copy, no brand names.
-// `left` describes ordinary commodity oil, `right` describes Organikally.
+// `left` describes ordinary commodity oil, `right` describes Organikaly.
 
 export type CompareRow = {
   /** the axis being compared (process / sensory / source) */
@@ -12,7 +12,7 @@ export type CompareRow = {
 
 export const compareLabels = {
   left: 'Ordinary refined oil',
-  right: 'Organikally cold-pressed',
+  right: 'Organikaly cold-pressed',
 } as const;
 
 export const compareRows: CompareRow[] = [

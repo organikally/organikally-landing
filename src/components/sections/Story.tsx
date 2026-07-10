@@ -24,7 +24,7 @@ export default function Story() {
             <div className="relative">
               <Media
                 name="story"
-                alt="Weathered hands and a younger hand together cradling a bottle of Organikally cold-pressed mustard oil over a sunlit field"
+                alt="Weathered hands and a younger hand together cradling a bottle of Organikaly cold-pressed mustard oil over a sunlit field"
                 width={1000}
                 height={1250}
                 className="aspect-[4/5] w-full rounded-[1.5rem] shadow-media"
@@ -43,7 +43,7 @@ export default function Story() {
             </SectionTitle>
             <Reveal>
               <p className="mt-5 max-w-md leading-relaxed text-ink-muted">
-                Organikally is built on one idea: bring back food made the way it always was. We
+                Organikaly is built on one idea: bring back food made the way it always was. We
                 grow our mustard organically, press it cold in a traditional kachi ghani, and bottle
                 it fresh — nothing added, nothing refined out.
               </p>

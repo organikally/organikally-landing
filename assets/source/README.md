@@ -5,8 +5,8 @@ by the asset pipeline — never ship these originals directly.
 
 | File | What it is | Notes |
 |------|------------|-------|
-| `organikally-logo.jpeg` | Official wordmark logo | Green + gold leaf/oil-drop emblem, "Organikally", tagline PURE · NATURAL · TRUSTED. 1254×1254, **white background** (needs a transparent PNG/SVG derivative for the header — design task). |
-| `Product_animation_Organikally.mp4` | Hero animation (source) | 1920×1080, H.264, 24fps, 240 frames, 10.0s, ~9.5 MB, has audio. Base of the scroll-scrub hero. |
+| `organikally-logo.jpeg` | Official wordmark logo | Green + gold leaf/oil-drop emblem, "Organikaly", tagline PURE · NATURAL · TRUSTED. 1254×1254, **white background** (needs a transparent PNG/SVG derivative for the header — design task). |
+| `Product_animation_Organikaly.mp4` | Hero animation (source) | 1920×1080, H.264, 24fps, 240 frames, 10.0s, ~9.5 MB, has audio. Base of the scroll-scrub hero. |
 | `product-bottle.png` | Clean bottle on white | Yellow Mustard Oil, catalog shot. Primary product image. |
 | `lifestyle-poster.png` | "Pure Goodness, Rooted in Tradition" poster | Finished lifestyle composite — reusable as a section background / social image. |
 | `product-hero-01..04.png` | Alternate hero composites | Bottle + mustard-flower oil-swirl on white. Pick best per design direction. |

@@ -1,4 +1,4 @@
-# Organikally — AI media prompt kit
+# Organikaly — AI media prompt kit
 
 Generation prompts for the landing-page media. The goal is a **cohesive, earthy-premium,
 documentary** look — not stock-photo / CGI "AI slop." The single most important thing is to
@@ -35,7 +35,7 @@ paste the **Style spine** into every prompt so the whole set feels like one shoo
 
 ## ⚠️ Do NOT AI-generate these
 
-- **The labelled bottle / the Organikally label / any on-pack text or claims.** AI garbles text
+- **The labelled bottle / the Organikaly label / any on-pack text or claims.** AI garbles text
   and would fabricate regulated claims (FSSAI). Use the real product photo (`product-bottle.webp`).
   If you need the bottle in a lifestyle scene, composite the **real** bottle in, or generate a
   *plain unlabelled amber/glass bottle* for ambience only.

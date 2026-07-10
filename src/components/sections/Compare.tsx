@@ -5,7 +5,7 @@ import Reveal from '@/components/ui/Reveal';
 import Media from '@/components/ui/Media';
 import { compareLabels, compareRows } from '@/content/compare';
 
-// A warm two-column comparison — ordinary refined oil (left) vs Organikally
+// A warm two-column comparison — ordinary refined oil (left) vs Organikaly
 // cold-pressed (right, highlighted in a forest-ringed well with a gold cap). Rows
 // contrast process / sensory / source only. No medical claims, no scare copy, no
 // brand names — the aspect label repeats on both sides so each row reads as a pair.
@@ -52,13 +52,13 @@ export default function Compare() {
             </div>
           </Reveal>
 
-          {/* Organikally cold-pressed — highlighted with a forest ring and a gold cap */}
+          {/* Organikaly cold-pressed — highlighted with a forest ring and a gold cap */}
           <Reveal direction="right">
             <div className="relative h-full overflow-hidden rounded-card bg-paper p-6 shadow-lg ring-1 ring-forest/25 md:p-8">
               <GoldStrip className="absolute inset-x-0 top-0" />
               <Media
                 name="compare-coldpressed"
-                alt="Golden, cold-pressed Organikally yellow mustard oil"
+                alt="Golden, cold-pressed Organikaly yellow mustard oil"
                 width={900}
                 height={600}
                 className="mb-6 aspect-[3/2] w-full rounded-media shadow-sm"

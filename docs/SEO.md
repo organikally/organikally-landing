@@ -6,7 +6,7 @@ Claims in titles/descriptions/schema must match `COMPLIANCE.md`.
 ## Strategy
 
 Single high-intent landing page + a small E-E-A-T blog. Win classic SEO (mustard-oil intent)
-**and** AEO/GEO — structure answers so generative engines can quote Organikally on
+**and** AEO/GEO — structure answers so generative engines can quote Organikaly on
 "cold-pressed vs refined mustard oil", "is mustard oil healthy", "yellow vs black mustard oil".
 
 ## Topic / keyword map
@@ -20,14 +20,14 @@ pantry staples"; "yellow vs black mustard oil"; "mustard oil smoke point / for c
 
 ## Heading outline (semantic, one h1)
 
-- `h1`: Organikally — Cold-Pressed Organic Yellow Mustard Oil (+ brand essence)
-- `h2` Trust strip · `h2` The Organikally story (why authentic) · `h2` Yellow Mustard Oil
+- `h1`: Organikaly — Cold-Pressed Organic Yellow Mustard Oil (+ brand essence)
+- `h2` Trust strip · `h2` The Organikaly story (why authentic) · `h2` Yellow Mustard Oil
   (`h3` benefits, `h3` usage) · `h2` The range (`h3` per category) · `h2` Sourcing & process ·
   `h2` What people say · `h2` Recipes & usage · `h2` Journal · `h2` FAQ · `h2` Buy / enquire
 
 ## Metadata
 
-- **Title (~55–60 chars):** "Organikally — Cold-Pressed Organic Mustard Oil & Pantry"
+- **Title (~55–60 chars):** "Organikaly — Cold-Pressed Organic Mustard Oil & Pantry"
 - **Meta description (~150 chars):** benefit + trust + range, in-voice, no hype.
 - **Canonical:** self-referential on `/`; absolute canonicals on blog posts.
 - **Open Graph + Twitter:** `og:title/description/image` (logo/lifestyle render, 1200×630),
@@ -48,7 +48,7 @@ pantry staples"; "yellow vs black mustard oil"; "mustard oil smoke point / for c
 ## AEO/GEO tactics
 
 - Question-shaped `h2/h3` with concise, self-contained answers directly beneath (extractable).
-- Clear entity definition: who Organikally is, what cold-pressed means here, in plain prose.
+- Clear entity definition: who Organikaly is, what cold-pressed means here, in plain prose.
 - `FAQPage` schema on genuine buyer questions; factual, defensible, citable.
 - Fast, crawlable static HTML; no content hidden behind JS-only rendering.
 

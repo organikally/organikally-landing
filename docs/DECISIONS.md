@@ -5,7 +5,7 @@ Append-only record of cross-agent decisions. Newest first. Format:
 
 ## 2026-06-20 · Phase 0 — Setup
 
-- **Repo** created at `organikally/organikally-landing` (private). Owner org `organikally`
+- **Repo** created at `organikaly/organikally-landing` (private). Owner org `organikaly`
   exists; primary GitHub account `dimssu`.
 - **Hero source video verified** (`ffprobe`): 1920×1080, H.264 High, `yuv420p`, **24 fps,
   240 frames, 10.0s**, video bitrate ~7.84 Mbps, container ~9.99 MB, **one AAC audio track

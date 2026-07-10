@@ -97,7 +97,7 @@ export default function LoginForm() {
       </form>
 
       <p className="mt-6 text-center text-sm text-ink-muted">
-        New to Organikally?{' '}
+        New to Organikaly?{' '}
         <Link
           href={`/store/signup/?next=${encodeURIComponent(next)}`}
           className="font-semibold text-yellow-ink hover:text-ink"

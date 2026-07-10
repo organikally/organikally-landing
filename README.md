@@ -1,6 +1,6 @@
-# Organikally — Landing Page
+# Organikaly — Landing Page
 
-Official landing page for **Organikally** — *Pure · Natural · Trusted*.
+Official landing page for **Organikaly** — *Pure · Natural · Trusted*.
 An Indian organic food brand led by cold-pressed Yellow Mustard Oil (शुद्ध सरसों तेल),
 with a growing range of pulses, khand (unrefined jaggery sugar) and organic pantry staples.
 

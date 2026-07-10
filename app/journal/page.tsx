@@ -12,7 +12,7 @@ import { breadcrumbSchema } from '@/lib/schema';
 export const metadata: Metadata = {
   title: 'Journal',
   description:
-    'Notes from the Organikally kitchen, on cold-pressed vs refined oil, spotting genuinely organic staples, and how to cook with mustard oil.',
+    'Notes from the Organikaly kitchen, on cold-pressed vs refined oil, spotting genuinely organic staples, and how to cook with mustard oil.',
   alternates: { canonical: '/journal/' },
 };
 

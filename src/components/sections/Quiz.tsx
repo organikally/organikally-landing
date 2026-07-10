@@ -35,7 +35,7 @@ export default function Quiz() {
   return (
     <section id="match" className="relative z-10 py-16 md:py-24">
       <div className="mx-auto max-w-container px-5 md:px-10">
-        <SectionTitle eyebrow="Find your Organikally">Which oil is best for you?</SectionTitle>
+        <SectionTitle eyebrow="Find your Organikaly">Which oil is best for you?</SectionTitle>
 
         <Reveal className="mx-auto mt-5 max-w-measure text-center">
           <p className="t-lead">
@@ -52,8 +52,8 @@ export default function Quiz() {
                 name={result ? result.image : 'quiz-portrait'}
                 alt={
                   result
-                    ? `Organikally ${result.title}`
-                    : 'A home kitchen laid out with Organikally cold-pressed yellow mustard oil'
+                    ? `Organikaly ${result.title}`
+                    : 'A home kitchen laid out with Organikaly cold-pressed yellow mustard oil'
                 }
                 width={1000}
                 height={1200}

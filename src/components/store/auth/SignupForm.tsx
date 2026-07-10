@@ -160,7 +160,7 @@ export default function SignupForm() {
             onChange={(e) => setOptIn(e.target.checked)}
             className="mt-0.5 h-4 w-4 accent-[#1B5E20]"
           />
-          Send me occasional notes &amp; offers from Organikally.
+          Send me occasional notes &amp; offers from Organikaly.
         </label>
 
         {error && (

@@ -35,13 +35,13 @@ export default function SiteHeader({ forceSolid = false }: { forceSolid?: boolea
           elevated ? 'shadow-[0_18px_40px_-24px_rgba(28,25,18,0.5)]' : 'shadow-none'
         }`}
       >
-        <Link href="/" aria-label="Organikally, home" className="flex shrink-0 items-center">
+        <Link href="/" aria-label="Organikaly, home" className="flex shrink-0 items-center">
           <picture>
             <source srcSet="/brand/organikally-wordmark.webp" type="image/webp" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/brand/organikally-wordmark.png"
-              alt="Organikally"
+              alt="Organikaly"
               width={805}
               height={200}
               className="h-[1.7rem] w-auto md:h-[2rem]"
@@ -91,7 +91,7 @@ export default function SiteHeader({ forceSolid = false }: { forceSolid?: boolea
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/brand/organikally-wordmark.png"
-                alt="Organikally"
+                alt="Organikaly"
                 width={448}
                 height={85}
                 className="h-8 w-auto"

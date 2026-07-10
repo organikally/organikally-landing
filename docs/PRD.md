@@ -1,11 +1,11 @@
-# PRD — Organikally Landing Page
+# PRD — Organikaly Landing Page
 
 Owner: `product-manager`. Single source of truth for scope and "done".
 Status: **Phase 1 lock candidate.** Synthesises AUDIENCE · BRAND · CRO · SEO · COMPLIANCE.
 
 ## Goal
 
-A first-time visitor understands within ~5 seconds that Organikally is a **trustworthy,
+A first-time visitor understands within ~5 seconds that Organikaly is a **trustworthy,
 authentic, organic Indian food brand led by cold-pressed yellow mustard oil** — feels that
 authenticity in the craft of the page — and can buy / enquire effortlessly.
 
@@ -39,7 +39,7 @@ Each section: **Purpose · Content · Acceptance.** Build only what earns its pl
 2. **Trust strip** — *Purpose:* immediate credibility. *Content:* FSSAI · Organic ·
    Cold-Pressed · Cholesterol-Free (compliance-checked badges). *Accept:* claims compliant;
    legible; no hype.
-3. **The Organikally story / why authentic** — *Purpose:* win trust. *Content:* cold-press
+3. **The Organikaly story / why authentic** — *Purpose:* win trust. *Content:* cold-press
    (kachi ghani) process, organic sourcing, farm-to-bottle narrative. *Accept:* answers
    "really organic / not adulterated?"; in-voice; reveal motion intentional.
 4. **Hero product — Yellow Mustard Oil** — *Purpose:* sell the flagship. *Content:* bottle,

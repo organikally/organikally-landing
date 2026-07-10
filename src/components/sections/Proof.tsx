@@ -12,7 +12,7 @@ export default function Proof() {
   return (
     <section id="proof" className="relative z-10 bg-cream pt-16 pb-14 md:pt-28 md:pb-20">
       <div className="mx-auto max-w-container px-5 md:px-10">
-        <SectionTitle eyebrow="Why Organikally">Proof. Not promises.</SectionTitle>
+        <SectionTitle eyebrow="Why Organikaly">Proof. Not promises.</SectionTitle>
         <Reveal>
           <p className="t-lead mx-auto mt-5 max-w-measure text-center">
             Anyone can say “pure.” We’d rather show you — starting with the day it was pressed.
@@ -25,7 +25,7 @@ export default function Proof() {
           <div className="mt-12 grid overflow-hidden rounded-card border border-forest/12 bg-surface shadow-sm md:mt-16 md:grid-cols-2">
             <Media
               name="proof-date"
-              alt="A freshly pressed Organikally mustard oil bottle with a small hand-stamped batch tag"
+              alt="A freshly pressed Organikaly mustard oil bottle with a small hand-stamped batch tag"
               width={1100}
               height={826}
               className="aspect-[4/3] w-full md:aspect-auto md:h-full"

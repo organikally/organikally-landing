@@ -1,6 +1,6 @@
 # Homely Refactor — Design Law (single source of truth)
 
-Goal: make the Organikally landing feel **homely, warm, trust-first and story-led** —
+Goal: make the Organikaly landing feel **homely, warm, trust-first and story-led** —
 the emotional register of a beloved D2C kitchen brand (reference: Ojasya Naturals) —
 **without** losing our own brand, our cinematic film hero, or our quality bar.
 
@@ -92,7 +92,7 @@ language. Content lives in `src/content/benefits.ts`.
 
 ### 3b. `Compare.tsx` — "Not all mustard oil is the same" (id `compare`)
 A warm two-column comparison, our answer to Ojasya's A1-vs-A2 table. Left = "Ordinary
-refined/commodity oil", right = "Organikally cold-pressed" (highlighted in a `bg-surface`
+refined/commodity oil", right = "Organikaly cold-pressed" (highlighted in a `bg-surface`
 `rounded-card` well with a soft gold ring). Rows = **process/sensory/source** contrasts,
 each with a Lucide `X` (ink-faint) vs `Check` (yellow-deep). **NEVER medical claims.**
 Approved contrast rows, e.g.: refined with heat & solvents → cold-pressed in a kachi
@@ -102,7 +102,7 @@ holds kept (state as "unrefined", not a health outcome). Content in `src/content
 Optionally flank with `pour` (golden) vs a neutral image — but keep it tasteful, no
 fear-mongering. No brand names, no "toxic", no scare copy (that's off-brand).
 
-### 3c. `Quiz.tsx` — "Find your Organikally" (id `match`) · `'use client'`
+### 3c. `Quiz.tsx` — "Find your Organikaly" (id `match`) · `'use client'`
 A light, homely 2-step matcher (Ojasya's "Your Match", adapted — we route intent, we do
 NOT invent SKUs we don't sell). Q1 "What are you cooking most?" (Everyday tadka & sabzi /
 Pickling & achaar / Deep-frying & festive / Baking & the wider pantry). Q2 "Cooking for?"

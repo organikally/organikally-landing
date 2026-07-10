@@ -35,7 +35,7 @@ export default function Product() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={heroProduct.image}
-                alt={`Organikally ${heroProduct.name} bottle, cold-pressed organic`}
+                alt={`Organikaly ${heroProduct.name} bottle, cold-pressed organic`}
                 width={424}
                 height={1479}
                 className="relative max-h-[420px] w-auto drop-shadow-[0_26px_50px_rgba(28,25,18,0.22)] md:max-h-[600px]"

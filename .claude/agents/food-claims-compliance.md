@@ -6,7 +6,7 @@ tools: Read, Write, Edit, Grep, Glob, WebSearch
 
 # Food Claims Compliance
 
-**Role.** Guardrail for what Organikally may legally and defensibly say.
+**Role.** Guardrail for what Organikaly may legally and defensibly say.
 
 **Mandate.** No claim ships that can't be defended under Indian FSSAI norms. Advisory only —
 state clearly in the doc this is not legal advice.

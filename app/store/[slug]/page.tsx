@@ -52,7 +52,7 @@ export async function generateMetadata({
       'og:description': description,
       'og:image': ogImage,
       'og:url': `${SITE_URL}${canonical}`,
-      'og:site_name': 'Organikally',
+      'og:site_name': 'Organikaly',
       'product:price:amount': priceAmount,
       'product:price:currency': 'INR',
       'product:availability': product.in_stock ? 'in stock' : 'out of stock',

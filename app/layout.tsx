@@ -46,12 +46,12 @@ const deva = Tiro_Devanagari_Hindi({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Organikally, Cold-Pressed Organic Mustard Oil & Pantry',
-    template: '%s · Organikally',
+    default: 'Organikaly, Cold-Pressed Organic Mustard Oil & Pantry',
+    template: '%s · Organikaly',
   },
   description:
     'Cold-pressed organic yellow mustard oil (शुद्ध सरसों तेल), pulses and khand, made from organically grown seed, nothing refined out. Pure · Natural · Trusted.',
-  applicationName: 'Organikally',
+  applicationName: 'Organikaly',
   keywords: [
     'cold-pressed mustard oil',
     'organic mustard oil',
@@ -64,15 +64,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    siteName: 'Organikally',
-    title: 'Organikally, Cold-Pressed Organic Mustard Oil & Pantry',
+    siteName: 'Organikaly',
+    title: 'Organikaly, Cold-Pressed Organic Mustard Oil & Pantry',
     description:
       'Made from organically grown seed, cold-pressed the slow way. Mustard oil, pulses & khand.',
-    images: [{ url: '/hero/poster.jpg', width: 1280, height: 720, alt: 'Organikally cold-pressed yellow mustard oil' }],
+    images: [{ url: '/hero/poster.jpg', width: 1280, height: 720, alt: 'Organikaly cold-pressed yellow mustard oil' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Organikally, Cold-Pressed Organic Mustard Oil & Pantry',
+    title: 'Organikaly, Cold-Pressed Organic Mustard Oil & Pantry',
     description: 'Made from organically grown seed, cold-pressed the slow way.',
     images: ['/hero/poster.jpg'],
   },

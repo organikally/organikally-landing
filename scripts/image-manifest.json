@@ -1,5 +1,5 @@
 {
-  "_comment": "Art-directed homely imagery for the landing. name -> gen-<name>.png in assets/media-work; build-media.sh maps it to the matching public/media triplet. 'gap' = we don't have this shot yet (generate first). 'use_bottle' = edit the real Organikally bottle in. Regenerating a 'refresh' slot replaces the current placeholder with a cohesive shoot. STYLE suffix is added by gen-images.py.",
+  "_comment": "Art-directed homely imagery for the landing. name -> gen-<name>.png in assets/media-work; build-media.sh maps it to the matching public/media triplet. 'gap' = we don't have this shot yet (generate first). 'use_bottle' = edit the real Organikaly bottle in. Regenerating a 'refresh' slot replaces the current placeholder with a cohesive shoot. STYLE suffix is added by gen-images.py.",
   "images": [
     {
       "name": "compare-coldpressed",
@@ -17,7 +17,7 @@
       "name": "bottle-hero",
       "slot": "bottle-hero",
       "use_bottle": true,
-      "prompt": "Place this exact Organikally mustard oil bottle upright on a warm cream handloom cloth on a wooden table, soft window light from the left, a small brass bowl of yellow mustard seeds beside it, a sprig of mustard flowers. Keep the bottle and its label exactly as given. Cozy home-kitchen still life, generous space above the bottle."
+      "prompt": "Place this exact Organikaly mustard oil bottle upright on a warm cream handloom cloth on a wooden table, soft window light from the left, a small brass bowl of yellow mustard seeds beside it, a sprig of mustard flowers. Keep the bottle and its label exactly as given. Cozy home-kitchen still life, generous space above the bottle."
     },
     {
       "name": "pour",
@@ -117,7 +117,7 @@
       "gap": true,
       "use_bottle": true,
       "style": "The product bottle rendered cleanly and realistically, set into a flat pastel storybook illustration of a blooming green-and-gold mustard field with a small farmhouse and soft blue sky. Decorative, homely, framed with breathing room. No text or logos other than what is on the product, no watermark.",
-      "prompt": "Place this exact Organikally mustard oil bottle standing in the foreground of the illustrated field scene, as the hero of a collectible postage-stamp style product card. Keep the bottle and its label exactly as given."
+      "prompt": "Place this exact Organikaly mustard oil bottle standing in the foreground of the illustrated field scene, as the hero of a collectible postage-stamp style product card. Keep the bottle and its label exactly as given."
     },
     {
       "name": "stamp-dals",
@@ -145,7 +145,7 @@
       "slot": "shop-oil",
       "gap": true,
       "use_bottle": true,
-      "prompt": "Place this exact Organikally mustard oil bottle as a clean product shot on a warm cream linen surface with a few whole mustard seeds and a soft blurred kitchen behind, gentle callout space around it. Keep the bottle and label exactly as given. Square composition."
+      "prompt": "Place this exact Organikaly mustard oil bottle as a clean product shot on a warm cream linen surface with a few whole mustard seeds and a soft blurred kitchen behind, gentle callout space around it. Keep the bottle and label exactly as given. Square composition."
     },
     {
       "name": "shop-dals",
@@ -177,7 +177,7 @@
       "slot": "proof-date",
       "gap": true,
       "use_bottle": true,
-      "prompt": "Place this exact Organikally mustard oil bottle in a warm, intimate close-up on cream linen, tied with a small kraft-paper batch tag on twine, a few whole yellow mustard seeds scattered beside it, soft morning light. The feeling is freshness and honesty, a just-pressed small batch. Keep the bottle and its label exactly as given; the little tag can look hand-stamped but leave any date soft and unreadable. Landscape composition with the bottle to one side and gentle space."
+      "prompt": "Place this exact Organikaly mustard oil bottle in a warm, intimate close-up on cream linen, tied with a small kraft-paper batch tag on twine, a few whole yellow mustard seeds scattered beside it, soft morning light. The feeling is freshness and honesty, a just-pressed small batch. Keep the bottle and its label exactly as given; the little tag can look hand-stamped but leave any date soft and unreadable. Landscape composition with the bottle to one side and gentle space."
     },
     {
       "name": "story",

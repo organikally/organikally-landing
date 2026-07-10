@@ -62,15 +62,15 @@ Legend: 🔴 blocks a real build deliverable · 🟡 needed before launch · �
 - [ ] 🟡 Real testimonials / reviews (name, location, quote, optional photo). Placeholders
   are flagged in the UI until supplied.
 - [ ] 🟢 Real product / farm / process photography to replace AI renders where desired.
-- [ ] 🟢 **Replace licensed stock photography with Organikally's own farm/kitchen shots.**
+- [ ] 🟢 **Replace licensed stock photography with Organikaly's own farm/kitchen shots.**
   The editorial section images are currently licensed via Pexels (free for commercial use, no
   attribution required) and optimised by `scripts/build-media.sh` into `public/media/`. Swapping
-  in real Organikally field, seed, press and achaar photography is the highest-authenticity
+  in real Organikaly field, seed, press and achaar photography is the highest-authenticity
   upgrade. Current sources (Pexels photo IDs / photographers):
   - `field` — Punjab mustard field still, Zaryab Haider (#36381366)
   - `field-band` — **video** of farmers threshing the rice harvest, Pexels video #19578432
     (2:1 crop framing the figures, warm-graded; raw `farmer-threshing.mp4` in `assets/media-work/`).
-    Note: stock harvest footage — swap for Organikally's own farm/mustard footage before launch.
+    Note: stock harvest footage — swap for Organikaly's own farm/mustard footage before launch.
   - `seeds` — mustard seed macro, Petr Ganaj (#18346906) — also the Range "Yellow Mustard Oil" thumbnail
   - `achaar` — mango achaar in a martaban, Ambika (#7812134)
   - `dals` — raw brown lentils, Pexels #30204272 (Range — Pulses & Dals)
@@ -87,21 +87,21 @@ Legend: 🔴 blocks a real build deliverable · 🟡 needed before launch · �
   `output:'export'` has been removed so the storefront can run SSR/ISR; marketing routes stay
   static. Cloudflare via `@opennextjs/cloudflare` is a best-effort fallback only (not
   feature-equivalent: tag revalidation/ISR cache differ).
-- [ ] 🟡 Custom domain + DNS (e.g. `organikally.com` / `.in`) once acquired.
+- [ ] 🟡 Custom domain + DNS (e.g. `organikaly.com` / `.in`) once acquired.
 
 ## Store (D2C `/store`) — env, Razorpay, legal
 
 - [ ] 🔴 **Landing env vars** (set in Vercel; template in `.env.example`):
-  - `API_BASE` — server-only backend base, e.g. `https://api.organikally.com/api/v1`.
+  - `API_BASE` — server-only backend base, e.g. `https://api.organikaly.com/api/v1`.
   - `NEXT_PUBLIC_API_BASE` — same base, exposed to the browser for cart/checkout/auth.
   - `NEXT_PUBLIC_RAZORPAY_KEY_ID` — optional; if unset the client uses the key the backend
     returns from checkout / `GET /store/config`.
   - `REVALIDATE_SECRET` — generate once, set on **both** Vercel and the backend (it calls
-    `POST https://organikally.com/api/revalidate` on catalog changes). `SITE_URL` is NOT an env
+    `POST https://organikaly.com/api/revalidate` on catalog changes). `SITE_URL` is NOT an env
     var — it's the constant in `src/lib/site.ts`.
 - [ ] 🔴 **Razorpay** (backend owns the secrets; the storefront only opens checkout.js): create the
   account, generate `RAZORPAY_KEY_ID`/`RAZORPAY_KEY_SECRET`, add the webhook
-  → `https://api.organikally.com/api/v1/store/webhooks/razorpay` (events: payment.authorized,
+  → `https://api.organikaly.com/api/v1/store/webhooks/razorpay` (events: payment.authorized,
   payment.captured, payment.failed, order.paid, refund.created, refund.processed), set
   `RAZORPAY_WEBHOOK_SECRET`, and **enable auto-capture**.
 - [ ] 🟡 **Product content**: real photography, copy, prices and `compare_at_price` (the seed uses

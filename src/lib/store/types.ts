@@ -244,7 +244,7 @@ export type StoreOrderView = {
   paid_at?: string | null;
 };
 
-// Guest cart line kept in localStorage (`organikally.cart`). The merge payload
+// Guest cart line kept in localStorage (`organikaly.cart`). The merge payload
 // uses only { store_product_id, qty } (§5.3.2 / §8); the extra display fields are
 // a UX snapshot so the guest drawer/page can render without a server round-trip.
 export type GuestCartLine = {

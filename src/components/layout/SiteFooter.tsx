@@ -20,7 +20,7 @@ export default function SiteFooter() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/brand/organikally-wordmark.png"
-                  alt="Organikally"
+                  alt="Organikaly"
                   width={805}
                   height={200}
                   className="h-9 w-auto md:h-10"
@@ -82,7 +82,7 @@ export default function SiteFooter() {
 
         <div className="flex flex-col gap-2 py-7 text-sm text-cream/60 md:flex-row md:items-center md:justify-between">
           <p>
-            {site.fssaiLicence} · © {year} Organikally. All rights reserved.
+            {site.fssaiLicence} · © {year} Organikaly. All rights reserved.
           </p>
           <p>Made with care in India.</p>
         </div>

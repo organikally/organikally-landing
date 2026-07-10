@@ -1,9 +1,9 @@
 # Ojasya-Replication Spec — the after-hero landing, rebuilt 1:1
 
 This SUPERSEDES `HOMELY_REFACTOR.md`. The founder wants the **actual Ojasya Naturals
-section designs replicated** for Organikally — not our old editorial theme warmed up.
+section designs replicated** for Organikaly — not our old editorial theme warmed up.
 Reference: https://ojasyanaturals.com. We keep our **film hero**; **everything after it**
-is rebuilt in Ojasya's visual language, adapted to Organikally's products (cold-pressed
+is rebuilt in Ojasya's visual language, adapted to Organikaly's products (cold-pressed
 **Yellow Mustard Oil** + organic pantry — NOT ghee) and kept FSSAI-compliant.
 
 Read `organikally-landing/CLAUDE.md` too (mission, compliance gate, perf budget, no AI
@@ -19,7 +19,7 @@ eyebrows · **heavy UPPERCASE geometric headings** (Poppins ExtraBold) · **Indi
 ornamental dividers** flanking every section title · illustrated pastel farm scenes ·
 soft rounded cards with hairline forest borders · a faint line-art "ghar/press" watermark
 behind some sections. Homely, traditional, trustworthy, a little festive. Forest-green is
-literally Organikally's documented primary brand colour (CLAUDE.md palette table), so this
+literally Organikaly's documented primary brand colour (CLAUDE.md palette table), so this
 is on-brand, not a reskin away from it.
 
 ## 1. Tokens (added to globals.css + tailwind.config — DO NOT invent others)
@@ -104,7 +104,7 @@ mobile where blobs stack in a 2-col grid). Copy = **approved claims ONLY** (no m
 
 ### 4.4 Quiz  [id="match"]  [replaces Quiz] — "WHICH OIL IS BEST FOR YOU?"  ('use client')
 Ojasya split card. **Left** = a warm festive photo panel (`Media name="quiz-portrait"` — a
-home cook with Organikally oil bottles, diyas/marigold, brass; rounded-card). **Right** = a
+home cook with Organikaly oil bottles, diyas/marigold, brass; rounded-card). **Right** = a
 cream/`surface` card: rust `QUESTION 01 / 02` label, a bold `font-heading`-ish question, and
 **large stacked answer buttons** (white, rounded, hairline forest border, hover lifts, a
 trailing `ArrowRight`). Keep OUR 2-step logic + result card (real WhatsApp order path, trade

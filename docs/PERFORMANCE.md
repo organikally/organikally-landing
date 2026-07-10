@@ -15,7 +15,7 @@ Lighthouse hardening in Phase 5.**
 
 ## Hero asset pipeline (`scripts/build-hero.sh`)
 
-Source: `Product_animation_Organikally.mp4` (1920×1080, 24 fps, 240 frames, ~9.5 MB, audio).
+Source: `Product_animation_Organikaly.mp4` (1920×1080, 24 fps, 240 frames, ~9.5 MB, audio).
 Encoder choice (benchmarked on a worst-case frame): **AVIF via libsvtav1** beat WebP (cwebp)
 and AVIF via libaom on size-at-quality and speed.
 

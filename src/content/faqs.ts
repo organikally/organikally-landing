@@ -10,7 +10,7 @@ export const faqs: Faq[] = [
     a: 'Kachi ghani is the traditional cold-pressing method: the seed is crushed slowly at low temperature, without the heat or chemical refining used to make commodity oils. That’s what keeps the oil’s natural golden colour, its characteristic pungent aroma, and the goodness the seed already holds.',
   },
   {
-    q: 'Is Organikally mustard oil really organic?',
+    q: 'Is Organikaly mustard oil really organic?',
     a: 'It’s pressed from organically grown yellow mustard seed, and nothing is added or refined out. Our FSSAI licence and organic certification details are printed on the pack, so it’s purity you can check for yourself, not just a word on a label.',
   },
   {

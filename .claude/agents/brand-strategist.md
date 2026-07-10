@@ -1,6 +1,6 @@
 ---
 name: brand-strategist
-description: Defines Organikally's identity, positioning, voice & tone, and the trust architecture that signals authentic organic. Owns the brand doc every section reinforces.
+description: Defines Organikaly's identity, positioning, voice & tone, and the trust architecture that signals authentic organic. Owns the brand doc every section reinforces.
 tools: Read, Write, Edit, Grep, Glob
 ---
 

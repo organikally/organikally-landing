@@ -1,17 +1,17 @@
 // Central site config. Placeholder values are founder-supplied, see MANUAL_STEPS.md.
 
-export const SITE_URL = 'https://organikally.com';
+export const SITE_URL = 'https://organikaly.com';
 
 // Empty number → a generic wa.me link with a prefilled message. Drop the real
 // business number here (digits only, with country code, e.g. '919812345678').
 const WHATSAPP_NUMBER = '';
 
-export function whatsapp(message = "Hi Organikally, I'd like to order cold-pressed mustard oil."): string {
+export function whatsapp(message = "Hi Organikaly, I'd like to order cold-pressed mustard oil."): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
 export const site = {
-  name: 'Organikally',
+  name: 'Organikaly',
   tagline: 'Pure · Natural · Trusted',
   description:
     'Cold-pressed organic yellow mustard oil, pulses and khand, made from organically grown seed, nothing refined out.',
@@ -22,7 +22,7 @@ export const site = {
   // section shows its honest neutral "Small-batch fresh" stamp rather than a
   // fabricated date; wire the true batch date here before launch (see MANUAL_STEPS).
   pressDate: '',
-  email: 'hello@organikally.com',
+  email: 'hello@organikaly.com',
   whatsappConfigured: WHATSAPP_NUMBER.length > 0,
   social: {
     instagram: 'https://instagram.com/',

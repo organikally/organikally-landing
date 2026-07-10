@@ -3,7 +3,7 @@ import type { Post } from './types';
 // Seed journal posts. Factually defensible, claim-checked (docs/COMPLIANCE.md):
 // composition and process, no medical/curative claims. Byline is the brand journal.
 
-const AUTHOR = 'The Organikally Kitchen';
+const AUTHOR = 'The Organikaly Kitchen';
 
 export const posts: Post[] = [
   {

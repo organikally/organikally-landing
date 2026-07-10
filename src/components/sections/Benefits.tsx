@@ -26,7 +26,7 @@ function ProductCentre() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/brand/product-bottle.webp"
-        alt="Organikally cold-pressed yellow mustard oil bottle"
+        alt="Organikaly cold-pressed yellow mustard oil bottle"
         width={424}
         height={1479}
         loading="lazy"

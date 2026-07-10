@@ -109,6 +109,8 @@ export function storeProductSchema(product: StorefrontProductDetail) {
     availability: product.in_stock
       ? 'https://schema.org/InStock'
       : 'https://schema.org/OutOfStock',
+    itemCondition: 'https://schema.org/NewCondition',
+    seller: { '@type': 'Organization', name: product.brand || site.name },
     url: abs(path),
   };
 

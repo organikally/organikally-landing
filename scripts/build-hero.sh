@@ -10,7 +10,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SRC="$ROOT/assets/source/Organikally_hero_ribbons.mp4"
+SRC="$ROOT/assets/source/Organikaly_hero_ribbons.mp4"
 OUT="$ROOT/public/hero"
 
 mkdir -p "$OUT"
