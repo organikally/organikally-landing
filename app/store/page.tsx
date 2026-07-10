@@ -8,6 +8,7 @@ import CategoryRail from '@/components/store/CategoryRail';
 import ProductRail from '@/components/store/ProductRail';
 import StoreTrustBand from '@/components/store/StoreTrustBand';
 import StoreJournalRail from '@/components/store/StoreJournalRail';
+import ShopByConcern, { type Concern } from '@/components/store/ShopByConcern';
 import {
   getProducts,
   getCategories,
@@ -100,19 +101,99 @@ export default async function StoreListingPage({
       page > 1,
   );
 
-  const [products, categories, config, hero, featured, oils, pulses] = await Promise.all([
-    getProducts(query),
-    getCategories(),
-    getStoreConfig(),
-    isBrowsing ? Promise.resolve(null) : getHero(),
-    isBrowsing ? Promise.resolve([]) : getFeatured(),
-    isBrowsing
-      ? Promise.resolve(null)
-      : getProducts({ category: 'Oils', sort: 'featured', page_size: 8 }),
-    isBrowsing
-      ? Promise.resolve(null)
-      : getProducts({ category: 'Pulses', sort: 'featured', page_size: 8 }),
-  ]);
+  const [products, categories, config, hero, featured, oils, pulses, everything] =
+    await Promise.all([
+      getProducts(query),
+      getCategories(),
+      getStoreConfig(),
+      isBrowsing ? Promise.resolve(null) : getHero(),
+      isBrowsing ? Promise.resolve([]) : getFeatured(),
+      isBrowsing
+        ? Promise.resolve(null)
+        : getProducts({ category: 'Oils', sort: 'featured', page_size: 8 }),
+      isBrowsing
+        ? Promise.resolve(null)
+        : getProducts({ category: 'Pulses', sort: 'featured', page_size: 8 }),
+      isBrowsing ? Promise.resolve(null) : getProducts({ page_size: 100 }),
+    ]);
+
+  // Shop-by-Concern curation — merchandising groups over the live catalog.
+  // Slugs that aren't published simply drop out of their shelf.
+  const bySlug = new Map((everything?.items ?? []).map((p) => [p.slug, p]));
+  const pick = (slugs: string[]) =>
+    slugs.map((s) => bySlug.get(s)).filter((p): p is NonNullable<typeof p> => Boolean(p));
+  const concerns: Concern[] = [
+    {
+      key: 'weight-management',
+      label: 'Weight Management',
+      products: pick([
+        'organic-moong-dal-split-1kg',
+        'organic-toor-arhar-dal-1kg',
+        'stone-ground-whole-wheat-atta-5kg',
+        'cold-pressed-virgin-coconut-oil-500ml',
+      ]),
+    },
+    {
+      key: 'heart-health',
+      label: 'Heart-Health',
+      products: pick([
+        'cold-pressed-yellow-mustard-oil-1l',
+        'cold-pressed-groundnut-mungfali-oil-1l',
+        'cold-pressed-sesame-til-oil-1l',
+        'cold-pressed-yellow-mustard-oil-5l',
+      ]),
+    },
+    {
+      key: 'diabetes-friendly',
+      label: 'Diabetes Friendly',
+      products: pick([
+        'organic-chana-dal-1kg',
+        'organic-rajma-kidney-beans-1kg',
+        'stone-ground-whole-wheat-atta-5kg',
+        'cold-pressed-sesame-til-oil-1l',
+      ]),
+    },
+    {
+      key: 'bone-muscle',
+      label: 'Bone & Muscle Health',
+      products: pick([
+        'organic-urad-dal-whole-black-1kg',
+        'a2-desi-cow-ghee-bilona-500ml',
+        'organic-rajma-kidney-beans-1kg',
+        'organic-moong-dal-split-1kg',
+      ]),
+    },
+    {
+      key: 'low-energy',
+      label: 'Low Energy',
+      products: pick([
+        'organic-jaggery-gur-1kg',
+        'raw-forest-honey-500g',
+        'desi-khand-raw-cane-sugar-1kg',
+        'a2-desi-cow-ghee-bilona-500ml',
+      ]),
+    },
+    {
+      key: 'digestion',
+      label: 'Digestion Issues',
+      products: pick([
+        'organic-turmeric-haldi-powder-200g',
+        'organic-coriander-dhania-powder-200g',
+        'mango-pickle-aam-ka-achaar-500g',
+        'organic-moong-dal-split-1kg',
+      ]),
+    },
+    {
+      key: 'acidity-bloating',
+      label: 'Acidity & Bloating',
+      products: pick([
+        'cold-pressed-virgin-coconut-oil-500ml',
+        'organic-moong-dal-split-1kg',
+        'organic-coriander-dhania-powder-200g',
+        'raw-forest-honey-500g',
+      ]),
+    },
+  ];
 
   // Fallbacks mirror StoreConfig's model defaults — only reached if the config
   // fetch itself degrades, in which case they match what checkout would charge.
@@ -191,7 +272,7 @@ export default async function StoreListingPage({
               viewAll={{ label: 'View all', href: '/store/#catalog' }}
               ranked
             />
-            <StoreTrustBand />
+            <ShopByConcern concerns={concerns} />
             <ProductRail
               eyebrow="The ghani section"
               title="Cold-pressed oils"
@@ -204,6 +285,7 @@ export default async function StoreListingPage({
               products={pulses?.items ?? []}
               viewAll={{ label: 'All pulses', href: '/store/?category=Pulses' }}
             />
+            <StoreTrustBand />
           </>
         )}
 
