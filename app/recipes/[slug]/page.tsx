@@ -116,7 +116,7 @@ export default async function RecipePage({ params }: { params: Promise<Params> }
         {/* Ingredients + method */}
         <div className="mt-12 grid gap-10 md:grid-cols-[0.85fr_1.3fr] md:gap-14">
           <aside>
-            <div className="rounded-card border border-line bg-surface p-6 md:sticky md:top-28">
+            <div className="rounded-card border border-line bg-surface p-6 md:sticky md:top-32">
               <h2 className="font-display text-2xl text-ink">Ingredients</h2>
               <p className="mt-1 text-sm text-ink-faint">Serves {recipe.servings}</p>
               {recipe.ingredients.map((group, gi) => (
