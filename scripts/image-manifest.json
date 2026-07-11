@@ -220,6 +220,126 @@
       "slot": "recipe-haldi-doodh",
       "gap": true,
       "prompt": "A warm golden glass of haldi doodh (turmeric milk) on a small brass tray, gentle steam rising, a small piece of jaggery and a pinch of turmeric powder in a tiny wooden pinch-bowl beside it, evening window light. Calm, comforting Indian bedtime drink."
+    },
+
+    {
+      "_group": "Store app — icon / adaptive / splash (destination: organikally-store-app/assets/, staged in .scheduled-build/media-out/)",
+      "name": "app-icon",
+      "slot": "app-icon",
+      "gap": true,
+      "style": "Flat minimal vector app-icon logo mark, bold and iconic, clean geometric shapes, no photorealism, deep forest-green (#1B5E20) and warm mustard-gold (#F0B61A) and cream (#FAFAF7) only, crisp edges, perfectly centred symmetric emblem with generous even padding, no text, no words, no letters, no watermark.",
+      "prompt": "A single iconic brand mark for a premium organic Indian food brand, centred in the frame: a stylised golden mustard blossom whose soft petals also read as a single falling drop of golden oil, resting just above a simple curved green leaf, set on a deep forest-green rounded-square field. Simple, memorable, premium, symmetrical, lots of even margin all around."
+    },
+    {
+      "name": "app-adaptive-fg",
+      "slot": "app-adaptive-fg",
+      "gap": true,
+      "style": "Flat minimal vector logo mark, no photorealism, mustard-gold (#F0B61A) and cream on a solid deep forest-green (#1B5E20) field, the mark small and perfectly centred within the middle 60 percent of the frame with very wide even margins so it survives a circular mask, no text, no words, no letters, no watermark.",
+      "prompt": "The Organikaly brand mark — a stylised golden mustard blossom that also reads as a falling drop of golden oil above a simple curved green leaf — small and perfectly centred with wide empty margins on all sides, on a solid deep forest-green field. Android adaptive-icon foreground."
+    },
+    {
+      "name": "app-splash",
+      "slot": "app-splash",
+      "gap": true,
+      "style": "Calm premium brand splash graphic, flat, a solid deep forest-green (#0E3B14) filling the whole frame edge to edge, a single centred emblem in mustard-gold (#F0B61A) and cream with a great deal of empty breathing space around it, subtle tiny faint mustard-flower motifs only in the far corners, no text, no words, no letters, no watermark.",
+      "prompt": "The Organikaly emblem — a golden mustard blossom and oil-drop mark above a small green leaf — centred in mustard-gold and cream with a great deal of empty deep forest-green space around it, a few tiny faint scattered mustard petals softly in the far corners. Serene, premium, welcoming launch screen on a deep forest-green ground."
+    },
+
+    {
+      "_group": "Store app — onboarding illustrations (destination: organikally-store-app/assets/, staged)",
+      "name": "onboard-farm",
+      "slot": "onboard-farm",
+      "gap": true,
+      "style": "Warm editorial flat illustration, soft pastel palette of forest and sage green, golden mustard-yellow and warm cream, gentle gradients, clean rounded friendly shapes, homely Indian farm-to-home storytelling, premium organic brand feel, no photorealism, no text, no words, no logos, no watermark. Warm cream sky filling the upper area for a headline.",
+      "prompt": "A sunlit yellow mustard field in full bloom at golden hour, a farmer gently harvesting into a basket, a small farmhouse, a leafy tree with a couple of small songbirds, rolling green-and-gold land. Homely, hopeful, farm-to-home. Generous empty cream sky above for onboarding text."
+    },
+    {
+      "name": "onboard-press",
+      "slot": "onboard-press",
+      "gap": true,
+      "style": "Warm editorial flat illustration, soft pastel palette of forest and sage green, golden mustard-yellow and warm cream, gentle gradients, clean rounded friendly shapes, homely and honest, no photorealism, no text, no words, no logos, no watermark. Generous empty cream space above for a headline.",
+      "prompt": "A traditional wooden kachi ghani cold-press slowly turning, a ribbon of golden mustard oil running out into a clay pot, whole yellow mustard seeds and a few blossoms nearby, cosy workshop warmth. Honest craft, cold-pressed. Generous empty cream space above for onboarding text."
+    },
+    {
+      "name": "onboard-delivery",
+      "slot": "onboard-delivery",
+      "gap": true,
+      "style": "Warm editorial flat illustration, soft pastel palette of forest and sage green, golden mustard-yellow and warm cream, gentle gradients, clean rounded friendly shapes, cheerful and welcoming, no photorealism, no text, no words, no logos, no watermark. Generous empty cream space above for a headline.",
+      "prompt": "A cheerful home-delivery moment: a friendly delivery rider handing a parcel of bottles and pantry goods at a welcoming Indian home doorway with a potted mustard plant and a warm doormat. Warm, trustworthy, farm-to-door. Generous empty cream space above for onboarding text."
+    },
+
+    {
+      "_group": "Store app — category tiles (destination: organikally-store-app/assets/, staged)",
+      "name": "category-oils",
+      "slot": "category-oils",
+      "gap": true,
+      "use_bottle": true,
+      "style": "Clean flat storybook still-life on a warm cream background, forest-green and mustard-gold and cream palette, the product clearly the hero, soft simple shapes, a soft simple illustrated mustard-field motif behind, decorative and premium, square composition with even padding, no text, no words, no logos, no watermark other than what is on the product.",
+      "prompt": "Place this exact Organikaly mustard oil bottle as the clear hero of a clean square category tile, standing on warm cream with a few whole yellow mustard seeds beside it. Keep the bottle and its label exactly as given. Even padding, premium, tidy."
+    },
+    {
+      "name": "category-pulses",
+      "slot": "category-pulses",
+      "gap": true,
+      "style": "Clean flat storybook still-life on a warm cream background, forest-green and mustard-gold and cream palette, the product clearly the hero, soft simple shapes, a soft simple illustrated field motif behind, decorative and premium, square composition with even padding, no text, no words, no logos, no watermark.",
+      "prompt": "A clean square category tile: an open jute sack and a small bowl of assorted organic dals and pulses as the hero on warm cream. Wholesome, premium, tidy. Even padding."
+    },
+    {
+      "name": "category-sweeteners",
+      "slot": "category-sweeteners",
+      "gap": true,
+      "style": "Clean flat storybook still-life on a warm cream background, forest-green and mustard-gold and cream palette, the product clearly the hero, soft simple shapes, a soft simple illustrated sugarcane-field motif behind, decorative and premium, square composition with even padding, no text, no words, no logos, no watermark.",
+      "prompt": "A clean square category tile: a small heap and a bowl of golden unrefined khand (jaggery sugar) as the hero on warm cream, a few sugarcane leaves. Wholesome, premium, tidy. Even padding."
+    },
+
+    {
+      "_group": "Storefront membership — Organikaly Club (destination: organikally-landing/public/media/membership/)",
+      "name": "club-hero",
+      "slot": "membership/club-hero",
+      "gap": true,
+      "prompt": "A warm premium overhead flat-lay of a curated organic pantry gift set on cream handloom linen: a tall clear glass bottle of golden cold-pressed mustard oil with a bare unmarked glass surface, small natural cloth drawstring pouches of dals, a clear glass jar of golden jaggery, a scatter of whole yellow mustard seeds and a sprig of yellow mustard blossom, gathered with a simple undyed kraft ribbon. Clean, plain, unbranded surfaces. Inviting, generous, premium. Wide landscape composition with calm empty cream space on the left for a headline."
+    },
+    {
+      "name": "benefit-delivery",
+      "slot": "membership/benefit-delivery",
+      "gap": true,
+      "style": "Flat minimal illustrated emblem inside a soft rounded medallion, single centred motif, deep forest-green and mustard-gold on warm cream, clean line-and-fill vector style, iconic and friendly, generous even padding, square, no text, no words, no numbers, no letters, no watermark.",
+      "prompt": "A friendly emblem of free home delivery: a simple parcel box with a small mustard-leaf sprig and a gentle motion swoosh, centred in a soft rounded medallion."
+    },
+    {
+      "name": "benefit-savings",
+      "slot": "membership/benefit-savings",
+      "gap": true,
+      "style": "Flat minimal illustrated emblem inside a soft rounded medallion, single centred motif, deep forest-green and mustard-gold on warm cream, clean line-and-fill vector style, iconic and friendly, generous even padding, square, no text, no words, no numbers, no letters, no watermark.",
+      "prompt": "A friendly emblem of member savings: a simple price tag with a small downward arrow and a tiny mustard blossom, centred in a soft rounded medallion. No numbers, no letters."
+    },
+    {
+      "name": "benefit-coins",
+      "slot": "membership/benefit-coins",
+      "gap": true,
+      "style": "Flat minimal illustrated emblem inside a soft rounded medallion, single centred motif, deep forest-green and mustard-gold on warm cream, clean line-and-fill vector style, iconic and friendly, generous even padding, square, no text, no words, no numbers, no letters, no watermark.",
+      "prompt": "A friendly emblem of reward coins: a small neat stack of round golden coins, each marked with a tiny mustard-flower motif, centred in a soft rounded medallion. No numbers, no letters."
+    },
+    {
+      "name": "benefit-access",
+      "slot": "membership/benefit-access",
+      "gap": true,
+      "style": "Flat minimal illustrated emblem inside a soft rounded medallion, single centred motif, deep forest-green and mustard-gold on warm cream, clean line-and-fill vector style, iconic and friendly, generous even padding, square, no text, no words, no numbers, no letters, no watermark.",
+      "prompt": "A friendly emblem of early access: a simple key crossed with a small clock and a tiny mustard blossom, centred in a soft rounded medallion, suggesting members get in first."
+    },
+
+    {
+      "_group": "Storefront lifestyle / placeholder product shots (destination: organikally-landing/public/media/membership/)",
+      "name": "lifestyle-kitchen",
+      "slot": "membership/lifestyle-kitchen",
+      "gap": true,
+      "prompt": "A warm, lived-in Indian home kitchen morning scene: a tall glass bottle of golden Organikaly mustard oil and a few pantry staples on a wooden counter with cream linen and brass, soft window light, a simple tadka cooking in a steel pan softly blurred behind. Homely, real, premium. Landscape composition with gentle space."
+    },
+    {
+      "name": "lifestyle-table",
+      "slot": "membership/lifestyle-table",
+      "gap": true,
+      "prompt": "A warm home dining moment: a simple home-cooked Indian meal on a wooden table, sabzi and dal tempered in golden mustard oil, cream cloth and brass vessels, gentle steam, soft morning light, a welcoming family-table feeling. Honest home food, not restaurant styling. Landscape composition with gentle space."
     }
   ]
 }

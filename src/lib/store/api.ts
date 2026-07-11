@@ -17,6 +17,8 @@ import type {
   RecipeDetail,
   RecipeType,
   ReviewsPage,
+  MembershipPlan,
+  MembershipView,
 } from './types';
 
 // Server-only base (e.g. https://api.organikaly.com/api/v1). Falls back to the
@@ -197,4 +199,48 @@ export async function getRecipeSitemapEntries(): Promise<SitemapEntry[]> {
     { items: [] },
   );
   return data.items ?? [];
+}
+
+// ---------------------------------------------------------------------------
+// Organikaly Club membership plan (MEMBERSHIP_CONTRACT §7). GET /store/membership
+// is public and returns the plan for everyone; the server never carries a customer
+// token, so it only reads `.plan`. If the backend is down (e.g. a build with no API)
+// we fall back to the seeded default plan so `/store/membership` always renders.
+// The bare INR / pct fields below mirror the backend's display-only derivations
+// (price = price_paise / 100; member_discount_pct = member_discount_bps / 100).
+export const DEFAULT_MEMBERSHIP_PLAN: MembershipPlan = {
+  id: '',
+  name: 'Organikaly Club',
+  slug: 'organikaly-club',
+  price_paise: 120000,
+  price: 1200,
+  duration_days: 365,
+  free_delivery_for_members: true,
+  member_discount_bps: 1200,
+  member_discount_pct: 12,
+  coin_earn_paise_per_coin: 1000,
+  member_earn_multiplier_pct: 200,
+  coin_redeem_value_paise: 100,
+  non_member_redeem_pct: 50,
+  max_redeem_pct_of_order: 20,
+  welcome_coins: 200,
+  benefits: [
+    'Free delivery on every order',
+    'Up to 12% member savings, every day',
+    'Earn Organikaly Coins 2x faster',
+    'Redeem coins at full value',
+    'Early access to launches and sales',
+    'Member-only pack sizes',
+    'Seasonal gifts and birthday treats',
+  ],
+  active: true,
+};
+
+export async function getMembershipPlan(): Promise<MembershipPlan> {
+  const view = await getJson<MembershipView | null>(
+    `/store/membership`,
+    { next: { revalidate: 300 } },
+    null,
+  );
+  return view?.plan ?? DEFAULT_MEMBERSHIP_PLAN;
 }

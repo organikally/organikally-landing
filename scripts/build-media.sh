@@ -91,11 +91,20 @@ configs=(
   "gen-recipe-cheela|recipe-cheela|3|2|1300"
   "gen-recipe-kachumber|recipe-kachumber|3|2|1300"
   "gen-recipe-haldi-doodh|recipe-haldi-doodh|3|2|1300"
+  # Organikaly Club membership + storefront lifestyle → public/media/membership/
+  "gen-club-hero|membership/club-hero|16|9|1600"          # members' welcome-box hero
+  "gen-benefit-delivery|membership/benefit-delivery|1|1|600"  # free-delivery emblem
+  "gen-benefit-savings|membership/benefit-savings|1|1|600"    # member-savings emblem
+  "gen-benefit-coins|membership/benefit-coins|1|1|600"        # reward-coins emblem
+  "gen-benefit-access|membership/benefit-access|1|1|600"      # early-access emblem
+  "gen-lifestyle-kitchen|membership/lifestyle-kitchen|3|2|1300" # home-kitchen lifestyle
+  "gen-lifestyle-table|membership/lifestyle-table|3|2|1300"     # home-table lifestyle
 )
 
 for row in "${configs[@]}"; do
   IFS='|' read -r src out aw ah w <<< "$row"
   want "$out" || continue
+  mkdir -p "$OUT/$(dirname "$out")"   # support subfoldered outputs (e.g. membership/…)
   in="$SRC/$src.jpg"; [ -f "$in" ] || in="$SRC/$src.png"
   [ -f "$in" ] || { echo "✗ missing $SRC/$src.{jpg,png}"; exit 1; }
 

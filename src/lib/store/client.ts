@@ -17,6 +17,11 @@ import type {
   ShippingQuote,
   StoreConfig,
   StorefrontProductDetail,
+  MembershipView,
+  MembershipCheckoutResponse,
+  MembershipVerifyResponse,
+  WalletView,
+  WalletPreview,
 } from './types';
 
 export const PUBLIC_API_BASE =
@@ -252,6 +257,39 @@ export const storeApi = {
       method: 'POST',
       body: { store_product_id, email },
     }),
+
+  // ── Organikaly Club membership & Coins wallet (MEMBERSHIP_CONTRACT §7) ─────
+  // GET /store/membership is Public: it always returns the plan, and includes the
+  // caller's membership/wallet only when a customer token is present. `auth: true`
+  // sends the Bearer token if there is one and is a harmless no-op for guests.
+  getMembership: () => request<MembershipView>('/store/membership', { auth: true }),
+
+  membershipCheckout: (
+    body: { plan_id?: string; auto_renew?: boolean },
+    idempotencyKey: string,
+  ) =>
+    request<MembershipCheckoutResponse>('/store/membership/checkout', {
+      method: 'POST',
+      body,
+      auth: true,
+      idempotencyKey,
+    }),
+
+  verifyMembership: (body: {
+    razorpay_payment_id: string;
+    razorpay_order_id: string;
+    razorpay_signature: string;
+  }) =>
+    request<MembershipVerifyResponse>('/store/membership/verify', {
+      method: 'POST',
+      body,
+      auth: true,
+    }),
+
+  getWallet: () => request<WalletView>('/store/wallet', { auth: true }),
+
+  walletPreview: (body: { subtotal_paise: number; redeem_coins: number }) =>
+    request<WalletPreview>('/store/wallet/preview', { method: 'POST', body, auth: true }),
 };
 
 export { newIdempotencyKey };

@@ -301,6 +301,112 @@ export type StoreOrderView = {
   paid_at?: string | null;
 };
 
+// ── Organikaly Club membership & Organikaly Coins wallet ────────────────────
+// (MEMBERSHIP_CONTRACT §7). Money is integer paise (§0.1); the bare INR `price`
+// and the `*_pct` fields are display-only derivations of the paise/bps fields.
+
+export type MembershipStatus = 'pending' | 'active' | 'expired' | 'cancelled';
+
+export type CoinReason =
+  | 'earn'
+  | 'redeem'
+  | 'redeem_release'
+  | 'welcome_bonus'
+  | 'admin_adjust'
+  | 'refund_reversal'
+  | 'renewal_bonus';
+
+// The single admin-editable "club product". Every number here is admin-driven —
+// the storefront reads them, never hardcodes them.
+export type MembershipPlan = {
+  id: string;
+  name: string;
+  slug: string;
+  price_paise: number;
+  price: number;
+  duration_days: number;
+  free_delivery_for_members: boolean;
+  member_discount_bps: number;
+  member_discount_pct: number;
+  coin_earn_paise_per_coin: number;
+  member_earn_multiplier_pct: number;
+  coin_redeem_value_paise: number;
+  non_member_redeem_pct: number;
+  max_redeem_pct_of_order: number;
+  welcome_coins: number;
+  benefits: string[];
+  active: boolean;
+};
+
+// The caller's own membership — present in MembershipView only for an authed customer.
+export type CustomerMembership = {
+  id: string;
+  status: MembershipStatus;
+  started_at?: string | null;
+  expires_at?: string | null;
+  auto_renew: boolean;
+  days_remaining?: number | null;
+  is_renewal: boolean;
+};
+
+// GET /store/membership — plan for everyone; membership/wallet only for a customer.
+export type MembershipView = {
+  plan: MembershipPlan;
+  membership: CustomerMembership | null;
+  is_member: boolean;
+  wallet: { balance_coins: number } | null;
+};
+
+export type WalletLedgerEntry = {
+  delta_coins: number;
+  reason: CoinReason;
+  balance_after: number;
+  at: string;
+  note?: string | null;
+};
+
+// GET /store/wallet
+export type WalletView = {
+  balance_coins: number;
+  member: boolean;
+  coin_redeem_value_paise: number;
+  effective_redeem_value_paise: number;
+  max_redeem_pct_of_order: number;
+  ledger: WalletLedgerEntry[];
+};
+
+// POST /store/wallet/preview — the exact coin discount checkout will apply (§3).
+export type WalletPreview = {
+  coin_discount_paise: number;
+  coin_discount: number;
+  effective_coins: number;
+  max_redeemable_coins: number;
+  per_coin_paise: number;
+};
+
+// The Razorpay block returned by both order and membership checkout (§7, §9).
+export type RazorpayBlock = {
+  key_id: string;
+  order_id: string;
+  amount: number;
+  currency: string;
+  name: string;
+  description: string;
+  prefill: { name: string; email: string; contact: string };
+};
+
+// POST /store/membership/checkout
+export type MembershipCheckoutResponse = {
+  membership: CustomerMembership;
+  razorpay: RazorpayBlock;
+};
+
+// POST /store/membership/verify (fast-path UX only; the webhook activates).
+export type MembershipVerifyResponse = {
+  status: 'active' | 'processing';
+  membership_id: string;
+};
+
 // Guest cart line kept in localStorage (`organikaly.cart`). The merge payload
 // uses only { store_product_id, qty } (§5.3.2 / §8); the extra display fields are
 // a UX snapshot so the guest drawer/page can render without a server round-trip.

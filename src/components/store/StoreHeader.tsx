@@ -34,6 +34,7 @@ const storeNav = [
   { label: 'Shop all', href: '/store/' },
   { label: 'Categories', href: '/store/#categories' },
   { label: 'Featured', href: '/store/#featured' },
+  { label: 'Organikaly Club', href: '/store/membership/' },
   { label: 'Recipes', href: '/recipes/' },
   { label: 'Journal', href: '/journal/' },
   { label: 'Our story', href: '/#proof' },

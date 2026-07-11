@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ShoppingBag, Trash2, ArrowLeft } from 'lucide-react';
+import { ShoppingBag, Trash2, ArrowLeft, Truck } from 'lucide-react';
 import { useCart } from '@/lib/store/cart-context';
 import { useAuth } from '@/lib/store/auth-context';
 import { formatPaise } from '@/lib/format';
@@ -172,6 +172,18 @@ export default function CartPageView() {
               You can build your cart as a guest. An account is needed only to pay.
             </p>
           )}
+
+          {/* Organikaly Club teaser (MEMBERSHIP_CONTRACT §7). */}
+          <Link
+            href="/store/membership/"
+            className="mt-4 flex items-center gap-2.5 rounded-card border border-forest/15 bg-cream px-4 py-3 text-sm transition hover:border-forest/30"
+          >
+            <Truck className="h-4 w-4 shrink-0 text-forest" strokeWidth={1.9} aria-hidden="true" />
+            <span className="text-ink-muted">
+              <span className="font-semibold text-forest">Join Organikaly Club</span> for free
+              delivery on every order.
+            </span>
+          </Link>
         </aside>
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { Coins } from 'lucide-react';
 import { useCart } from '@/lib/store/cart-context';
 import AddToCartButton from './AddToCartButton';
 import QuantityStepper from './QuantityStepper';
@@ -51,6 +52,23 @@ export default function PdpBuyBox({ product }: { product: StorefrontProductDetai
           Checkout
         </Link>
       </div>
+
+      {/* Organikaly Club member-benefit nudge (MEMBERSHIP_CONTRACT §7). */}
+      <Link
+        href="/store/membership/"
+        className="flex items-start gap-3 rounded-card border border-forest/15 bg-cream px-4 py-3 transition hover:border-forest/30"
+      >
+        <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-yellow/20">
+          <Coins className="h-4 w-4 text-forest" strokeWidth={1.9} aria-hidden="true" />
+        </span>
+        <span className="text-sm">
+          <span className="font-semibold text-forest">Organikaly Club</span>
+          <span className="text-ink-muted">
+            {' '}
+            members get free delivery and earn coins on every order.
+          </span>
+        </span>
+      </Link>
     </div>
   );
 }

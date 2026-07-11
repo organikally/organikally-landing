@@ -10,6 +10,7 @@ import StoreTrustBand from '@/components/store/StoreTrustBand';
 import StoreJournalRail from '@/components/store/StoreJournalRail';
 import ShopByConcern, { type Concern } from '@/components/store/ShopByConcern';
 import RecentlyViewed from '@/components/store/RecentlyViewed';
+import MembershipBanner from '@/components/store/MembershipBanner';
 import {
   getProducts,
   getCategories,
@@ -286,6 +287,7 @@ export default async function StoreListingPage({
               products={pulses?.items ?? []}
               viewAll={{ label: 'All pulses', href: '/store/?category=Pulses' }}
             />
+            <MembershipBanner />
             <StoreTrustBand />
           </>
         )}
