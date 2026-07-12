@@ -1,8 +1,14 @@
 import { Instagram, Facebook, Youtube } from 'lucide-react';
-import { site, nav } from '@/lib/site';
+import { site, footerNav } from '@/lib/site';
 import GoldStrip from '@/components/ui/GoldStrip';
 
 const year = 2026;
+
+const footerColumns = [
+  { heading: 'Account', items: footerNav.account },
+  { heading: 'Quick Links', items: footerNav.quickLinks },
+  { heading: 'Know Us Better', items: footerNav.knowUs },
+] as const;
 
 export default function SiteFooter() {
   return (
@@ -54,68 +60,35 @@ export default function SiteFooter() {
             </div>
           </div>
 
-          <nav aria-label="Sections">
-            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-yellow">Explore</h2>
-            <ul className="mt-4 space-y-2.5 text-cream/75">
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <a href={item.href} className="transition hover:text-yellow">
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div>
-            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-yellow">Contact</h2>
-            <ul className="mt-4 space-y-2.5 text-cream/75">
-              <li>
-                <a href={`mailto:${site.email}`} className="transition hover:text-yellow">
-                  {site.email}
-                </a>
-              </li>
-              <li>
-                <a href="/contact/" className="transition hover:text-yellow">
-                  Contact &amp; support
-                </a>
-              </li>
-              <li>Business address to be added</li>
-            </ul>
-          </div>
-
-          <nav aria-label="Policies">
-            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-yellow">Policies</h2>
-            <ul className="mt-4 space-y-2.5 text-cream/75">
-              <li>
-                <a href="/policies/shipping/" className="transition hover:text-yellow">
-                  Shipping
-                </a>
-              </li>
-              <li>
-                <a href="/policies/refunds/" className="transition hover:text-yellow">
-                  Cancellation &amp; refunds
-                </a>
-              </li>
-              <li>
-                <a href="/policies/terms/" className="transition hover:text-yellow">
-                  Terms of service
-                </a>
-              </li>
-              <li>
-                <a href="/policies/privacy/" className="transition hover:text-yellow">
-                  Privacy
-                </a>
-              </li>
-            </ul>
-          </nav>
+          {footerColumns.map((col) => (
+            <nav key={col.heading} aria-label={col.heading}>
+              <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-yellow">
+                {col.heading}
+              </h2>
+              <ul className="mt-4 space-y-2.5 text-cream/75">
+                {col.items.map((item) => (
+                  <li key={item.href}>
+                    <a href={item.href} className="transition hover:text-yellow">
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
         </div>
 
-        <div className="flex flex-col gap-2 py-7 text-sm text-cream/60 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4 py-7 text-sm text-cream/60 md:flex-row md:items-center md:justify-between">
           <p>
             {site.fssaiLicence} · © {year} Organikaly. All rights reserved.
           </p>
-          <p>Made with care in India.</p>
+          <nav aria-label="Legal" className="flex flex-wrap gap-x-5 gap-y-2">
+            <a href="/policies/shipping/" className="transition hover:text-yellow">Shipping</a>
+            <a href="/policies/refunds/" className="transition hover:text-yellow">Refunds</a>
+            <a href="/policies/terms/" className="transition hover:text-yellow">Terms</a>
+            <a href="/policies/privacy/" className="transition hover:text-yellow">Privacy</a>
+            <a href={`mailto:${site.email}`} className="transition hover:text-yellow">{site.email}</a>
+          </nav>
         </div>
       </div>
     </footer>

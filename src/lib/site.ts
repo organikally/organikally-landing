@@ -40,3 +40,31 @@ export const nav = [
   { label: 'Journal', href: '/journal/' },
   { label: 'FAQ', href: '/#faq' },
 ] as const;
+
+// Footer link columns, mirroring the reference's three groups. Trailing slashes
+// match `trailingSlash: true`. Legal/policy links live in the footer's bottom
+// legal row (see SiteFooter), not a column.
+export const footerNav = {
+  account: [
+    { label: 'Wholesale Club', href: '/wholesale/' },
+    { label: 'Cart', href: '/store/cart/' },
+    { label: 'Wishlist', href: '/store/account/' },
+    { label: 'Download App', href: '/download/' },
+  ],
+  quickLinks: [
+    { label: 'Recipes', href: '/recipes/' },
+    { label: 'News & Media', href: '/news/' },
+    { label: 'Blogs', href: '/journal/' },
+    { label: 'Career With Us', href: '/careers/' },
+    { label: 'FAQs', href: '/faqs/' },
+    { label: 'Track Order', href: '/store/orders/' },
+    { label: 'Contact Us', href: '/contact/' },
+  ],
+  knowUs: [
+    { label: 'About Us', href: '/about/' },
+    { label: 'Our Vision & Mission', href: '/vision/' },
+    { label: 'Process', href: '/process/' },
+    { label: 'Product Authentication', href: '/product-authentication/' },
+    { label: 'Meet The Farmers', href: '/farmers/' },
+  ],
+} as const;
