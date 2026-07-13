@@ -113,6 +113,22 @@ export default async function RecipePage({ params }: { params: Promise<Params> }
           {recipe.description}
         </p>
 
+        {/* How-to video — below the LCP hero, poster is the hero still so no
+            video bytes load until the visitor presses play. */}
+        {recipe.video_url && (
+          <section className="mt-12 md:mt-16">
+            <h2 className="font-display text-2xl text-ink">Watch how it&apos;s made</h2>
+            <video
+              src={recipe.video_url}
+              poster={recipe.hero_image}
+              controls
+              preload="none"
+              playsInline
+              className="mt-5 aspect-video w-full rounded-media bg-ink/5 object-contain shadow-media"
+            />
+          </section>
+        )}
+
         {/* Ingredients + method */}
         <div className="mt-12 grid gap-10 md:grid-cols-[0.85fr_1.3fr] md:gap-14">
           <aside>
