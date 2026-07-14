@@ -30,9 +30,13 @@ const AUTOPLAY_MS = 6500;
 export default function BannerCarousel({
   slides,
   firstIsH1 = false,
+  fullBleed = false,
 }: {
   slides: BannerSlide[];
   firstIsH1?: boolean;
+  /** Full-viewport hero: edge-to-edge, 100svh tall, no rounded corners. Used by
+   *  the homepage to lead with a cinematic stage; the store keeps the compact card. */
+  fullBleed?: boolean;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
@@ -98,7 +102,9 @@ export default function BannerCarousel({
     <section
       aria-roledescription="carousel"
       aria-label="Store highlights"
-      className="group/carousel relative overflow-hidden rounded-[22px] md:rounded-[30px]"
+      className={`group/carousel relative overflow-hidden ${
+        fullBleed ? 'rounded-none' : 'rounded-[22px] md:rounded-[30px]'
+      }`}
       onPointerEnter={() => setPaused(true)}
       onPointerLeave={() => setPaused(false)}
       onPointerDown={() => setStopped(true)}
@@ -131,22 +137,44 @@ export default function BannerCarousel({
                   loading={i === 0 ? 'eager' : 'lazy'}
                   fetchPriority={i === 0 ? 'high' : 'auto'}
                   decoding="async"
-                  sizes="(min-width: 1280px) 1160px, 100vw"
-                  className="h-[440px] w-full object-cover sm:h-[400px] md:h-[430px] lg:aspect-[21/8] lg:h-auto"
+                  sizes={fullBleed ? '100vw' : '(min-width: 1280px) 1160px, 100vw'}
+                  className={
+                    fullBleed
+                      ? 'h-[100svh] min-h-[540px] w-full object-cover'
+                      : 'h-[440px] w-full object-cover sm:h-[400px] md:h-[430px] lg:aspect-[21/8] lg:h-auto'
+                  }
                 />
               </picture>
 
-              {/* Legibility scrim, heavier on the copy side. */}
+              {/* Legibility scrim, heavier on the copy side. Full-bleed keeps a richer
+                  green tint edge-to-edge (so a bright horizon never washes to white) and
+                  adds a bottom fade so the copy + dots hold over a tall image. */}
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-r from-forest-deep/85 via-forest-deep/45 to-forest-deep/10 sm:via-forest-deep/35 sm:to-transparent"
+                className={
+                  fullBleed
+                    ? 'absolute inset-0 bg-gradient-to-r from-forest-deep/90 via-forest-deep/60 to-forest-deep/40'
+                    : 'absolute inset-0 bg-gradient-to-r from-forest-deep/85 via-forest-deep/45 to-forest-deep/10 sm:via-forest-deep/35 sm:to-transparent'
+                }
               />
+              {fullBleed && (
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-forest-deep/70 to-transparent"
+                />
+              )}
 
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full px-6 pb-14 pt-6 sm:px-10 sm:pb-10 md:px-14">
-                  <div className="max-w-xl">
+                <div
+                  className={
+                    fullBleed
+                      ? 'mx-auto w-full max-w-container px-6 sm:px-10 md:px-10'
+                      : 'w-full px-6 pb-14 pt-6 sm:px-10 sm:pb-10 md:px-14'
+                  }
+                >
+                  <div className={fullBleed ? 'max-w-2xl' : 'max-w-xl'}>
                     {s.eyebrow && (
-                      <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-yellow">
+                      <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-yellow sm:text-[0.8rem]">
                         {s.eyebrow}
                         {s.hindi && (
                           <span className="font-deva ml-2.5 normal-case tracking-normal text-paper/80">
@@ -155,11 +183,21 @@ export default function BannerCarousel({
                         )}
                       </p>
                     )}
-                    <Title className="mt-3 font-display text-3xl leading-[1.08] text-paper sm:text-4xl md:text-5xl">
+                    <Title
+                      className={`mt-3 font-display leading-[1.06] text-paper ${
+                        fullBleed
+                          ? 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl'
+                          : 'text-3xl sm:text-4xl md:text-5xl'
+                      }`}
+                    >
                       {s.title}
                     </Title>
                     {s.body && (
-                      <p className="mt-3 max-w-md text-[0.95rem] leading-relaxed text-paper/85 md:text-base">
+                      <p
+                        className={`mt-3 leading-relaxed text-paper/85 ${
+                          fullBleed ? 'max-w-lg text-base md:text-lg' : 'max-w-md text-[0.95rem] md:text-base'
+                        }`}
+                      >
                         {s.body}
                       </p>
                     )}
@@ -214,7 +252,7 @@ export default function BannerCarousel({
 
           {/* Dots — the active one stretches gold. Each button carries a padded
               hit area well beyond the visual dot (touch-target minimums). */}
-          <div className="absolute inset-x-0 bottom-2 flex justify-center">
+          <div className={`absolute inset-x-0 flex justify-center ${fullBleed ? 'bottom-7' : 'bottom-2'}`}>
             <div className="flex items-center rounded-full bg-ink/35 px-2 py-0.5 backdrop-blur-sm">
               {slides.map((s, i) => (
                 <button
