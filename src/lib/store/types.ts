@@ -47,6 +47,7 @@ export type StorefrontProduct = {
   currency: string;
   primary_image: string;
   images: string[];
+  video_url?: string | null;
   badges: string[];
   featured: boolean;
   is_hero: boolean;

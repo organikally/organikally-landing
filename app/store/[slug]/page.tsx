@@ -118,7 +118,7 @@ export default async function ProductDetailPage({
         </nav>
 
         <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:gap-14">
-          <Gallery images={images} alt={product.name} />
+          <Gallery images={images} alt={product.name} video={product.video_url} />
 
           <div className="flex flex-col">
             <div className="flex flex-wrap items-center gap-2">
