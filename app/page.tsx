@@ -7,6 +7,7 @@ import FloatingCart from '@/components/store/FloatingCart';
 import BannerCarousel, { type BannerSlide } from '@/components/store/BannerCarousel';
 import CategoryRail from '@/components/store/CategoryRail';
 import ProductRail from '@/components/store/ProductRail';
+import ProductCard from '@/components/store/ProductCard';
 import ShopByConcern, { type Concern } from '@/components/store/ShopByConcern';
 import StoreTrustBand from '@/components/store/StoreTrustBand';
 import MembershipBanner from '@/components/store/MembershipBanner';
@@ -31,12 +32,11 @@ import {
   getHero,
 } from '@/lib/store/api';
 
-// The homepage is now a store-forward landing: the film hero is gone and the
-// storefront's own merchandising (banner, categories, live product rails,
-// shop-by-concern, membership, trust) leads, with the brand narrative
-// (story → process → benefits → compare → proof → recipes → reviews → journal →
-// faq → conversion) below it. A visitor scrolls once and gets the whole gist —
-// what we sell AND why us. ISR (§2.3): tagged fetches revalidate on catalog publish.
+// The homepage is a brand-first landing, deliberately distinct from /store: a
+// full-screen hero, then a two-row bestseller/featured showcase, then the oil's
+// traditional journey, then the Club — before the rest of the shop and the brand
+// narrative. Where /store leads with merchandising, home leads with the story.
+// ISR (§2.3): tagged fetches revalidate on catalog publish.
 export const revalidate = 300;
 
 /** Integer-rupee display for banner copy — ₹999, never ₹999.00. */
@@ -55,8 +55,15 @@ export default async function Home() {
     getProducts({ page_size: 100 }),
   ]);
 
+  // Two-row showcase: the featured/bestseller picks first, topped up from the
+  // catalogue to a clean eight (two rows of four on desktop).
+  const featuredIds = new Set(featured.map((p) => p.id));
+  const showcase = [
+    ...featured,
+    ...(everything?.items ?? []).filter((p) => !featuredIds.has(p.id)),
+  ].slice(0, 8);
+
   // Shop-by-Concern curation — merchandising groups over the live catalog.
-  // Slugs that aren't published simply drop out of their shelf.
   const bySlug = new Map((everything?.items ?? []).map((p) => [p.slug, p]));
   const pick = (slugs: string[]) =>
     slugs.map((s) => bySlug.get(s)).filter((p): p is NonNullable<typeof p> => Boolean(p));
@@ -123,13 +130,10 @@ export default async function Home() {
     },
   ];
 
-  // Fallbacks mirror StoreConfig's model defaults — only reached if the config
-  // fetch itself degrades, in which case they match what checkout would charge.
   const freeShip = inr(config?.free_shipping_threshold_paise ?? 99900);
   const flatFee = inr(config?.flat_fee_paise ?? 4900);
 
-  // Above-the-fold stage. Copy stays within the approved claim set (cold-pressed /
-  // organic / unrefined are process & sourcing descriptors, FSSAI-safe). The first
+  // Full-screen hero stage. Copy stays within the approved claim set; the first
   // slide's image is the LCP element — a static, pre-optimized triplet, never video.
   const slides: BannerSlide[] = [
     {
@@ -143,7 +147,7 @@ export default async function Home() {
       cta: hero
         ? { label: 'Shop mustard oil', href: `/store/${hero.slug}/` }
         : { label: 'Shop oils', href: '/store/?category=Oils' },
-      cta2: { label: 'See the full range', href: '#catalog' },
+      cta2: { label: 'See the full range', href: '#featured' },
     },
     {
       key: 'pantry',
@@ -153,7 +157,7 @@ export default async function Home() {
       title: 'One pantry. Zero shortcuts.',
       body: 'Organic dals, hand-churned ghee, sun-cured achaar — made the way home remembers.',
       cta: { label: 'Browse categories', href: '#range' },
-      cta2: { label: 'Shop featured picks', href: '#featured' },
+      cta2: { label: 'Our story', href: '#story' },
     },
     {
       key: 'delivery',
@@ -171,29 +175,60 @@ export default async function Home() {
       <JsonLd data={[organizationSchema(), websiteSchema(), productSchema(), faqSchema()]} />
       <SiteHeader />
 
-      {/* Top padding clears the fixed glass header pill (the old sticky film stage
-          used to provide this clearance). */}
-      <main id="main" className="pt-24 md:pt-28">
-        {/* ── The shop, up front ─────────────────────────────────────────── */}
-        <div className="mx-auto max-w-container px-5 pb-2 md:px-10">
-          <BannerCarousel slides={slides} firstIsH1 />
+      {/* No top padding — the full-screen hero sits under the floating header. */}
+      <main id="main">
+        {/* 1 — Full-screen cinematic hero. */}
+        <BannerCarousel slides={slides} firstIsH1 fullBleed />
 
+        {/* 2 — Two rows of bestsellers / featured picks. */}
+        {showcase.length > 0 && (
+          <section
+            id="featured"
+            className="mx-auto max-w-container scroll-mt-36 px-5 pt-16 md:px-10 md:pt-24"
+            aria-label="Bestsellers and featured picks"
+          >
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <p className="eyebrow">Handpicked</p>
+                <h2 className="mt-3 font-display text-2xl text-ink md:text-3xl">
+                  Bestsellers &amp; featured picks
+                </h2>
+              </div>
+              <Link
+                href="/store/#catalog"
+                className="group hidden shrink-0 items-center gap-1.5 pb-1 text-sm font-semibold text-forest transition-colors hover:text-forest-deep sm:inline-flex"
+              >
+                Shop all
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+            <div className="mt-8 grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-6">
+              {showcase.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* 3 — The Traditional Journey of Our Oil (seed → bottle). */}
+        <Sourcing />
+
+        {/* 4 — Organikaly Club membership. */}
+        <div className="mx-auto mt-16 max-w-container px-5 md:mt-24 md:px-10">
+          <MembershipBanner />
+        </div>
+
+        {/* 5 — Then the rest: brand story, the wider shop, and everything else. */}
+        <Story />
+        <Benefits />
+        <Compare />
+        <Proof />
+
+        <div className="mx-auto mt-16 max-w-container px-5 md:mt-24 md:px-10">
           <div id="range" className="scroll-mt-36">
             <CategoryRail categories={categories} />
           </div>
-
-          {/* Curated picks, not sales data — the numerals are curation order. */}
-          <ProductRail
-            id="featured"
-            eyebrow="Handpicked"
-            title="Featured picks"
-            products={featured}
-            viewAll={{ label: 'View all', href: '/store/#catalog' }}
-            ranked
-          />
-
           <ShopByConcern concerns={concerns} />
-
           <ProductRail
             eyebrow="The ghani section"
             title="Cold-pressed oils"
@@ -206,8 +241,6 @@ export default async function Home() {
             products={pulses?.items ?? []}
             viewAll={{ label: 'All pulses', href: '/store/?category=Pulses' }}
           />
-
-          <MembershipBanner />
           <StoreTrustBand />
 
           {config && config.store_enabled === false && (
@@ -217,10 +250,7 @@ export default async function Home() {
             </p>
           )}
 
-          {/* Full-range CTA — the landing shows the highlights; the whole grid lives
-              at /store. Also the in-page #catalog target for the category / concern
-              "view all" links. */}
-          <div id="catalog" className="scroll-mt-36 mt-14 md:mt-20">
+          <div id="catalog" className="mt-14 scroll-mt-36 md:mt-20">
             <div className="overflow-hidden rounded-card bg-forest px-6 py-10 text-center md:px-12 md:py-14">
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-yellow">
                 The full pantry
@@ -243,12 +273,6 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* ── Why us — the brand gist, told in one scroll ─────────────────── */}
-        <Story />
-        <Sourcing />
-        <Benefits />
-        <Compare />
-        <Proof />
         <Recipes />
         <SocialProof />
         <Quiz />
