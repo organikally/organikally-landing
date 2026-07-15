@@ -108,7 +108,7 @@ export default async function Home() {
         {showcase.length > 0 && (
           <section
             id="range"
-            className="mx-auto max-w-container scroll-mt-36 px-5 pt-16 md:px-10 md:pt-24"
+            className="mx-auto max-w-container scroll-mt-36 px-5 py-16 md:px-10 md:py-24"
             aria-label="Bestsellers and featured picks"
           >
             <div className="flex items-end justify-between gap-4">
@@ -137,8 +137,10 @@ export default async function Home() {
         {/* 3 — The Traditional Journey of Our Oil (seed → bottle). */}
         <Sourcing />
 
-        {/* 4 — Organikaly Club membership. */}
-        <div className="mx-auto mt-16 max-w-container px-5 md:mt-24 md:px-10">
+        {/* 4 — Organikaly Club membership. The banner carries its own top margin
+            (mt-14/20); the wrapper only adds width + a matching bottom gap so the
+            forest card doesn't butt against the cream Story section below. */}
+        <div className="mx-auto max-w-container px-5 pb-16 md:px-10 md:pb-24">
           <MembershipBanner />
         </div>
 
@@ -148,7 +150,9 @@ export default async function Home() {
         <Compare />
         <Proof />
 
-        <div className="mx-auto mt-16 max-w-container px-5 md:mt-24 md:px-10">
+        {/* Trust band + full-range CTA. StoreTrustBand brings its own top margin;
+            the wrapper adds width + a matching bottom gap before Recipes. */}
+        <div className="mx-auto max-w-container px-5 pb-16 md:px-10 md:pb-24">
           <StoreTrustBand />
 
           {config && config.store_enabled === false && (
