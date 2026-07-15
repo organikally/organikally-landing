@@ -5,10 +5,7 @@ import SiteFooter from '@/components/layout/SiteFooter';
 import StoreProviders from '@/components/store/StoreProviders';
 import FloatingCart from '@/components/store/FloatingCart';
 import BannerCarousel, { type BannerSlide } from '@/components/store/BannerCarousel';
-import CategoryRail from '@/components/store/CategoryRail';
-import ProductRail from '@/components/store/ProductRail';
 import ProductCard from '@/components/store/ProductCard';
-import ShopByConcern, { type Concern } from '@/components/store/ShopByConcern';
 import StoreTrustBand from '@/components/store/StoreTrustBand';
 import MembershipBanner from '@/components/store/MembershipBanner';
 import Story from '@/components/sections/Story';
@@ -24,13 +21,7 @@ import Faq from '@/components/sections/Faq';
 import Conversion from '@/components/sections/Conversion';
 import JsonLd from '@/components/seo/JsonLd';
 import { organizationSchema, websiteSchema, productSchema, faqSchema } from '@/lib/schema';
-import {
-  getProducts,
-  getCategories,
-  getStoreConfig,
-  getFeatured,
-  getHero,
-} from '@/lib/store/api';
+import { getProducts, getStoreConfig, getFeatured, getHero } from '@/lib/store/api';
 
 // The homepage is a brand-first landing, deliberately distinct from /store: a
 // full-screen hero, then a two-row bestseller/featured showcase, then the oil's
@@ -45,90 +36,22 @@ function inr(paise: number): string {
 }
 
 export default async function Home() {
-  const [categories, featured, hero, config, oils, pulses, everything] = await Promise.all([
-    getCategories(),
+  const [featured, hero, config, everything] = await Promise.all([
     getFeatured(),
     getHero(),
     getStoreConfig(),
-    getProducts({ category: 'Oils', sort: 'featured', page_size: 8 }),
-    getProducts({ category: 'Pulses', sort: 'featured', page_size: 8 }),
     getProducts({ page_size: 100 }),
   ]);
 
   // Two-row showcase: the featured/bestseller picks first, topped up from the
-  // catalogue to a clean eight (two rows of four on desktop).
+  // catalogue to a clean eight (two rows of four on desktop). Products live ONLY
+  // here on the homepage — category/concern browsing and the deeper rails belong
+  // to /store, so the two pages stay distinct.
   const featuredIds = new Set(featured.map((p) => p.id));
   const showcase = [
     ...featured,
     ...(everything?.items ?? []).filter((p) => !featuredIds.has(p.id)),
   ].slice(0, 8);
-
-  // Shop-by-Concern curation — merchandising groups over the live catalog.
-  const bySlug = new Map((everything?.items ?? []).map((p) => [p.slug, p]));
-  const pick = (slugs: string[]) =>
-    slugs.map((s) => bySlug.get(s)).filter((p): p is NonNullable<typeof p> => Boolean(p));
-  const concerns: Concern[] = [
-    {
-      key: 'heart-health',
-      label: 'Heart-Health',
-      products: pick([
-        'cold-pressed-yellow-mustard-oil-1l',
-        'cold-pressed-groundnut-mungfali-oil-1l',
-        'cold-pressed-sesame-til-oil-1l',
-        'cold-pressed-yellow-mustard-oil-5l',
-      ]),
-    },
-    {
-      key: 'weight-management',
-      label: 'Weight Management',
-      products: pick([
-        'organic-moong-dal-split-1kg',
-        'organic-toor-arhar-dal-1kg',
-        'stone-ground-whole-wheat-atta-5kg',
-        'cold-pressed-virgin-coconut-oil-500ml',
-      ]),
-    },
-    {
-      key: 'diabetes-friendly',
-      label: 'Diabetes Friendly',
-      products: pick([
-        'organic-chana-dal-1kg',
-        'organic-rajma-kidney-beans-1kg',
-        'stone-ground-whole-wheat-atta-5kg',
-        'cold-pressed-sesame-til-oil-1l',
-      ]),
-    },
-    {
-      key: 'bone-muscle',
-      label: 'Bone & Muscle Health',
-      products: pick([
-        'organic-urad-dal-whole-black-1kg',
-        'a2-desi-cow-ghee-bilona-500ml',
-        'organic-rajma-kidney-beans-1kg',
-        'organic-moong-dal-split-1kg',
-      ]),
-    },
-    {
-      key: 'low-energy',
-      label: 'Low Energy',
-      products: pick([
-        'organic-jaggery-gur-1kg',
-        'raw-forest-honey-500g',
-        'desi-khand-raw-cane-sugar-1kg',
-        'a2-desi-cow-ghee-bilona-500ml',
-      ]),
-    },
-    {
-      key: 'digestion',
-      label: 'Digestion Issues',
-      products: pick([
-        'organic-turmeric-haldi-powder-200g',
-        'organic-coriander-dhania-powder-200g',
-        'mango-pickle-aam-ka-achaar-500g',
-        'organic-moong-dal-split-1kg',
-      ]),
-    },
-  ];
 
   const freeShip = inr(config?.free_shipping_threshold_paise ?? 99900);
   const flatFee = inr(config?.flat_fee_paise ?? 4900);
@@ -147,7 +70,7 @@ export default async function Home() {
       cta: hero
         ? { label: 'Shop mustard oil', href: `/store/${hero.slug}/` }
         : { label: 'Shop oils', href: '/store/?category=Oils' },
-      cta2: { label: 'See the full range', href: '#featured' },
+      cta2: { label: 'See the range', href: '#range' },
     },
     {
       key: 'pantry',
@@ -156,7 +79,7 @@ export default async function Home() {
       eyebrow: 'The whole pantry',
       title: 'One pantry. Zero shortcuts.',
       body: 'Organic dals, hand-churned ghee, sun-cured achaar — made the way home remembers.',
-      cta: { label: 'Browse categories', href: '#range' },
+      cta: { label: 'Shop the pantry', href: '/store/' },
       cta2: { label: 'Our story', href: '#story' },
     },
     {
@@ -180,10 +103,11 @@ export default async function Home() {
         {/* 1 — Full-screen cinematic hero. */}
         <BannerCarousel slides={slides} firstIsH1 fullBleed />
 
-        {/* 2 — Two rows of bestsellers / featured picks. */}
+        {/* 2 — Two rows of bestsellers / featured picks. The ONLY product grid on
+            the homepage (deeper browsing lives on /store). Holds the #range anchor. */}
         {showcase.length > 0 && (
           <section
-            id="featured"
+            id="range"
             className="mx-auto max-w-container scroll-mt-36 px-5 pt-16 md:px-10 md:pt-24"
             aria-label="Bestsellers and featured picks"
           >
@@ -225,22 +149,6 @@ export default async function Home() {
         <Proof />
 
         <div className="mx-auto mt-16 max-w-container px-5 md:mt-24 md:px-10">
-          <div id="range" className="scroll-mt-36">
-            <CategoryRail categories={categories} />
-          </div>
-          <ShopByConcern concerns={concerns} />
-          <ProductRail
-            eyebrow="The ghani section"
-            title="Cold-pressed oils"
-            products={oils?.items ?? []}
-            viewAll={{ label: 'All oils', href: '/store/?category=Oils' }}
-          />
-          <ProductRail
-            eyebrow="Everyday staples"
-            title="Dals & pulses"
-            products={pulses?.items ?? []}
-            viewAll={{ label: 'All pulses', href: '/store/?category=Pulses' }}
-          />
           <StoreTrustBand />
 
           {config && config.store_enabled === false && (
