@@ -1,0 +1,518 @@
+# Dropped rows — every drop, with reason
+
+Raw rows: **1592** · kept: **1109** · dropped: **483** (unique dropped queries: 467).
+
+Nothing disappears silently. Each dropped query below is off the relevant mustard-oil buyer/consumer intent for a India-based D2C brand.
+
+| Reason | Count | Why dropped |
+|---|---|---|
+| `competitor-brand` | 221 | Navigational query for a rival brand (Fortune, Dhara, Patanjali, etc.) — we don't write competitor pages. |
+| `non-buyer-intent` | 61 | Design/branding/misc noise (logo, drawing, spelling, empty bottle, gibberish). |
+| `b2b-industrial` | 60 | B2B/industrial: pressing machines, extraction, distributorship, NCDEX, yield, lab tests. |
+| `off-topic-entity` | 31 | 'Mustard seed' as biblical/place/other entity — different topic entirely. |
+| `retailer-navigation` | 29 | Marketplace/retailer lookup (Amazon, Zepto, Costco, Walmart…) — not our content to own. |
+| `local-no-gbp` | 19 |  |
+| `foreign-market` | 16 | Foreign market/retail (Pakistan, Bangladesh, Australia, US retail) — India D2C scope. |
+| `other-oil-not-mustard` | 16 | About a different oil (fish/linseed/palm/castor) or generic barrel/oil cost. |
+| `agronomy-not-buyer` | 11 |  |
+| `sensitive-out-of-scope` | 3 | Sensitive medical/fertility claim a food brand should not advise on. |
+
+---
+
+
+### `competitor-brand` (221)
+
+- aastha mustard oil reviews
+- agmark mustard oil
+- agrola yellow mustard oil
+- amul mustard oil
+- anupam mustard oil
+- anveshan black mustard oil
+- anveshan mustard oil
+- anveshan mustard oil review
+- anveshan mustard oil reviews
+- anveshan yellow mustard oil
+- ashirwad mustard oil
+- dabur cold pressed mustard oil
+- dabur mustard oil
+- dabur mustard oil reviews
+- dalda kachi ghani mustard oil
+- dalda mustard oil
+- dalda mustard oil review
+- dhara kachi ghani mustard oil
+- dhara mustard oil
+- dhara mustard oil 1 litre price
+- dhara mustard oil 5 litre
+- dhara mustard oil 5 litre price
+- dhara mustard oil price
+- dhara mustard oil review
+- dhara mustard oil reviews
+- dhara mustard oil zepto
+- doctor choice mustard oil
+- double engine mustard oil
+- double filtered mustard oil
+- double hiran mustard oil
+- emami healthy and tasty mustard oil
+- emami kachi ghani mustard oil
+- emami mustard oil
+- emami mustard oil price
+- emami mustard oil review
+- engine brand mustard oil
+- engine mustard oil
+- engine mustard oil 1 ltr price
+- engine mustard oil 15 litre
+- engine mustard oil 15 litre price
+- engine mustard oil 5 litre
+- engine mustard oil 5 litre price
+- engine mustard oil price
+- engine mustard oil price 15kg
+- engine mustard oil review
+- engine mustard oil zepto
+- first crop mustard oil
+- fortune 5 litre mustard oil
+- fortune kachi ghani mustard oil
+- fortune kachi ghani mustard oil price
+- fortune mustard oil
+- fortune mustard oil 1 litre price
+- fortune mustard oil 15 litre price
+- fortune mustard oil 5 litre price
+- fortune mustard oil price
+- fortune mustard oil price 15kg
+- fortune mustard oil price 15kg flipkart
+- fortune mustard oil price 1kg
+- fortune mustard oil review
+- fortune mustard oil reviews
+- fortune mustard oil zepto
+- fortune pehli dhaar mustard oil
+- freedom mustard oil
+- gagan mustard oil
+- ganesh mustard oil
+- ganesh mustard oil 1 litre price
+- gemini mustard oil
+- gokul mustard oil
+- good life kachi ghani mustard oil
+- good life mustard oil
+- gopal mustard oil
+- gramiyaa mustard oil
+- gulab cold pressed mustard oil
+- gulab mustard oil
+- how is dhara mustard oil
+- how is jivo mustard oil
+- how is pansari mustard oil
+- indic wisdom mustard oil
+- janmay mustard oil
+- jiva mustard oil
+- jivo cold pressed mustard oil
+- jivo kachi ghani mustard oil
+- jivo mustard oil
+- jivo mustard oil 1 litre price
+- jivo mustard oil 5 litre
+- jivo mustard oil 5 ltr price
+- jivo mustard oil price
+- jivo mustard oil review
+- jivo mustard oil reviews
+- jivo yellow mustard oil
+- jyoti kiran mustard oil
+- kachi ghani mustard oil fortune
+- kanodia mustard oil
+- kanodia mustard oil 15 ltr price
+- kanodia yellow mustard oil
+- kings mustard oil
+- ktc mustard oil
+- kunji mustard oil reviews
+- kwality mustard oil price
+- lal gulab mustard oil
+- lal gulab mustard oil 15kg price
+- lal kila mustard oil
+- lal qila mustard oil
+- laxmi chhap mustard oil
+- laxmi mustard oil
+- laxmi mustard oil 1 litre price
+- laxmi mustard oil 15kg price
+- laxmi mustard oil 5 litre price
+- life ok mustard oil price 15kg
+- mahakosh mustard oil
+- manas mustard oil reviews
+- mashal mustard oil
+- mustard oil dabur
+- mustard oil dalda
+- mustard oil dhara
+- mustard oil emami
+- mustard oil engine
+- mustard oil engine brand
+- mustard oil fortune
+- mustard oil fortune 1 litre
+- mustard oil jivo
+- mustard oil patanjali
+- mustard oil qutub minar
+- mustard oil rate in rajasthan
+- mustard oil tata
+- mustard oil vs saffola gold
+- mustard oil yandilla
+- nakoda mustard oil
+- natco mustard oil
+- nature fresh mustard oil
+- natureland mustard oil
+- natureland organics mustard oil
+- neeraj mustard oil
+- netaji mustard oil
+- nihar mustard oil
+- nutrela mustard oil
+- oreal mustard oil
+- oreal mustard oil review
+- oreal yellow mustard oil
+- organic india mustard oil
+- organic tattva mustard oil
+- p mark mustard oil
+- pansari mustard oil
+- pansari mustard oil review
+- patanjali kachi ghani mustard oil
+- patanjali mustard oil
+- patanjali mustard oil price
+- patanjali mustard oil review
+- patanjali mustard oil reviews
+- patanjali mustard oil zepto
+- pran mustard oil
+- price of engine mustard oil
+- price of fortune mustard oil
+- price of fortune mustard oil 1 litre
+- price of patanjali mustard oil
+- q brand mustard oil
+- quality of dhara mustard oil
+- quality of engine mustard oil
+- queen mustard oil
+- qutub minar mustard oil
+- qutub minar mustard oil price
+- qutub minar mustard oil price 1 litre
+- r brand mustard oil
+- radhuni mustard oil
+- raja bhoj mustard oil
+- rajdhani mustard oil
+- rajdhani mustard oil 1 ltr price
+- rajdhani mustard oil 5 ltr price
+- rani mustard oil
+- ravindra mustard oil
+- rcm mustard oil
+- rosier mustard oil
+- saffola cold pressed mustard oil
+- saffola mustard oil
+- saloni mustard oil
+- saloni mustard oil price
+- saloni mustard oil price 15kg
+- saloni mustard oil price 1kg
+- sarfa mustard oil
+- sarfa mustard oil review
+- scooter mustard oil
+- scooter mustard oil price 15kg
+- shalimar mustard oil
+- sonali mustard oil reviews
+- tata cold pressed mustard oil
+- tata mustard oil
+- tata mustard oil 5 litre
+- tata mustard oil reviews
+- tata mustard oil zepto
+- tata sampann mustard oil
+- tata simply better mustard oil
+- tattva organic mustard oil
+- tez mustard oil
+- tez mustard oil review
+- two brothers mustard oil
+- v brand mustard oil
+- vatika mustard oil
+- vedika mustard oil
+- vedika organics mustard oil
+- veer balak mustard oil
+- veer brand mustard oil
+- verka mustard oil
+- vibhor mustard oil
+- vimal mustard oil
+- vimal mustard oil price 5 litre
+- vishal mega mart mustard oil price
+- yandilla mustard oil
+- yellow mustard oil anveshan
+- yellow mustard oil fortune
+- yellow mustard oil kanodia
+- z strong mustard oil
+- zaika mustard oil
+- zaika mustard oil review
+- zamindar mustard oil
+- zamindar mustard oil price
+- zamindara mustard oil
+- zaza mustard oil
+- zaza mustard oil price
+- zaza yellow mustard oil
+- zepto fortune mustard oil
+- zoya mustard oil
+
+### `non-buyer-intent` (61)
+
+- best mustard oil xzimer
+- does better oil make a difference
+- does it matter what oil you use
+- good mustard oil
+- is mustard oil
+- like mustard oil
+- more mustard oil
+- mustard oil
+- mustard oil bottle
+- mustard oil bottle without label
+- mustard oil can be separated from water by
+- mustard oil cane
+- mustard oil canister
+- mustard oil classification
+- mustard oil colour
+- mustard oil dispenser
+- mustard oil drawing
+- mustard oil empty bottle price
+- mustard oil jaipur
+- mustard oil jammu
+- mustard oil jar
+- mustard oil jhajjar
+- mustard oil jhanjh
+- mustard oil label
+- mustard oil label design
+- mustard oil label design template
+- mustard oil like urine
+- mustard oil logo
+- mustard oil logo design
+- mustard oil news
+- mustard oil news today
+- mustard oil photo
+- mustard oil pouch
+- mustard oil quantity
+- mustard oil quora
+- mustard oil quotes
+- mustard oil reaction
+- mustard oil same
+- mustard oil seeds
+- mustard oil similar
+- mustard oil small
+- mustard oil small pack
+- mustard oil spelling
+- mustard oil spray bottle
+- mustard oil tin
+- mustard oil versus mustard oil
+- mustard oil waste
+- mustard oil website
+- mustard oil weight
+- mustard oil xzimer
+- mustard yellow oil paint
+- oil mustard oil
+- should we keep oil overnight
+- wasabi mustard
+- waste of mustard oil
+- waste oil
+- who is mustard
+- will mustard oil kill grass
+- x mustard live
+- yellow beans mustard oil
+- yellow heart mustard oil
+
+### `b2b-industrial` (60)
+
+- cold pressed mustard oil machine
+- density of mustard oil
+- hsn code of mustard oil
+- kachi ghani mustard oil machine price
+- mustard oil adulteration test
+- mustard oil boiling point
+- mustard oil business
+- mustard oil cake
+- mustard oil cake price
+- mustard oil cold pressed machine
+- mustard oil density
+- mustard oil distributorship
+- mustard oil expeller
+- mustard oil expeller machine
+- mustard oil expeller machine price
+- mustard oil expeller price
+- mustard oil extraction cost
+- mustard oil extraction machine
+- mustard oil extraction machine for home
+- mustard oil extraction machine price
+- mustard oil filter machine
+- mustard oil filter machine price
+- mustard oil freezing point
+- mustard oil grinding machine
+- mustard oil gst rate
+- mustard oil gst rate and hsn code
+- mustard oil hsn
+- mustard oil hsn code
+- mustard oil hsn code and gst rate
+- mustard oil lab machine price
+- mustard oil litre to kg
+- mustard oil live rate
+- mustard oil machine
+- mustard oil machine for home
+- mustard oil machine price
+- mustard oil making machine
+- mustard oil ncdex
+- mustard oil nic code
+- mustard oil nikalne ki machine
+- mustard oil nikalne ki machine price
+- mustard oil quality check machine
+- mustard oil reaction class 12
+- mustard oil refinery machine price
+- mustard oil seed price
+- mustard oil test for amines
+- mustard oil testing lab machine price
+- mustard oil trademark class
+- mustard oil weight per liter
+- mustard oil yield per acre
+- mustard oil yield per kg
+- new gst rate on mustard oil
+- price of mustard seed per kg
+- top mustard oil exporters in india
+- top mustard oil exporting countries
+- top mustard oil importing countries
+- top mustard oil manufacturers in bharatpur
+- top mustard oil manufacturers in india
+- top mustard oil manufacturers in jaipur
+- top mustard oil producing countries
+- viscosity of mustard oil
+
+### `off-topic-entity` (31)
+
+- how do i use mustard seed
+- mustard seed like
+- mustard seed like faith
+- mustard seed like faith bible verse
+- mustard seed like insect
+- mustard seed quilt pattern
+- mustard seed quote
+- mustard seed quote bible
+- mustard seed quran
+- mustard seed reviews
+- mustard seed similar
+- mustard seed verse
+- mustard seed without skin
+- mustard seed yellow
+- mustard seed yellow vs black
+- mustard seed youth center
+- mustard seed zip code
+- mustard seed zkteco
+- mustard seed zone
+- price of mustard seed
+- similar to mustard seed
+- what is mustard seed
+- what is the colour of mustard seed
+- what is the size of mustard seed
+- where is mustard seed hill
+- where is mustard seed in the bible
+- where is mustard seed market
+- where is mustard seed ranch
+- where is mustard seed restaurant
+- whole mustard seed
+- whole mustard seeds
+
+### `retailer-navigation` (29)
+
+- amazon mustard oil
+- asda mustard oil
+- coles mustard oil
+- costco mustard oil
+- flipkart mustard oil
+- jiomart mustard oil
+- jiomart mustard oil price
+- mustard oil amazon
+- mustard oil blinkit
+- mustard oil costco
+- mustard oil costco australia
+- mustard oil costco price
+- mustard oil dmart price
+- mustard oil jewel osco
+- mustard oil jiomart
+- mustard oil jiomart coupon
+- mustard oil jiomart price
+- mustard oil jumbo
+- mustard oil no frills
+- mustard oil price zepto
+- mustard oil quality foods
+- mustard oil zepto
+- mustard seed zehrs
+- quality food mustard oil
+- tesco mustard oil
+- where is mustard seed in walmart
+- zehrs mustard oil
+- zepto mustard oil
+- zepto mustard oil price
+
+### `local-no-gbp` (19)
+
+- cold pressed mustard oil near me
+- how mustard oil is made in factory
+- mustard oil dealers near me
+- mustard oil distributors near me
+- mustard oil expeller near me
+- mustard oil factory near me
+- mustard oil kolhu near me
+- mustard oil mill near me
+- mustard oil near me
+- mustard oil near me for cooking
+- mustard oil nearby
+- mustard oil plant near me
+- mustard oil price near me
+- mustard oil shop near me
+- mustard oil store near me
+- mustard oil suppliers near me
+- mustard oil wholesale near me
+- mustard seed near me
+- mustard seed nearby
+
+### `foreign-market` (16)
+
+- mustard oil alternative uk
+- mustard oil japan
+- mustard oil price in bangladesh
+- mustard oil price in pakistan
+- mustard oil qatar
+- mustard oil usa
+- mustard seed alternative uk
+- mustard seed yokohama
+- mustard seed zamboanga
+- mustard seed zimbabwe
+- mustard seed zurich
+- pakistan mustard oil price
+- uk mustard oil
+- where is mustard seed in jamaica
+- which oil is used for cooking in usa
+- why is mustard oil banned in uk
+
+### `other-oil-not-mustard` (16)
+
+- alternatives to olive oil
+- canola oil side effects
+- cost of a barrel of oil
+- cost of castor oil
+- cost of oil per barrel
+- cost of rosemary oil
+- cost of used cooking oil
+- indulekha hair oil
+- indulekha oil
+- what is canola oil made of
+- what is fish oil used for
+- what is linseed oil used for
+- what is palm oil used for
+- what is refined oil
+- what is sesame oil used for
+- where can i apply castor oil
+
+### `agronomy-not-buyer` (11)
+
+- do india import mustard oil
+- does mustard have oil in it
+- how do i grow mustard seeds
+- how long to soak mustard seeds
+- how to grow mustard seeds
+- largest mustard oil growing state
+- mustard oil export from india
+- mustard seed cost
+- mustard without oil
+- when mustard is harvested
+- where is mustard grown in india
+
+### `sensitive-out-of-scope` (3)
+
+- does mustard oil kill sperm
+- mustard oil as lubricant for pregnancy
+- mustard oil as lubricant when trying to conceive

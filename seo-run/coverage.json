@@ -1,0 +1,43 @@
+{
+  "raw_total": 1592,
+  "raw_keep": 1109,
+  "raw_drop": 483,
+  "unique_keep": 874,
+  "unique_drop": 467,
+  "drop_breakdown": {
+    "competitor-brand": 221,
+    "non-buyer-intent": 61,
+    "b2b-industrial": 60,
+    "off-topic-entity": 31,
+    "retailer-navigation": 29,
+    "local-no-gbp": 19,
+    "foreign-market": 16,
+    "other-oil-not-mustard": 16,
+    "agronomy-not-buyer": 11,
+    "sensitive-out-of-scope": 3
+  },
+  "asset_counts": {
+    "E1": 0,
+    "E2": 0,
+    "E3": 0,
+    "E4": 0,
+    "E6": 0,
+    "N1": 35,
+    "N2": 26,
+    "N3": 101,
+    "N4": 28,
+    "N5": 34,
+    "N6": 40,
+    "N7": 59,
+    "N8": 94,
+    "N9": 55,
+    "N11": 24,
+    "N12": 25,
+    "N13": 15,
+    "N14": 12,
+    "N15": 122,
+    "N16": 53,
+    "N17": 90,
+    "N18": 61
+  }
+}
