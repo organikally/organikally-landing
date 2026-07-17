@@ -11,12 +11,26 @@ export const revalidate = 3600;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = '2026-07-11';
 
+  // Indexable, self-canonical, footer-linked marketing routes. Cart/checkout/account
+  // and other transactional pages are intentionally excluded (they carry noindex).
+  const marketing = [
+    '/about/', '/vision/', '/farmers/', '/process/', '/faqs/', '/wholesale/',
+    '/careers/', '/contact/', '/product-authentication/', '/download/', '/news/',
+    '/policies/privacy/', '/policies/refunds/', '/policies/shipping/', '/policies/terms/',
+  ];
+
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, lastModified: now, changeFrequency: 'monthly', priority: 1 },
     { url: `${SITE_URL}/journal/`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     // Storefront listing. Cart/checkout/account are intentionally excluded (noindex).
     { url: `${SITE_URL}/store/`, lastModified: now, changeFrequency: 'daily', priority: 0.9 },
     { url: `${SITE_URL}/recipes/`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
+    ...marketing.map((path) => ({
+      url: `${SITE_URL}${path}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+    })),
   ];
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((p) => ({

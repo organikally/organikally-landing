@@ -9,7 +9,7 @@ import Media from '@/components/ui/Media';
 import JsonLd from '@/components/seo/JsonLd';
 import { posts, getPost } from '@/content/blog/posts';
 import { formatDate } from '@/lib/format';
-import { articleSchema, breadcrumbSchema } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, faqPageSchema } from '@/lib/schema';
 import { whatsapp } from '@/lib/site';
 
 export function generateStaticParams() {
@@ -43,6 +43,9 @@ export default async function JournalPost({ params }: { params: Promise<{ slug: 
   const post = getPost(slug);
   if (!post) notFound();
 
+  // Per-post FAQPage from any `faq` blocks (entity/AEO signal; mirrors visible text).
+  const faqItems = post.body.flatMap((b) => (b.type === 'faq' ? b.items : []));
+
   return (
     <>
       <JsonLd
@@ -53,6 +56,7 @@ export default async function JournalPost({ params }: { params: Promise<{ slug: 
             { name: 'Journal', path: '/journal/' },
             { name: post.title, path: `/journal/${post.slug}/` },
           ]),
+          ...(faqItems.length ? [faqPageSchema(faqItems)] : []),
         ]}
       />
       <SiteHeader forceSolid />
@@ -74,6 +78,9 @@ export default async function JournalPost({ params }: { params: Promise<{ slug: 
           </h1>
           <p className="mt-4 text-ink-muted">
             {post.author} · {formatDate(post.date)} · {post.readingMinutes} min read
+            {post.updated && post.updated !== post.date && (
+              <span className="text-ink-faint"> · Updated {formatDate(post.updated)}</span>
+            )}
           </p>
           <Media
             name={post.cover}
@@ -86,6 +93,33 @@ export default async function JournalPost({ params }: { params: Promise<{ slug: 
           />
           <hr className="my-10 border-line" />
           <PostBody blocks={post.body} />
+
+          {post.sources && post.sources.length > 0 && (
+            <section className="mt-14 border-t border-line pt-8">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-faint">
+                Sources
+              </h2>
+              <ul className="mt-4 space-y-2 text-sm text-ink-muted">
+                {post.sources.map((s, i) => (
+                  <li key={i} className="flex gap-3">
+                    <span className="text-ink-faint tnum">{i + 1}.</span>
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-yellow-ink underline-offset-2 hover:underline"
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-xs leading-relaxed text-ink-faint">
+                This article is general information about food and traditional use, not medical
+                advice. For any health concern, consult a qualified doctor or dietitian.
+              </p>
+            </section>
+          )}
 
           <div className="mt-16 overflow-hidden rounded-card bg-ink p-8 text-center shadow-panel md:p-10">
             <p className="text-2xl font-semibold text-paper">

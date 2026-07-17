@@ -6,7 +6,7 @@ import SectionTitle from '@/components/ui/SectionTitle';
 import Reveal from '@/components/ui/Reveal';
 
 export const metadata: Metadata = {
-  title: 'Process',
+  title: 'How Our Cold-Pressed Mustard Oil Is Made',
   description:
     'How Organikaly mustard oil is made: organically grown yellow mustard seed, kachi ghani cold-pressing at low temperature with no added heat or solvents, left unrefined and bottled fresh with the press date.',
   alternates: { canonical: '/process/' },

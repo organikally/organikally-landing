@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import SiteHeader from '@/components/layout/SiteHeader';
@@ -34,6 +35,12 @@ export const revalidate = 300;
 function inr(paise: number): string {
   return `₹${Math.round(paise / 100).toLocaleString('en-IN')}`;
 }
+
+// Home inherits the root layout's default title/OG; it only needs its own
+// self-canonical (every other route has one — REPORT §4.2).
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+};
 
 export default async function Home() {
   const [featured, hero, config, everything] = await Promise.all([

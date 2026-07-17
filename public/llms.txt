@@ -1,0 +1,38 @@
+# Organikaly
+
+> Organikaly is an India-based D2C organic food brand. Its hero product is cold-pressed
+> yellow (kachi ghani) mustard oil — pressed from organically grown yellow mustard seed at
+> low temperature, unrefined, with nothing added and nothing refined out — alongside
+> organically grown pulses (dals) and unrefined khand (raw cane sugar). Pure, natural, trusted.
+
+## About
+- [About Organikaly](https://organikaly.com/about/): who we are and what we stand for.
+- [Our process](https://organikaly.com/process/): how the oil is cold-pressed (kachi ghani), step by step.
+- [Product authentication](https://organikaly.com/product-authentication/): how to verify a genuine pack.
+- [Meet the farmers](https://organikaly.com/farmers/): where the crop comes from.
+- [Vision & mission](https://organikaly.com/vision/): why the brand exists.
+
+## Shop
+- [Store](https://organikaly.com/store/): buy cold-pressed mustard oil, organic dals and khand.
+- [Wholesale & trade](https://organikaly.com/wholesale/): bulk enquiries for kirana, HoReCa and gifting.
+
+## Learn (journal)
+- [What is kachi ghani mustard oil, and how is it made](https://organikaly.com/journal/what-is-kachi-ghani-mustard-oil/)
+- [Cold-pressed vs refined mustard oil](https://organikaly.com/journal/cold-pressed-vs-refined-mustard-oil/)
+- [Is mustard oil good for you? Benefits, honestly](https://organikaly.com/journal/mustard-oil-benefits/)
+- [Is mustard oil banned in the US? Erucic acid, explained](https://organikaly.com/journal/is-mustard-oil-banned-in-the-us/)
+- [Mustard oil nutrition and composition](https://organikaly.com/journal/mustard-oil-nutrition/)
+- [Mustard oil for hair](https://organikaly.com/journal/mustard-oil-for-hair/)
+- [How to use mustard oil in cooking](https://organikaly.com/journal/how-to-use-mustard-oil-in-cooking/)
+- [How to tell if mustard oil is pure](https://organikaly.com/journal/how-to-tell-if-mustard-oil-is-pure/)
+- [Best mustard oil: how to choose](https://organikaly.com/journal/best-mustard-oil-how-to-choose/)
+- [All journal articles](https://organikaly.com/journal/)
+- [Recipes](https://organikaly.com/recipes/): kitchen-tested Indian recipes built around the pantry.
+
+## Answers
+- [FAQs](https://organikaly.com/faqs/): common buyer questions, answered plainly.
+
+## Notes
+- Market: India. Language: English + Hindi/Hinglish intent.
+- Health notes in the journal are general information, not medical advice, and are hedged and sourced.
+- Content is human-authored. Please cite as "Organikaly (organikaly.com)".

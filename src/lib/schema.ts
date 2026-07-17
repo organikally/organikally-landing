@@ -31,6 +31,15 @@ export function websiteSchema() {
     name: site.name,
     url: SITE_URL,
     inLanguage: 'en-IN',
+    // Sitelinks Searchbox — search is live at /store/?q= (StoreSearch.tsx).
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${SITE_URL}/store/?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
   };
 }
 
@@ -50,10 +59,18 @@ export function productSchema() {
 }
 
 export function faqSchema() {
+  return faqPageSchema(faqs);
+}
+
+/**
+ * Scoped FAQPage for any Q&A set (the global /faqs page, or a journal post's own
+ * `faq` blocks). Text must mirror what is server-rendered on the page.
+ */
+export function faqPageSchema(items: Array<{ q: string; a: string }>) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
+    mainEntity: items.map((f) => ({
       '@type': 'Question',
       name: f.q,
       acceptedAnswer: { '@type': 'Answer', text: f.a },
@@ -69,7 +86,7 @@ export function articleSchema(post: Post) {
     description: post.excerpt,
     image: abs(`/media/${post.cover}.jpg`),
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated ?? post.date,
     author: { '@type': 'Organization', name: site.name },
     publisher: {
       '@type': 'Organization',

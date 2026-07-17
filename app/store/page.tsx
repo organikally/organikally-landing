@@ -35,7 +35,7 @@ export function generateMetadata(): Metadata {
   // Self-canonical to /store/ ignoring ALL query params (§10) so filtered/paginated
   // permutations don't dilute the index.
   return {
-    title: 'Shop',
+    title: 'Buy Cold-Pressed Organic Mustard Oil Online',
     description:
       'Buy cold-pressed organic mustard oil, organic dals and unrefined khand direct from Organikaly — made from organically grown seed, nothing refined out.',
     alternates: { canonical: '/store/' },
