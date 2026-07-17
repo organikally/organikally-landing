@@ -53,4 +53,40 @@ export const faqs: Faq[] = [
     q: 'How do I order, and do you sell wholesale?',
     a: 'Tap any “Order” button to message us on WhatsApp and we’ll help you buy directly. For kirana stores, cloud kitchens and corporate gifting, use the bulk & trade enquiry — we’re glad to share certifications and pricing.',
   },
+  {
+    q: 'Is mustard oil banned?',
+    a: 'Not in India. Mustard oil is a permitted, everyday edible oil here, regulated by the FSSAI, and it has been central to Indian cooking for generations. The confusion comes from the United States, where — because of its natural erucic acid — mustard oil isn’t approved as a cooking oil and is sold labelled “for external use only”. In an Indian kitchen it’s simply a traditional staple.',
+  },
+  {
+    q: 'What is the smoke point of mustard oil?',
+    a: 'Mustard oil has a high smoke point (around 250°C), which is exactly why Indian kitchens rely on it for tempering, sautéing and deep-frying. Heat it until it just shimmers and the raw edge softens, bring the flame down, and cook the way you always have.',
+  },
+  {
+    q: 'How is cold-pressed mustard oil different from refined mustard oil?',
+    a: 'Cold-pressed (kachi ghani) oil is crushed slowly at low temperature and left unrefined, so it keeps its deep golden colour, its pungent aroma and the natural goodness of the seed. Refined oil is extracted with heat and often solvents, then bleached and deodorised — cleaner-looking and near-odourless, but stripped of the character cold-pressing keeps.',
+  },
+  {
+    q: 'How do I know the mustard oil is pure and not adulterated?',
+    a: 'Look for a genuine FSSAI licence and organic certification on the pack, a true deep-golden colour, and the characteristic pungency — real cold-pressed oil is honestly aromatic. We print our sourcing and press details so purity is something you can check; our product authentication page walks through how to verify a genuine pack.',
+  },
+  {
+    q: 'Is mustard oil cholesterol-free?',
+    a: 'Yes. Like all plant oils, mustard oil contains no cholesterol. It is also naturally high in monounsaturated fat (MUFA) and carries omega-3 (ALA) — and because it is unrefined, those natural qualities of the seed aren’t processed out.',
+  },
+  {
+    q: 'Does mustard oil contain omega-3?',
+    a: 'Yes — mustard oil naturally contains omega-3 as alpha-linolenic acid (ALA), alongside monounsaturated fat and omega-6. Cold-pressing aims to retain what heat and refining tend to reduce. As with any oil, use it as part of a varied, balanced diet.',
+  },
+  {
+    q: 'Can I use mustard oil for a baby’s massage?',
+    a: 'Mustard oil massage is a long-standing tradition in many Indian homes. That said, some guidance advises caution with mustard oil on very young or newborn skin, so please check with your paediatrician before using it on a baby, and always do a small patch test first. This is general information, not medical advice.',
+  },
+  {
+    q: 'Do you deliver across India, and where can I buy?',
+    a: 'You can buy directly from our online store, and we’re expanding delivery across India — enter your pincode at checkout to confirm serviceability in your area. For kirana stores, cloud kitchens and bulk or corporate orders, use our wholesale & trade enquiry.',
+  },
+  {
+    q: 'Why does the price of mustard oil change?',
+    a: 'Mustard oil is an agricultural product, so its price moves with the mustard (sarson) crop, the season and demand — it isn’t a fixed number. For the current price and pack sizes, check the product page in our store; that is always the live figure.',
+  },
 ];

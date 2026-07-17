@@ -1,4 +1,5 @@
 import type { Post } from './types';
+import { generatedPosts } from './posts.generated';
 
 // Seed journal posts. Factually defensible, claim-checked (docs/COMPLIANCE.md):
 // composition and process, no medical/curative claims. Byline is the brand journal.
@@ -301,6 +302,7 @@ export const posts: Post[] = [
       },
     ],
   },
+  ...generatedPosts,
 ];
 
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
