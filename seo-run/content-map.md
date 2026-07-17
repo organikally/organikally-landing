@@ -9,23 +9,23 @@ Status legend: `pending` → `drafting` → `done`. Update per asset as it ships
 
 | id | content_type | funnel | primary_keyword | target_url_slug | #queries | status |
 |---|---|---|---|---|---:|---|
-| N1 | pillar | TOFU | mustard oil benefits | /journal/mustard-oil-benefits/ | 35 | pending |
-| N2 | cluster | TOFU | is mustard oil good for cholesterol | /journal/mustard-oil-heart-cholesterol/ | 26 | pending |
-| N3 | pillar | TOFU | mustard oil for hair | /journal/mustard-oil-for-hair/ | 101 | pending |
-| N4 | cluster | TOFU | mustard oil for skin | /journal/mustard-oil-for-skin/ | 28 | pending |
-| N5 | pillar | TOFU | is mustard oil banned in the us | /journal/is-mustard-oil-banned-in-the-us/ | 34 | pending |
-| N6 | cluster | TOFU | mustard oil nutrition | /journal/mustard-oil-nutrition/ | 40 | pending |
-| N7 | pillar | TOFU | what is kachi ghani mustard oil | /journal/what-is-kachi-ghani-mustard-oil/ | 59 | pending |
-| N8 | comparison | BOFU | mustard oil vs refined oil | /journal/mustard-oil-vs-other-oils/ | 94 | pending |
-| N9 | cluster | TOFU | how to use mustard oil for cooking | /journal/how-to-use-mustard-oil-in-cooking/ | 55 | pending |
-| N11 | cluster | TOFU | mustard oil for massage | /journal/mustard-oil-for-massage/ | 24 | pending |
-| N12 | post | TOFU | mustard oil for pooja | /journal/mustard-oil-in-pooja/ | 25 | pending |
-| N13 | pillar | BOFU | how to check mustard oil purity | /journal/how-to-tell-if-mustard-oil-is-pure/ | 15 | pending |
-| N14 | post | TOFU | how to store mustard oil | /journal/how-to-store-mustard-oil/ | 12 | pending |
-| N15 | buying-guide | BOFU | mustard oil price in india | /journal/mustard-oil-price-india/ | 122 | pending |
-| N16 | buying-guide | BOFU | best mustard oil in india | /journal/best-mustard-oil-how-to-choose/ | 53 | pending |
-| N17 | pillar | TOFU | uses of mustard oil | /journal/mustard-oil-uses/ | 90 | pending |
-| N18 | glossary | TOFU | mustard oil in hindi | /journal/mustard-oil-names-across-india/ | 61 | pending |
+| N1 | pillar | TOFU | mustard oil benefits | /journal/mustard-oil-benefits/ | 35 | done |
+| N2 | cluster | TOFU | is mustard oil good for cholesterol | /journal/mustard-oil-heart-cholesterol/ | 26 | done |
+| N3 | pillar | TOFU | mustard oil for hair | /journal/mustard-oil-for-hair/ | 101 | done |
+| N4 | cluster | TOFU | mustard oil for skin | /journal/mustard-oil-for-skin/ | 28 | done |
+| N5 | pillar | TOFU | is mustard oil banned in the us | /journal/is-mustard-oil-banned-in-the-us/ | 34 | done |
+| N6 | cluster | TOFU | mustard oil nutrition | /journal/mustard-oil-nutrition/ | 40 | done |
+| N7 | pillar | TOFU | what is kachi ghani mustard oil | /journal/what-is-kachi-ghani-mustard-oil/ | 59 | done |
+| N8 | comparison | BOFU | mustard oil vs refined oil | /journal/mustard-oil-vs-other-oils/ | 94 | done |
+| N9 | cluster | TOFU | how to use mustard oil for cooking | /journal/how-to-use-mustard-oil-in-cooking/ | 55 | done |
+| N11 | cluster | TOFU | mustard oil for massage | /journal/mustard-oil-for-massage/ | 24 | done |
+| N12 | post | TOFU | mustard oil for pooja | /journal/mustard-oil-in-pooja/ | 25 | done |
+| N13 | pillar | BOFU | how to check mustard oil purity | /journal/how-to-tell-if-mustard-oil-is-pure/ | 15 | done |
+| N14 | post | TOFU | how to store mustard oil | /journal/how-to-store-mustard-oil/ | 12 | done |
+| N15 | buying-guide | BOFU | mustard oil price in india | /journal/mustard-oil-price-india/ | 122 | done |
+| N16 | buying-guide | BOFU | best mustard oil in india | /journal/best-mustard-oil-how-to-choose/ | 53 | done |
+| N17 | pillar | TOFU | uses of mustard oil | /journal/mustard-oil-uses/ | 90 | done |
+| N18 | glossary | TOFU | mustard oil in hindi | /journal/mustard-oil-names-across-india/ | 61 | done |
 
 ### Existing posts (live) — link targets, lightly augmented with FAQ blocks
 

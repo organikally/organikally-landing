@@ -51,10 +51,33 @@ going, per the brief. Tell me where you'd choose differently and I'll adjust.
   informational, but you own the final sign-off. Baby-massage (N11) specifically carries a
   pediatric-caution note by design.
 
-### 8. Publishing — see `PUBLISH-DECISION` at the end of the run
-- Content is committed to the repo in small batches with clean (no-attribution) messages, and the
-  production build is verified. The push-to-`main` decision is surfaced in the final summary given
-  the YMYL stakes on a live consumer site.
+### 8. Publishing — committed locally, NOT pushed (your call)
+- All work is committed to `main` **locally** with clean, no-attribution messages and the production
+  `next build` passes (24 journal routes prerender, sitemap builds). I did **not** `git push`.
+- **Why hold the push:** `main` auto-deploys to the live consumer site, and this drops 17 new public
+  **health/YMYL** articles at once. The landing `CLAUDE.md` names a human `food-claims-compliance`
+  gate for health claims before they ship; my adversarial-agent pass is a strong stand-in, not that
+  named gate. This is the one genuinely irreversible, outward-facing step — worth your yes.
+- **To publish:** say the word and I'll `git push origin main` (Vercel deploys). Everything else in
+  this run was done autonomously; only the production deploy waits.
+
+## Residual flags from the compliance pass (worth a human eye before you promote hard)
+Full per-post flags are in `assembly-report.json`. The ones that need a decision:
+- **Store transactability (N15, N18, N13, N14, others):** several BOFU posts route to `/store/` and
+  reference "check the live price there." Memory notes the store may not be transactable yet (no
+  serviceable pincodes / Razorpay pending). If the store can't show a price, soften those lines or
+  hold the store CTA until checkout is live.
+- **N13 pack-code claim:** the purity post says you can "verify a specific bottle using its pack code"
+  via `/product-authentication/`. Confirm that feature actually exists, or I'll soften the wording.
+- **N13 folk purity tests + Agmark:** fridge/freeze/rub tests are traditional (not lab-grade) — kept
+  but heavily hedged. Agmark grade references should only imply Agmark if the product truly carries it.
+- **N18 regional scripts:** Assamese/Odia/Tamil/etc. transliterations should be spot-checked by native
+  speakers before promoting.
+- **N11 camphor + infant-skin caution:** strong safety content — a medical reviewer's eye is ideal.
+- **Sources are institution-level canonical URLs** (FSSAI/FDA/USDA/ICMR-NIN/Harvard/Agmarknet/Consumer
+  Affairs), not exact article URLs — deliberate, to avoid fabricating links. Swap in precise pages if wanted.
+- **Time-sensitive facts (N15):** 5% GST slab + the Oct-2020 mustard-blending ban are correct to the
+  Jan-2026 knowledge cutoff; reverify if republishing much later.
 
 ## Still needs YOU (carried from `seo-system/STATE.md`, unchanged by this run)
 - [ ] FSSAI licence number, legal entity + registered address, GSTIN, phone/WhatsApp, real socials

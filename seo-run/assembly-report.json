@@ -1,0 +1,267 @@
+[
+ {
+  "id": "N15",
+  "slug": "mustard-oil-price-india",
+  "title": "Mustard Oil Price in India: What Really Moves It",
+  "words": 1669,
+  "blocks": 24,
+  "faq": true,
+  "links": true,
+  "sources": 4,
+  "excerpt_len": 155,
+  "flags": [
+   "Sources use gst.gov.in, agmarknet.gov.in and consumeraffairs.nic.in — real, canonical Indian government domains but outside the health-focused SOURCES allowlist; retained as the most topically authoritative references for a price/regulatory asset. Confirm they fit the site's source policy.",
+   "The 5% GST slab and the 'in force since October 2020' blending-ban date are accurate as of the January 2026 knowledge cutoff, but tax slabs and regulations can change — reverify before republishing.",
+   "Tin/bottle conversions assume mustard oil density ~0.91 kg/L; real packs may be labelled by a nominal weight or volume that varies slightly by brand, so treat the conversions as a guide."
+  ]
+ },
+ {
+  "id": "N16",
+  "slug": "best-mustard-oil-how-to-choose",
+  "title": "Best Mustard Oil in India: How to Choose",
+  "words": 1518,
+  "blocks": 21,
+  "faq": true,
+  "links": true,
+  "sources": 5,
+  "excerpt_len": 142,
+  "flags": []
+ },
+ {
+  "id": "N8",
+  "slug": "mustard-oil-vs-other-oils",
+  "title": "Mustard oil vs refined oil (and every other cooking oil)",
+  "words": 1778,
+  "blocks": 23,
+  "faq": true,
+  "links": true,
+  "sources": 5,
+  "excerpt_len": 150,
+  "flags": [
+   "This asset has no infant/baby or skin-use content, so no pediatric/newborn-skin caution was added (not applicable here). If a future edit adds mustard-oil-on-baby-skin or massage content, add the pediatric caution.",
+   "Word count runs slightly above the 800-1200 comparison guideline (~1300) because it covers eight oils/fats; trim a section if strict length is required.",
+   "Source labels name sub-topics (FDA 'import and labelling', USDA 'oil nutrition data') but URLs are canonical top-level pages per the no-fabricated-URL rule; a human may swap in exact section URLs if wanted."
+  ]
+ },
+ {
+  "id": "N13",
+  "slug": "how-to-tell-if-mustard-oil-is-pure",
+  "title": "How to Check Mustard Oil Purity at Home",
+  "words": 1817,
+  "blocks": 24,
+  "faq": true,
+  "links": true,
+  "sources": 3,
+  "excerpt_len": 145,
+  "flags": [
+   "Links block has no direct /store or product-page link (only the two journal articles and /product-authentication/). If this is treated as a BOFU buying guide, a human may want to add a verified store URL and confirm all three hrefs resolve live.",
+   "The final section asserts you can 'verify a specific bottle using its pack code' via /product-authentication/. Confirm that pack-code verification feature actually exists and works before publishing.",
+   "The fridge/freeze, rub and blotting-paper tests are traditional folk screens with limited scientific reliability; kept but heavily hedged — confirm the brand is comfortable publishing them.",
+   "Agmark grading references (Grade 1/2) and any implied on-pack Agmark mark should be checked against Organikaly's real certification — Agmark is voluntary, so only imply it if the product genuinely carries it."
+  ]
+ },
+ {
+  "id": "N5",
+  "slug": "is-mustard-oil-banned-in-the-us",
+  "title": "Is Mustard Oil Banned in the US? Erucic Acid Explained",
+  "words": 1596,
+  "blocks": 25,
+  "faq": true,
+  "links": true,
+  "sources": 5,
+  "excerpt_len": 145,
+  "flags": [
+   "EU/Codex erucic-acid limits are described qualitatively; no EU/Codex/WHO page is on the source allowlist, so none was cited. Add a WHO/Codex citation if you want that specific claim directly sourced.",
+   "The 1998 India argemone-oil 'dropsy' episode and the US 'external use only' labelling are stated from well-established public record and are accurate, but are not tied to a specific citable page. Link one if you want belt-and-suspenders sourcing.",
+   "This is an informational/regulatory explainer, not a BOFU page, so no /store link was added and the three provided journal links were kept verbatim. Add a gentle /store link from the Organikaly section if you want buyer routing."
+  ]
+ },
+ {
+  "id": "N6",
+  "slug": "mustard-oil-nutrition",
+  "title": "Mustard Oil Nutrition: Calories, Fats & What's Inside",
+  "words": 1354,
+  "blocks": 21,
+  "faq": true,
+  "links": true,
+  "sources": 5,
+  "excerpt_len": 151,
+  "flags": [
+   "ICMR-NIN is listed as a source but not cited inline; kept as a legitimate India nutrition authority for the topic — drop it if you prefer sources to be inline-cited only.",
+   "'Does not raise blood sugar on its own' is factually true for a pure fat but is health-adjacent; it sits immediately before the disclaimer. Confirm you are comfortable with it for diabetic readers.",
+   "Harvard Nutrition Source is characterised as generally favouring liquid plant oils over solid fats (it does not specifically endorse mustard oil, and the text does not claim it does). Confirm the general characterisation is acceptable to you."
+  ]
+ },
+ {
+  "id": "N7",
+  "slug": "what-is-kachi-ghani-mustard-oil",
+  "title": "What Is Kachi Ghani Mustard Oil, and How Is It Made?",
+  "words": 1848,
+  "blocks": 27,
+  "faq": true,
+  "links": true,
+  "sources": 5,
+  "excerpt_len": 151,
+  "flags": [
+   "Internal link slugs (/journal/cold-pressed-vs-refined-mustard-oil/, /journal/how-to-tell-if-mustard-oil-is-pure/, /journal/best-mustard-oil-how-to-choose/) are assumed to exist — confirm those posts are published before shipping so the 'Keep reading' block has no dead links.",
+   "The ~250°C smoke point and 20-40% erucic-acid range are cited to institutions at a general level; exact figures vary by variety, season and refining, so they are kept as approximate ranges rather than hard numbers."
+  ]
+ },
+ {
+  "id": "N9",
+  "slug": "how-to-use-mustard-oil-in-cooking",
+  "title": "How to Use Mustard Oil in Cooking: A Simple Guide",
+  "words": 1654,
+  "blocks": 24,
+  "faq": true,
+  "links": true,
+  "sources": 5,
+  "excerpt_len": 150,
+  "flags": [
+   "This is an informational how-to (TOFU/MOFU), not a BOFU asset, so no direct /store CTA was added; the three internal links supplied in the brief are kept verbatim. If this is meant to route buyers, a human may want to add a store link.",
+   "readingMinutes is an estimate (~1,150 words); confirm against the final rendered length.",
+   "The ~250 C smoke point and 20-40%+ erucic-acid figures are given as approximate ranges per the brief's authoritative facts; the FSSAI/USDA/FDA canonical pages are in sources but no figure-specific citation URLs were invented."
+  ]
+ },
+ {
+  "id": "N3",
+  "slug": "mustard-oil-for-hair",
+  "title": "Mustard Oil for Hair: Benefits and How to Use It",
+  "words": 1999,
+  "blocks": 25,
+  "faq": true,
+  "links": true,
+  "sources": 5,
+  "excerpt_len": 152,
+  "flags": []
+ },
+ {
+  "id": "N1",
+  "slug": "mustard-oil-benefits",
+  "title": "Mustard Oil Benefits: Is It Good for You?",
+  "words": 1463,
+  "blocks": 18,
+  "faq": true,
+  "links": true,
+  "sources": 5,
+  "excerpt_len": 157,
+  "flags": [
+   "The 'in animal studies high erucic-acid intake has been linked to heart-tissue effects' line is accurate and hedged, but a human may want to confirm the desired depth of this regulatory rationale.",
+   "The 20-40%+ erucic-acid range is stated qualitatively from brand facts; if a precise figure is ever published, verify against a current lab report/COA.",
+   "Internal-link slugs (/journal/mustard-oil-heart-cholesterol/, etc.) are assumed to exist; confirm those posts are live before publishing so the links don't 404."
+  ]
+ },
+ {
+  "id": "N2",
+  "slug": "mustard-oil-heart-cholesterol",
+  "title": "Is mustard oil good for cholesterol and your heart?",
+  "words": 1441,
+  "blocks": 17,
+  "faq": true,
+  "links": true,
+  "sources": 5,
+  "excerpt_len": 147,
+  "flags": [
+   "No infant/baby content in this asset, so the pediatric/newborn-skin caution was intentionally not added (not applicable here).",
+   "The 'WHO and Harvard point to unsaturated oils as the better everyday choice' framing and 'mustard oil contains no purines' are accurate generalisations; a human may want to confirm the phrasing matches the latest institutional wording.",
+   "This is an informational (not BOFU) asset, so the links block points to sibling journal posts and omits a hard store CTA — add a store link if it's later reclassified as BOFU."
+  ]
+ },
+ {
+  "id": "N4",
+  "slug": "mustard-oil-for-skin",
+  "title": "Mustard Oil for Skin and Face: Benefits and How to Use",
+  "words": 1601,
+  "blocks": 22,
+  "faq": true,
+  "links": true,
+  "sources": 6,
+  "excerpt_len": 149,
+  "flags": [
+   "Vitamin E (tocopherols) is stated as a component but is not in the supplied authoritative-facts list. It is genuinely true and USDA-documented for mustard oil and is used here only cosmetically, but confirm you are comfortable keeping it.",
+   "Harvard T.H. Chan Nutrition Source is cited for dietary-fat composition; it is somewhat tangential to a topical-skincare asset and could be dropped without weakening sourcing (USDA already covers composition).",
+   "No store/product internal link was added because the brief supplied only the two journal links. If N4 is meant to route buyers to the Organikaly mustard-oil product page, add that link (verbatim label+href) to the 'Keep reading' block."
+  ]
+ },
+ {
+  "id": "N11",
+  "slug": "mustard-oil-for-massage",
+  "title": "Mustard Oil for Massage: Body, Joints, Feet & Babies",
+  "words": 1871,
+  "blocks": 26,
+  "faq": true,
+  "links": true,
+  "sources": 5,
+  "excerpt_len": 148,
+  "flags": [
+   "USDA FoodData Central and ICMR-NIN are institution-level sources kept mainly for the erucic-acid/composition and India-nutrition context; a human may trim them since this asset is massage-focused with little nutrition content.",
+   "The infant skin-barrier caution ('some research and many dermatologists caution...') reflects real literature but is attributed generically to PubMed rather than a named study; a medical reviewer may want to confirm the exact framing before publish.",
+   "Camphor guidance ('pure/edible camphor', never swallow, keep from babies' faces) is a real safety point but worth a human eye given how strong and easily misused camphor is at home."
+  ]
+ },
+ {
+  "id": "N12",
+  "slug": "mustard-oil-in-pooja",
+  "title": "Mustard Oil for Pooja: Diyas, Shani Dev & Hanuman",
+  "words": 1644,
+  "blocks": 29,
+  "faq": true,
+  "links": true,
+  "sources": 2,
+  "excerpt_len": 147,
+  "flags": [
+   "This is a religious/cultural asset with only incidental food-fact content; the USDA source is a light touch (backs oil composition/smoke point). A human may prefer to drop it or leave FSSAI as the single anchor.",
+   "Religious/customary details (which oils suit which deities, Sade Sati/Dhaiya, the Hanuman–Shani captivity story) are living tradition and were not fact-checked against a scriptural or scholarly source.",
+   "Folk-belief lines ('clears negative energy', 'removes buri nazar') are retained but explicitly framed as faith, not proven claims — confirm this framing meets your comfort level for spiritual content."
+  ]
+ },
+ {
+  "id": "N14",
+  "slug": "how-to-store-mustard-oil",
+  "title": "How to Store Mustard Oil and How Long It Lasts",
+  "words": 1632,
+  "blocks": 23,
+  "faq": true,
+  "links": true,
+  "sources": 2,
+  "excerpt_len": 141,
+  "flags": [
+   "Shelf-life figures ('around a year' unopened, 'two to three months' opened) are typical-guidance, not Organikaly-specific; confirm they match the actual pack best-before before publishing.",
+   "This is an informational (not BOFU) asset and the brief supplied only two journal links, so no store link was added. If you want to gently route buyers, add a verified /store link to the 'Keep reading' block.",
+   "Harvard Nutrition Source is a general fats/oils reference; the rancidity/oxidation statements are common food-science knowledge, so it supports rather than directly citing a specific claim."
+  ]
+ },
+ {
+  "id": "N17",
+  "slug": "mustard-oil-uses",
+  "title": "Uses of Mustard Oil: How Indian Homes Use It",
+  "words": 1925,
+  "blocks": 25,
+  "faq": true,
+  "links": true,
+  "sources": 5,
+  "excerpt_len": 151,
+  "flags": [
+   "Seed size ('1-2 mm') is general agricultural knowledge, not tied to a cited source; low risk but a human could confirm against a horticulture reference if desired.",
+   "Sources ICMR-NIN and Harvard Nutrition Source are included for nutrition-framing breadth but are not each tied to a specific in-text claim; keep for authority or trim to only directly-cited institutions (FSSAI/FDA/USDA) if you prefer a tighter list.",
+   "Flight liquid rules (100 ml cabin limit; checked-baggage oil allowances) vary by jurisdiction and airline; copy hedges appropriately, but confirm there is no India-specific quantity cap you want to name explicitly."
+  ]
+ },
+ {
+  "id": "N18",
+  "slug": "mustard-oil-names-across-india",
+  "title": "Mustard Oil in Hindi: Sarson Ka Tel & Names Across India",
+  "words": 1581,
+  "blocks": 26,
+  "faq": true,
+  "links": true,
+  "sources": 5,
+  "excerpt_len": 143,
+  "flags": [
+   "Regional-language scripts and transliterations should be spot-checked by native speakers before publish — especially Assamese সৰিয়হ তেল (xoriyoh tel) and Odia ସୋରିଷ ତେଲ (sorisha tela).",
+   "Store routing assumes /store lists a purchasable cold-pressed mustard oil with a visible price; memory notes the store may not be transactable yet (no serviceable pincodes / Razorpay pending). If the store can't show a price, drop the store link and soften the cost FAQ before publishing.",
+   "Verify the two internal journal links (/journal/what-is-kachi-ghani-mustard-oil/ and /journal/mustard-oil-benefits/) exist and resolve before publish.",
+   "Erucic-acid range is stated qualitatively; if a precise figure is ever added it must cite a real source (FSSAI/Codex), not an invented percentage."
+  ]
+ }
+]
