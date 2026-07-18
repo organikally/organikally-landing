@@ -54,7 +54,7 @@ export const footerNav = {
   quickLinks: [
     { label: 'Recipes', href: '/recipes/' },
     { label: 'News & Media', href: '/news/' },
-    { label: 'Blogs', href: '/journal/' },
+    { label: 'Journal', href: '/journal/' },
     { label: 'Career With Us', href: '/careers/' },
     { label: 'FAQs', href: '/faqs/' },
     { label: 'Track Order', href: '/store/orders/' },
