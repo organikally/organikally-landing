@@ -21,7 +21,7 @@ import JournalTeaser from '@/components/sections/JournalTeaser';
 import Faq from '@/components/sections/Faq';
 import Conversion from '@/components/sections/Conversion';
 import JsonLd from '@/components/seo/JsonLd';
-import { organizationSchema, websiteSchema, productSchema, faqSchema } from '@/lib/schema';
+import { organizationSchema, websiteSchema, faqSchema } from '@/lib/schema';
 import { getProducts, getStoreConfig, getFeatured, getHero } from '@/lib/store/api';
 
 // The homepage is a brand-first landing, deliberately distinct from /store: a
@@ -102,7 +102,7 @@ export default async function Home() {
 
   return (
     <StoreProviders>
-      <JsonLd data={[organizationSchema(), websiteSchema(), productSchema(), faqSchema()]} />
+      <JsonLd data={[organizationSchema(), websiteSchema(), faqSchema()]} />
       <SiteHeader />
 
       {/* No top padding — the full-screen hero sits under the floating header. */}

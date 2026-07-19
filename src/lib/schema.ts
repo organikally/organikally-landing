@@ -1,6 +1,5 @@
 import { SITE_URL, site } from './site';
 import { faqs } from '@/content/faqs';
-import { heroProduct } from '@/content/products';
 import type { Post } from '@/content/blog/types';
 import type {
   StorefrontProductDetail,
@@ -43,21 +42,10 @@ export function websiteSchema() {
   };
 }
 
-// Product schema kept to defensible, verifiable fields only (docs/COMPLIANCE.md):
-// no unsubstantiated nutrition/health properties; offers added once a real price/URL exists.
-export function productSchema() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: heroProduct.name,
-    image: abs(heroProduct.image ?? '/hero/poster.jpg'),
-    description:
-      'Cold-pressed organic yellow mustard oil, pressed from organically grown seed, nothing added, nothing refined out.',
-    brand: { '@type': 'Brand', name: site.name },
-    category: 'Mustard oil',
-  };
-}
-
+// The homepage is a brand landing page, not a product-detail page, so it carries no
+// Product structured data. A Product without offers/review/aggregateRating is an invalid
+// item under Google's Product rich-result rules; the canonical, valid Product markup
+// (with a real offer + price) is emitted per-PDP by storeProductSchema() below.
 export function faqSchema() {
   return faqPageSchema(faqs);
 }
@@ -112,7 +100,7 @@ export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
 }
 
 // ── Storefront schema (STORE_CONTRACT §10) — additive; the parameterless
-// productSchema()/breadcrumbSchema() above are FROZEN and unchanged. ──────────
+// breadcrumbSchema() above is unchanged. ──────────
 
 /**
  * JSON-LD Product for a storefront PDP. Built from request-time-fresh data so the
